@@ -17,6 +17,14 @@ html {
     background-color: #dadada;
     /* Kolor tła strony */
   }
+.body--edytor{
+
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: auto;
+
+}
 
   
 head {
