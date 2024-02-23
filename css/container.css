@@ -1,41 +1,3 @@
-.container--wideo {
-    width: 100%;
-    max-width: 400px;
-    height: 50vh;
-
-}
-
-.container__iframe {
-    width: 100%;
-    height: 100%
-}
-
-
-
-.container__img {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    height: 90%;
-    width: 90%;
-    margin: 10px;
-}
-
-@media only screen and (max-width: 500px) {
-    .container {
-        margin: 5px;
-        padding: 0px;
-
-    }
-
-    .container--wideo {
-        width: 100%;
-        max-width: 200px;
-        margin: auto auto;
-    }
-}
-
-  
-
 
 .container {
 
@@ -54,3 +16,24 @@
 
 
 }
+
+
+
+
+
+.container__iframe {
+    width: 80%;
+    height: 40vh;
+
+    place-self: center;
+
+
+}
+
+
+
+
+
+  
+
+
