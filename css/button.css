@@ -1,0 +1,40 @@
+
+.button--data {
+    background-color: green;
+    /* Kolor tła */
+  
+  }
+  
+  .button--data:hover {
+  
+    background-color: #375a06;
+  }
+  
+  .button--question {
+  
+    background-color: green
+  }
+  
+  .button--question:hover {
+  
+    background-color: #375a06;
+  }
+
+  .button {
+    background-color: rgba(200, 12, 12, 0.655);
+    /* Kolor tła */
+    color: white;
+    /* Kolor napisu */
+    padding: 10px 15px;
+    /* Odstępy wewnętrzne */
+    border: none;
+    /* Brak obramowania */
+    border-radius: 5px;
+    /* Promień zaokrąglenia */
+    cursor: pointer;
+    /* Zmiana kursora na wskaźnik */
+  
+    margin: 10px;
+  
+  }
+  

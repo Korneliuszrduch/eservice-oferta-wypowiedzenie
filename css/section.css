@@ -1,0 +1,92 @@
+.section {
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin: 6px;
+  }
+  
+
+  
+  .section--termination {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 80px;
+    margin-left: 5px;
+  }
+  
+  .section--terminationDate {
+  
+    margin: 0px;
+  }
+  
+  .section--terminationCompany {
+  
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
+  
+  .section--companyName {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 5px;
+  
+  }
+  
+  .section--companyNameTerminal {
+  
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 5px;
+    text-align: right;
+  }
+  
+  .section--signed {
+    margin-top: 100px;
+  }
+
+  
+.section__span {
+    display: grid;
+  
+    padding: 4px
+  }
+  
+
+  
+  .section__form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .section--wayToFinalize {
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+  }
+  
+  
+  @media only screen and (max-width: 500px) {
+  
+    .section--wayToFinalize {
+  
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+  }
+  
+  .section--stepToFinalize {
+    display: grid;
+  
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
+  
+  .section__img {
+  
+    width: 100%;
+  }

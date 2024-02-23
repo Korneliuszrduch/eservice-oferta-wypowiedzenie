@@ -1,0 +1,40 @@
+
+
+
+
+
+@media print {
+    body * {
+        visibility: hidden;
+        margin: 0;
+    }
+
+
+    #printContent * {
+        visibility: visible;
+    }
+
+    #printContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: none;
+    }
+
+
+    header, footer {
+        display: none !important;
+    }
+
+    /* Ukryj adres strony i datę wydruku */
+    address, .printDate, .page, .pageNumber {
+        display: none !important;
+    }
+
+
+}
+
+.printContent {
+    border: 1px solid #000;
+
+}

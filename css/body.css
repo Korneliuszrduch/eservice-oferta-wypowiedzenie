@@ -1,0 +1,24 @@
+
+
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  .body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    background-color: #dadada;
+    /* Kolor tła strony */
+  }
+
+  
+head {
+    display: none;
+  }

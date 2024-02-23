@@ -1,0 +1,48 @@
+
+.list {
+
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 5px;
+    padding: 10px;
+    ;
+    list-style-type: none;
+  }
+  
+  .list__icon {
+    color: rgb(95, 164, 11);
+  
+  
+  
+  
+  }
+  
+  .list__paragraf {
+    color: black;
+    display: inline;
+    margin: 8px;
+    font-style: normal;
+  }
+  
+  .list {
+
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 5px;
+    padding: 10px;
+    ;
+    list-style-type: none;
+  }
+  
+  
+  
+  .list__paragraf {
+    color: black;
+    display: inline;
+    margin: 8px;
+    font-style: normal;
+  }

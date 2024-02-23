@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+.div {
+  display: grid;
+  grid-column: auto auto;
+
+}
+
+.div__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  /* Dostosuj margines między przyciskami według potrzeb */
+}
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-select {
+
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.dropdown-option {
+  padding: 8px;
+  cursor: pointer;
+}
