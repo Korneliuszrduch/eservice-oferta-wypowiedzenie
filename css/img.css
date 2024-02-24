@@ -1,6 +1,7 @@
 .img {
 
-  height: 30vh;
+  
+  height: 40vh;
   margin: 15px auto;
   display: block;
   
@@ -9,8 +10,9 @@
   .img--companies{
   margin-top: 20px;
   margin-bottom: 40px;
-  height: 90%;
-  width: 90%;
+  height: auto;
+
+
   margin: 10px;
 }
   

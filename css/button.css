@@ -38,3 +38,25 @@
   
   }
   
+  .button--sign{
+
+    justify-items: center;
+    max-width: 300px;
+  }
+
+  .button--call{
+    display: inline-block;
+    width: 100px; /* Określ szerokość przycisku */
+    height: 38px; /* Określ wysokość przycisku */
+    
+    border-radius: 20%;
+    background-color: blue;
+    color: white;
+    text-align: center;
+ 
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    overflow: hidden; /* Zatrzymaj automatyczne rozciąganie */
+  }
