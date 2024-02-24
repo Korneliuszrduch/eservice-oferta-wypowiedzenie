@@ -18,7 +18,7 @@
 
     // Wyświetl sformatowaną datę na stronie
     currentDateParagraph.textContent = 'Data: ' + formattedDate; 
-    document.getElementById('sqm-170').value = formattedDate;
+   // document.getElementById('sqm-170').value = formattedDate;
 
 
  
