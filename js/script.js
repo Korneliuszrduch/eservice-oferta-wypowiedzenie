@@ -3,6 +3,7 @@
    
     // Pobierz element paragrafu, gdzie chcesz wyświetlić datę
     var currentDateParagraph = document.getElementById('currentDateParagraph');
+    
 
     // Utwórz obiekt daty
     var currentDate = new Date();
@@ -17,7 +18,13 @@
 
     // Wyświetl sformatowaną datę na stronie
     currentDateParagraph.textContent = 'Data: ' + formattedDate; 
+    document.getElementById('sqm-170').value = formattedDate;
 
+
+ 
+
+   
+    console.log('Sformatowana data:',currentDateParagraph);
 
     var printButton = document.getElementById('printButton');
 
