@@ -64,21 +64,17 @@
     <body class="body body--dataCompany">
         <!-- <progress class="progress" ></progress>-->
 
-        <form class="form form--dataCompany" accept-charset="UTF-8"
-            action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
-
-
+        <form class="form form--dataCompany" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
             <section class="section section--place">
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f140">Nazwa punktu</label>
-                    <input class="input" id="sqm-f140" name="fields[140]" type="text" required
-                        value="[[nazwapunktuinstalacjiterminal1]]" placeholder="Nazwa punktu" data-placeholder="Imię" />
+                    <input class="input" id="sqm-f140" name="fields[140]" type="text" value="[[nazwapunktuinstalacjiterminal1]]" placeholder="Nazwa punktu" data-placeholder="Imię" required />
                 </section>
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f134">Nazwa ulicy instalacji terminala</label><input id="sqm-f134"
-                        name="fields[134]" type="text" required value="[[ulicainstalacjiterminal1]]"
-                        placeholder="Ulica instalacji terminala" data-placeholder="Ulica instalacji terminala" />
+                        name="fields[134]" type="text" value="[[ulicainstalacjiterminal1]]"
+                        placeholder="Ulica instalacji terminala" data-placeholder="Ulica instalacji terminala" required  />
                 </section>
 
 
@@ -149,9 +145,9 @@
                         <option value="Nie dotyczy">Nie dotyczy</option>
                     </select>
                 </section>
-      
+
             </section>
-         
+
             <input name="email" type="hidden" id="sqm-femail" value="[[email]]@" />
             <input name="mlid" type="hidden" value="244" />
             <input id="statusdecyzjiklienta" name="fields[115]" type="hidden"
@@ -194,24 +190,33 @@
                                        
 
 
-                            <form accept-charset="UTF-8" action="//mail.korneliuszrduch.pl/subscribe.php" method="POST">
-                                <div id="sqm-liveform"><input id="sqm-femail" class="" name="email" type="hidden"
-                                        value="[[email]]" />
-                                    <p style="text-align: left;">&nbsp; &nbsp; <input type="submit" class="sqm-submit" id="sqm-submit"
-                                            value="WSTECZ"
-                                            style="border-style: solid; background: #5ea226; color: #ffffff; border-color: rgba(0, 0, 0, 0); border-width: 3px 2px 2px 1px; border-radius: 4px; padding: 4px 30px; margin: 12px 7px 13px 10px; font-size: 16px;"
-                                            onmouseover="this.style.backgroundColor = '#00d600';"
-                                            onmouseout="this.style.backgroundColor = '#5ea226';" /><input name="mlid" type="hidden" value="243" />
-                                        <input name="req" type="hidden" value="email" /> <input name="token" type="hidden"
-                                            value="da945ba7449d1e092316ba46f044f0b134483b6b" /> <input name="coregister" type="hidden" value="" />
+                           
                                     </p>
                                 
 
                             -->
-                         
+
+       </form>
+
+        <form class="formBackStep" accept-charset="UTF-8"  action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+        <input id="sqm-femail" class="" name="email" type="hidden"  value="[[email]]@" />
+        <input name="mlid" type="hidden" value="243" />
+        <input name="req" type="hidden" value="email" />
+        <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+        <input name="coregister" type="hidden" value="" /> 
         </form>
-        <button class="button button--addPlace js-button--addPlace">Dodaj punkt</button>
-        <button class="button button--nextStep js-button--nextStep">Dalej</button>
+        
+
+        <section class="section section--buttons">
+    
+            <button class="section__button js-button--deletePlace">Usuń punkt</button>
+            <button class="section__button js-button--addPlace">Dodaj punkt</button>
+        </section>
+        <section class="section section--buttons">
+            <button class="section__button section__button--step js-button--backStep">Wstecz</button>
+            <button class="section__button section__button--step js-button--nextStep">Dalej</button>
+           
+        </section>
 </div>
 
 </body>

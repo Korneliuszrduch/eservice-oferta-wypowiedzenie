@@ -139,3 +139,24 @@
   min-width: 800px;
 
 }
+.section--buttons{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+ 
+
+}
+.section__button{
+background-color: rgb(247, 78, 11);
+
+color:white;
+border: none;
+border-radius: 2px;
+}.section__button--step {
+  background-color: rgb(21, 199, 8);
+}

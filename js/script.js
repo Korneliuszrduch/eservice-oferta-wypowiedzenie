@@ -189,40 +189,42 @@ updateDate();
 
 
 
-   /* const addPlace = document.querySelector(".js-button--addPlace");
-    addPlace.addEventListener("click", function () {
-        event.preventDefault();
-        const newSection = document.createElement("section");
-        newSection.className = "section--place";
+/* const addPlace = document.querySelector(".js-button--addPlace");
+ addPlace.addEventListener("click", function () {
+     event.preventDefault();
+     const newSection = document.createElement("section");
+     newSection.className = "section--place";
 
-        const form = document.querySelector(".form--dataCompany");
-        form.appendChild(newSection);
+     const form = document.querySelector(".form--dataCompany");
+     form.appendChild(newSection);
 
-        newSection.innerHTML = `
-                <section class="section section--dataCompany">
-                    <label class="label" for="sqm-f150">Nazwa punktu</label>
-                    <input class="input" id="sqm-f150" name="fields[150]" type="text" required
-                        value="[[nazwapunktuinstalacjiterminal2]]" placeholder="Nazwa punktu 2" data-placeholder="Nazwa punktu" />
-                </section>
-    
-             
-            `;
-    });
+     newSection.innerHTML = `
+             <section class="section section--dataCompany">
+                 <label class="label" for="sqm-f150">Nazwa punktu</label>
+                 <input class="input" id="sqm-f150" name="fields[150]" type="text" required
+                     value="[[nazwapunktuinstalacjiterminal2]]" placeholder="Nazwa punktu 2" data-placeholder="Nazwa punktu" />
+             </section>
+ 
+          
+         `;
+ });
 
-    */
+ */
+
+{
     document.addEventListener("DOMContentLoaded", function () {
         const addPlaceButton = document.querySelector(".js-button--addPlace");
         const form = document.querySelector(".form--dataCompany");
         let currentIndex = 0;
-    
+
         addPlaceButton.addEventListener("click", function (event) {
             event.preventDefault();
             currentIndex++;
-    
+
             // Tworzymy nowy element sekcji
             const newSection = document.createElement("section");
             newSection.className = "section section--place";
-    
+
             // Wykorzystujemy dane z odpowiedniego przypadku
             switch (currentIndex) {
                 case 1:
@@ -237,24 +239,15 @@ updateDate();
                 default:
                     break;
             }
-    
+
             // Dodajemy nową sekcję do formularza
             form.appendChild(newSection);
         });
-    
-        const handleButtonNextStep = document.querySelector(".js-button--nextStep");
-    
-        const sendForm = (event) => {
-            event.preventDefault();
-            form.submit();
-        };
-    
-        // Dodanie funkcji obsługi zdarzenia kliknięcia przycisku "Dalej"
-        handleButtonNextStep.addEventListener("click", sendForm);
-    });
-    
-    // Dane dla przypadków
-    const case1 = `
+
+
+
+        // Dane dla przypadków
+        const case1 = `
     <section class="section section--dataCompany">
     <label class="label" for="sqm-f140">Nazwa punktu</label>
     <input class="input" id="sqm-f140" name="fields[140]" type="text" required
@@ -336,17 +329,83 @@ updateDate();
     </select>
 </section>
     `;
-    
-    const case2 = `
+
+        const case2 = `
         <label class="label" for="sqm-fdane">Nazwa punktu 2</label>
         <input class="input" id="sqm-fdane" name="fields[dane]" type="text" required
             value="[[nazwapunktuinstalacjiterminal2]]" placeholder="Nazwa punktu 2" data-placeholder="Nazwa punktu szczecin" />
         <!-- Dodaj pozostałe pola z case2 -->
     `;
-    
-    const case3 = `
+
+        const case3 = `
         <label class="label" for="sqm-fdate">Nazwa punktu szczecin</label>
         <input class="input" id="sqm-fdate" name="fields[date]" type="text" required
             value="[[nazwapunktuinstalacjiterminal3333]]" placeholder="Nazwa punktu 3" data-placeholder="Nazwa punktu bialystok" />
         <!-- Dodaj pozostałe pola z case3 -->
     `;
+
+
+        const handleButtonNextStep = document.querySelector(".js-button--nextStep");
+
+        const sendForm = (event) => {
+            event.preventDefault();
+
+            if (!validateCurrentSection()) {
+                alert("Wypełnij wszystkie wymagane pola przed przejściem dalej.");
+                return;
+            }
+          
+            form.submit();
+
+        
+
+
+
+
+        };
+
+
+        function validateCurrentSection() {
+            // Pobieramy wszystkie wymagane pola w bieżącej sekcji
+            const requiredFields = document.querySelectorAll(".section--place [required]");
+        
+            // Sprawdzamy, czy wszystkie wymagane pola są wypełnione
+            const isSectionValid = Array.from(requiredFields).every(field => {
+                const isValid = field.value.trim() !== "";
+        
+                // Jeśli pole jest puste, dodajmy klasę 'invalid' dla wizualnego oznaczenia
+                if (!isValid) {
+                    field.classList.add('invalid');
+                } else {
+                    field.classList.remove('invalid');
+                }
+        
+                return isValid;
+            });
+        
+            // Jeśli sekcja jest nieprawidłowa, wyświetlamy komunikat
+            if (!isSectionValid) {
+                alert("Wypełnij wszystkie wymagane pola przed przejściem dalej.");
+            }
+        
+            return isSectionValid;
+        }
+
+        // Dodanie funkcji obsługi zdarzenia kliknięcia przycisku "Dalej"
+        handleButtonNextStep.addEventListener("click", sendForm);
+
+
+        const handleButtonBackStep = document.querySelector(".js-button--backStep");
+        const formBackStep = document.querySelector(".formBackStep");
+
+        const sendFormBackStep = (event) => {
+            event.preventDefault();
+            formBackStep.submit();
+        };
+
+        // Dodanie funkcji obsługi zdarzenia kliknięcia przycisku "Dalej"
+        handleButtonBackStep.addEventListener("click", sendFormBackStep);
+    });
+
+
+}

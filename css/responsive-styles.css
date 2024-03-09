@@ -37,6 +37,12 @@
 
     }
 
+    .section--place {
+
+        min-width: auto;
+
+    }
+
     .header {
         display: grid;
         grid-template-columns: 1fr;
@@ -57,7 +63,13 @@
 
     .button--addPlace {
 
-        width: 40%;
+
 
     }
+
+    .button--nextStep {
+
+     
+    }
+
 }
