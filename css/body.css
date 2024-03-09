@@ -1,32 +1,40 @@
-
-
 html {
-    box-sizing: border-box;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-  
-  .body {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    background-color: #dadada;
-    /* Kolor tła strony */
-  }
-.body--edytor{
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.body {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  background-color: #dadada;
+  /* Kolor tła strony */
+}
+
+.body--edytor {
 
 
-    background-color: rgb(255, 255, 255);
-    display: grid;
-    grid-template-columns: auto;
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: auto;
 
 }
 
-  
+
 head {
-    display: none;
-  }
+  display: none;
+}
+
+.body--dataCompany {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: rgba(228, 227, 227, 0.686);
+  place-items: center;
+
+}

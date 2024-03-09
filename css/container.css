@@ -9,31 +9,25 @@
 
     margin-top: 10px;
 
-
-
-
-
-
-
 }
-
-
-
-
 
 .container__iframe {
     width: 80%;
     height: 40vh;
 
     place-self: center;
+}
 
+.container--dataCompany{
 
+    background-color: white;
+
+    display: grid;
+    max-width: none;
+    
 }
 
 
 
-
-
   
-
 

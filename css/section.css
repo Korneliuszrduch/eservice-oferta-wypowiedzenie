@@ -81,18 +81,7 @@
 }
 
 
-@media only screen and (max-width: 500px) {
 
-
-
-
-    
-  .section--wayToFinalize {
-
-      display: grid;
-      grid-template-columns: 1fr;
-      place-items: center;
-  }}
 
 
 .section--stepToFinalize {
@@ -117,20 +106,11 @@
 
 }
 
-
-
-
-
 .section--product {
-
   display: grid;
   grid-template-columns: 1fr;
   padding: 5px;
   background-color: rgb(223, 224, 220);
-
-
-
-
 }
 
 .section--productValue {
@@ -140,5 +120,22 @@
   padding: 5px;
   background-color: rgb(223, 224, 220);
   max-width: 500px;
+
+}
+
+.section--dataCompany {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  min-width: 800px;
+}
+
+.section--place {
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  min-width: 800px;
 
 }

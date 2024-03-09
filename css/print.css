@@ -1,8 +1,3 @@
-
-
-
-
-
 @media print {
     body * {
         visibility: hidden;
@@ -30,7 +25,6 @@
     address, .printDate, .page, .pageNumber {
         display: none !important;
     }
-
 
 }
 

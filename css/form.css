@@ -1,16 +1,23 @@
 .form {
 
-    display: grid;
-    grid-column: 1fr;
-  }
-  
-  .form__span {
-  
-    margin-bottom: 30px
-  }
-  
+  display: grid;
+  grid-column: 1fr;
+  max-width: auto;
+  padding: 20px;
+  font-size: auto;
+}
+
+.form--dataCompany {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+
+}
 
 
+.form__span {
 
-
-
+  margin-bottom: 30px
+}

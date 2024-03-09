@@ -60,3 +60,32 @@
     border: none;
     overflow: hidden; /* Zatrzymaj automatyczne rozciąganie */
   }
+
+  .button--addPlace{
+
+    display: grid;
+
+    
+    justify-self: end; /* Umieść przycisk na końcu kolumny */
+    width: 20%; /* Zmniejszenie szerokości o połowę */
+   
+   
+
+    border: none;
+   
+   
+    
+  }
+
+  .button--nextStep{
+    display: grid;
+
+    
+    justify-self: end; /* Umieść przycisk na końcu kolumny */
+    width: 20%; /* Zmniejszenie szerokości o połowę */
+   
+   
+
+    border: none;
+
+  }

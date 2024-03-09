@@ -45,23 +45,3 @@
 }
 
 
-@media only screen and (max-width: 500px) {
-
-
-
-
-    
- 
-
-
-  .header{
-      display: grid;
-      grid-template-columns: 1fr;
-      place-items: center;
-  }
-  
-  .header__anchor {
-      font-size: 27px;
-  }
-  
-  }
