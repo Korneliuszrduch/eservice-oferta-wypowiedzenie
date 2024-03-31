@@ -46,8 +46,28 @@
   width: 100%;
   height: 30px;
 
+
 }
 
 .invalid {
   border: 4px solid red; /* Przykładowy styl oznaczenia nieprawidłowego pola */
+  
+
+  
+}
+.progress-bar-container {
+
+
+  height: 25px; /* Zmiana wysokości kontenera paska postępu */
+  background-color: #ddd;
+  display: flex;
+  align-items: center; /* Centralizacja paska postępu w pionie */
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 75%;
+  background-color: #4caf50;
 }

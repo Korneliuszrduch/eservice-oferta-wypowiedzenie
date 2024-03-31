@@ -24,6 +24,7 @@
 
     display: grid;
     max-width: none;
+    height: auto;
     
 }
 
