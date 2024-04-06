@@ -267,7 +267,7 @@
                 alert("Wypełnij wszystkie formularze" ,invalidInputs.length);
                 console.log("liczba wierszy niewypelnionych ",  invalidInputs.length );
             } else {
-               formDataCompany.submit();
+            formDataCompany.submit();
             }
         };
     
