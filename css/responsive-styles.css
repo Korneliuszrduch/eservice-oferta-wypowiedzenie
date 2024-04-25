@@ -61,20 +61,26 @@
 
     }
 
-    .button--addPlace {
+    .button--addPlace {}
+
+    .button--nextStep {}
+
+    .section--steps {
+
+        grid-template-columns: 1fr;
+
+
+    }
+
+    .section__img--terminals {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        justify-items: center; /* Wyśrodkowanie wzdłuż osi poziomej */
+        align-items: center; /* Wyśrodkowanie wzdłuż osi pionowej */
 
 
 
     }
 
-    .button--nextStep {
-
-     
-    }
-    .section--steps{
-      
-        grid-template-columns: 1fr ;
-        
-    
-      }
 }

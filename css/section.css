@@ -96,6 +96,16 @@
   width: 100%;
 }
 
+.section__img--terminals{
+display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  
+   
+  
+
+}
+
 .section--oneColumn {
   display: grid;
   grid-template-columns: 1fr;

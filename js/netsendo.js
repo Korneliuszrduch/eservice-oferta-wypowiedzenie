@@ -63,7 +63,7 @@ fetch('https://mail.korneliuszrduch.pl/subscribe.php', {
 
 nazwapunktuinstalacjiterminal2 295
 ulicainstalacjiterminal2 
-
+numr budynku z numerem lokal [[numerbudynkuilokalupunkt2]] 304
 Nazwa miasta punktu 2 terminal [[miastoinstalacjiterminal2]] 297
 
 Kod pocztowy punktu terminal 2
@@ -81,4 +81,31 @@ Terminal stacjonarny punkt 2
 Terminal przenośny punkt 2
 [[terminalprzenosnypunkt2]] fielsd 303
 
-[[numerbudynkuilokalupunkt2]] 304
+
+
+------------------------------------------
+[[nazwapunktuinstalacjiterminal3]] 305
+[[ulicainstalacjiterminal3]] 306
+[[numerbudynkuilokalupunkt3]] 307
+[[miastoinstalacjiterminal3]] 308
+[[kodpocztowyinstalacjiterminal3]] 309
+[[osobakontaktowapunkt3]] 310
+[[telefonosobadokontaktuwpunkcie3]] 311
+[[numerrachunkubankowegoterminalpunkt3]] 312
+terminalstacjonarnypunkt3 313
+
+INSTALACJA TERMINALA PUNKT 3
+Nazwa do wydruku z terminala: [[nazwapunktuinstalacjiterminal3]]
+Ulica: [[ulicainstalacjiterminal3]]
+Numer budynku/numer lokal: [[numerbudynkuilokalupunkt3]]
+
+Imię i nazwisko osoby kontaktowej: [[osobakontaktowapunkt3]]
+Telefon do osoby kontaktowej punkt: [[telefonosobadokontaktuwpunkcie2]] 
+Miasto: [[miastoinstalacjiterminal3]]
+Kod Pocztowy: [[kodpocztowyinstalacjiterminal3]]
+Numer rachunku: [[numerrachunkubankowegoterminal3]]
+
+Terminal Standardowy Stacjonarny: [[terminalstacjonarnypunkt3]]
+
+Terminal Standardowy Przenośny: [[terminalprzenosnypunkt3]]
+

@@ -49,9 +49,11 @@
 
 }
 
-input.incorrect {
+.input.incorrect{
   border: 3px solid red; /* Dodaj czerwoną obwódkę wokół pustego pola */
 }
+
+
 
 
 .progress-bar-container {

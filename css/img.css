@@ -4,6 +4,7 @@
   height: 40vh;
   margin: 15px auto;
   display: block;
+
   
   }
 
@@ -14,5 +15,14 @@
 
 
   margin: 10px;
+}
+
+.img--terminals{
+
+  max-width: 180px; /* Maksymalna szerokość obrazka */
+  max-height: 180px; /* Maksymalna wysokość obrazka */
+  width: 100%; /* Zapewnia, że obrazy będą zajmować całą przypisaną im szerokość */
+  height: auto; /* Zapewnia, że obrazy zachowają proporcje */
+  object-fit: cover; /* Zachowuje proporcje obrazu wewnątrz kontenera */
 }
   
