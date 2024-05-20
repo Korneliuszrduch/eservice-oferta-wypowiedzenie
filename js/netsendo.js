@@ -109,3 +109,60 @@ Terminal Standardowy Stacjonarny: [[terminalstacjonarnypunkt3]]
 
 Terminal Standardowy Przenośny: [[terminalprzenosnypunkt3]]
 
+
+
+<form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+<div id="sqm-liveform" style="border-width: 10px 3px 10px 4px; border-radius: 5px; background: #ffffff; border-color: #ffffff; color: #000000; padding: 19px; border-style: solid;" data-enhance="false">
+<div class="sqm-description" style="margin-bottom: 20px; width: 100%; float: none; padding-right: 0px; display: none;">
+
+przykładowy opis
+
+</div>
+<div class="sqm-form" style="float: none; width: 100%;">
+<div class="sqm-fields" style="float: none;">
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f129">Imię osoby uprawnionej do podpisania umowy</label><input id="sqm-f129" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[129]" type="text" value="[[imiereprezentantterminal1]]" placeholder="Imię" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f130">Nazwisko</label><input id="sqm-f130" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[130]" type="text" value="[[nazwiskoreprezentantterminal1]]" placeholder="Nazwisko" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f141">Email</label><input id="sqm-f141" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[141]" type="text" value="[[emailreprezentant1terminal]]" placeholder="Email" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f133">Telefon</label><input id="sqm-f133" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[133]" type="text" value="[[telefonterminalreprezentant1]]" placeholder="Telefon" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f131">Seria i numer dowodu osobistego </label><input id="sqm-f131" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[131]" type="text" value="[[numeriseriadowodureprezentant1]]" placeholder="Seria i numer dowodu osobistego" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f138">Pesel </label><input id="sqm-f138" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[138]" type="text" value="[[peselreprezentant1]]" placeholder="Pesel " /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f181">Data wydania dowodu osobistego (dd-mm-rrr)</label><input id="sqm-f181" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[181]" type="text" value="[[datawydaniadowoduosobistego]]" placeholder="Data wydania dowodu osobistego" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f182">Data ważności dowodu osobistego (dd-mm-rrr)</label><input id="sqm-f182" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[182]" type="text" value="[[datawaznoscidowoduosobistego]]" placeholder="Data ważności dowodu osobistego" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: none; text-align: left;"><label style="width: inherit;" for="sqm-f189">Miejsce urodzenia</label><input id="sqm-f189" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[189]" type="text" value="[[miejscowoscurodzenia]]" placeholder="Miejsce urodzenia" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-f132">Pełny adres zamieszkania (ulica, numer, miasto, kod pocztowy)</label><input id="sqm-f132" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: block; height: 40px;" name="fields[132]" type="text" value="[[pelnyadreszamieszkaniaterminalreprezentant1]]" placeholder="Pełny adres zamieszkania" /></div>
+<div class="sqm-form-group" style="margin: 10px 2px; display: block; text-align: left;"><label style="width: inherit;" for="sqm-femail"></label><input id="sqm-femail" class="form-control sqm-textinput" style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: none; height: 40px;" name="email" type="text" value="[[email]]" placeholder="" /></div>
+</div>
+<div id="sqm-coregister" style="display: none; text-align: left;">
+<h5 id="sqm-coregister-text">Zapisz mnie również na poniższe listy:</h5>
+</div>
+&nbsp;
+<div id="sqm-submit-box" style="width: 100%; text-align: left; float: none;">
+
+
+<div id="sqm-submit1" class="sqm-form-group form-group" style="margin: 10px 2px; text-align: right; display: block;">
+<p style="text-align: right;"><input id="sqm-submit" class="sqm-submit" style="border-style: solid; background: #3f6c19; color: #ffffff; border-color: #f2f2f2; border-width: 0px 0px 4px; border-radius: 3px; padding: 7px 25px; margin: 0px; font-size: 16px;" type="submit" value="Dalej &gt;" /></p>
+
+</div>
+</div>
+
+<div style="clear: both; text-align: left;"></div>
+</div>
+<p style="text-align: left;"><input id="statusdecyzjiklienta" name="fields[115]" type="hidden" value="92% Uzyskano-Reprezentant 1 firmy" />
+<input name="mlid" type="hidden" value="243" /></p>
+<input id="nazwalistyadresowej" name="fields[122]" type="hidden" value="REPREZENTACJA 1 FIRMA KROK 2" />
+<input name="req" type="hidden" value="181:182:129:130:133:131:138:132:141:email" />
+<input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+<input name="coregister" type="hidden" value="" />
+
+</form><form accept-charset="UTF-8" action="//mail.korneliuszrduch.pl/subscribe.php" method="POST">
+<div id="sqm-liveform">
+
+<input id="sqm-femail" class="form-control sqm-textinput" name="email" type="hidden" value="[[email]]" />
+<p style="text-align: left;">   <input id="sqm-submit" class="sqm-submit" style="border-style: solid; background: #3f6c19; color: #ffffff; border-color: #f2f2f2; border-width: 0px 0px 4px; border-radius: 3px; padding: 7px 25px; margin: 0px; font-size: 16px;" type="submit" value="Wstecz " />
+<input name="mlid" type="hidden" value="246" />
+<input name="req" type="hidden" value="email" />
+<input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+<input name="coregister" type="hidden" value="" /></p>
+
+</div>
+</form>

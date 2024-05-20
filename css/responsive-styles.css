@@ -37,6 +37,14 @@
 
     }
 
+    .section--reprezentant {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+
+        min-width: 400px;
+    }
+
     .section--place {
 
         min-width: auto;
@@ -76,8 +84,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
-        justify-items: center; /* Wyśrodkowanie wzdłuż osi poziomej */
-        align-items: center; /* Wyśrodkowanie wzdłuż osi pionowej */
+        justify-items: center;
+        /* Wyśrodkowanie wzdłuż osi poziomej */
+        align-items: center;
+        /* Wyśrodkowanie wzdłuż osi pionowej */
 
 
 
