@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="css/section.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/headers.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/container.css">
+    <link rel="stylesheet" href="css/img.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/paragraf.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/responsive-styles.css">
+
+    <link rel="icon" href="./images">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script defer src="js/script_place.js"></script>
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--
+    <script defer src="https://terminal.terminaleservice.pl/js/script_place.js"></script>
+
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css">
+
+-->
+
+    <!-- strona z wordpresa  https://terminaleservice.pl/instalacjaterminala1/-->
+
+
+    <title>Reprezentanci</title>
+</head>
+<div class="container container--dataCompany">
+    <Header class="header">
+
+        <img class="header__img" src="https://terminaleservice.pl/wp-content/uploads/2020/03/logo-300x113.webp"
+            alt="Logo Strony">
+        <a class=header__anchor href="tel:+48696409829">Tel: 696 409 829</a>
+    </Header>
+
+    <body class="body body--dataCompany">
+
+        <section class="section--headTitle">
+            <h1 class="h1">Płatności bezgotówkowe</h1>
+        </section>
+        <section class="section section--steps">
+            <section class="section section--step">
+                <h2>Krok 1</h2>
+                <p>Podstawowe dane</p>
+            </section>
+            <section class="section section--step">
+                <h2>Krok 2</h2>
+                <p><strong>Reprezentacja</strong></p>
+            </section>
+            <section class="section section--step">
+                <h2>Krok 3</h2>
+                <p>Dane punktów</p>
+            </section>
+            <section class="section section--step">
+                <h2>Krok 4</h2>
+                <p>Podsumowanie</p>
+            </section>
+        </section>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+
+
+        <form class="form form--dataCompany" accept-charset="UTF-8"
+            action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+
+
+            <section class="section section--place">
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f120">NIP</label>
+                    <input class="input visible" id="sqm-f120" name="fields[120]" type="text" value="[[nip]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f147">Nazwa firmy</label><input class="input visible" id="sqm-f147"
+                        name="fields[147]" type="text" value="[[nazwafirmy]]" />
+                </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f317"> Forma prawna </label>
+                    <select class="input visible" id="sqm-f317" name="fields[317]" type="text">
+                        <option value="[[formaprawnafirmy]]">[[formaprawnafirmy]]
+                        </option>
+                        <option value="Jednoosobowa działalność">Jednoosobowa działalność</option>
+                        <option value="Spółka cywilna">Spółka cywilna</option>
+                        <option value="Spółka z o.o.">Spółka z o.o.</option>
+                        <option value="Spółka akcyjna">Spółka akcyjna</option>
+                        <option value="Spółka komandytowa">Spółka komandytowa</option>
+                        <option value="Spółka komandytowo-akcyjna">Spółka komandytowo-akcyjna</option>
+                        <option value="Spółka jawna">Spółka jawna</option>
+                        <option value="Spółka partnerska">Spółka partnerska</option>
+                        <option value="Spółdzielnia">Spółdzielnia</option>
+                        <option value="Fundacja">Fundacja</option>
+                        <option value="Zakład opieki zdrowotnej">Zakład opieki zdrowotnej</option>
+                        <option value="Instytut">Instytut</option>
+                        <option value="Instytut kultury">Instytut kultury</option>
+                        <option value="Jednostka budżetowa">Jednostka budżetowa</option>
+                        <option value="Jednostka oświaty">Jednostka oświaty</option>
+                        <option value="Samorząd gospodarczy">Samorząd gospodarczy</option>
+                        <option value=""></option>
+                    </select>
+                </section>
+
+                <section class="section section--dataCompany ">
+                    <label class="label" for="sqm-f148">Nazwa ulicy firmy</label>
+                    <input class="input visible" id="sqm-f148" name="fields[148]" type="text"
+                        value="[[nazwaulicyfirma]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f149">Numer budynku / numer lokalu</label>
+                    <input class="input visible" id="sqm-f149" name="fields[149]" type="text"
+                        value="[[numerulicafirma]]" />
+                </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f151">Kod miasta firmy</label>
+                    <input class="input visible" id="sqm-f151" name="fields[151]" type="text"
+                        value="[[kodmiastafirma]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f152">Miasto firmy</label>
+                    <input class="input visible" id="sqm-f152" name="fields[152]" type="text" value="[[miastofirmy]]" />
+                </section>
+
+
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f125">Imię i nazwisko osoby kontaktowej</label>
+                    <input class="input visible" id="sqm-f125" name="fields[125]" type="text"
+                        value="[[imiekontaktterminal]]" />
+                </section>
+
+             
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f128">Email do kontaktu</label>
+                    <input class="input visible" id="sqm-f128" name="fields[128]" type="text" value="[[email]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f127">Telefon osoby do kontaktu</label>
+                    <input class="input visible" id="sqm-f127" name="fields[127]" type="text"
+                        value="[[telefonkontaktterminal]]" />
+                </section>
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+            <input name="email" type="hidden" id="sqm-femail" value="[[email]]@" />
+            <input name="mlid" type="hidden" value="242" />
+            <input id="statusdecyzjiklienta" name="fields[115]" type="hidden" value="91% Uzyskano-Dane firmy" />
+            <input id="nazwalistyadresowej" name="fields[122]" type="hidden"
+                value="[[nazwalistyadresowej]] & ZAMAWIANIE TERMINALA TERMINAL KROK 1" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+
+
+
+
+
+            <!--  
+
+                                          
+                                      
+
+                                     
+
+                        display: [[kodhtmldisplay]];
+
+
+                                          
+                              
+
+                                            <div class="sqm-form-group" ><label
+                                                    style="width: inherit;" for="sqm-femail"></label><input id="sqm-femail"
+                                                    class=""
+                                                    style="background-color: #ffffff; color: #000000; border-color: #3f51b5; width: 100%; display: none; height: 40px;"
+                                                    name="email" type="text" value="[[email]]" placeholder="" data-placeholder="" /></div>
+                                        </div>
+
+
+
+                                        
+
+                                      
+                           
+
+                                       
+
+
+                           
+                                    </p>
+                                
+
+                            -->
+
+        </form>
+
+
+
+        <form class="formBackStep" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php"
+            method="POST">
+            <input id="sqm-femail" class="" name="email" type="hidden" value="[[email]]@" />
+            <input name="mlid" type="hidden" value="246" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+            <input name="coregister" type="hidden" value="" />
+        </form>
+
+
+
+</div>
+<section class="section section--buttons hidden">
+
+    <button class="section__button js-button--removePlace">Usuń reprezentanta</button>
+    <button class="section__button js-button--addPlace">Dodaj reprezentanta</button>
+</section>
+<section class="section section--buttons">
+    <button class="section__button hidden section__button--step js-button--backStep">Wstecz</button>
+    <button class="section__button section__button--step js-button--nextStep">Dalej</button>
+
+</section>
+<footer class="footer"> Copyright 2024</footer>
+</body>
+
+
+
+
+</html>

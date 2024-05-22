@@ -93,7 +93,7 @@
         </section>
 
         <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar progress-bar--representation"></div>
         </div>
         <section class="section--reprezentant">
             <p class="paragraf--reprezentant">Podane dane są potrzebne do zidentyfikowania osoby reprezentującą
@@ -112,6 +112,17 @@
 
 
             <section class="section section--place">
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f147">Nazwa firmy</label><input class="input visible" id="sqm-f147"
+                        name="fields[147]" type="text" value="[[nazwafirmy]]" />
+                </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f317"> Forma prawna </label>
+                    <select class="input visible" id="sqm-f317" name="fields[317]" type="text">
+                     
+                        <option value="[[formaprawnafirmy]]">[[formaprawnafirmy]]</option>
+                    </select>
+                </section>
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f129">Imię osoby uprawnionej do podpisania umowy</label>
                     <input class="input visible" id="sqm-f129" name="fields[129]" type="text"
@@ -142,7 +153,7 @@
                         value="[[peselreprezentant1]]" />
                 </section>
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f131">Seria i numer dowodu lub paszportu</label>
                     <input class="input visible" id="sqm-f131" name="fields[131]" type="text"
                         value="[[numeriseriadowodureprezentant1]]" />
@@ -150,13 +161,13 @@
 
              
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f181">Data wydania dokumentu tożsamości (dd-mm-rrr)</label>
                     <input class="input visible" id="sqm-f181" name="fields[181]" type="text"
                         value="[[datawydaniadowoduosobistego]]" />
                 </section>
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f182">Data ważności dokumentu tożsamości (dd-mm-rrr)</label>
                     <input class="input visible" id="sqm-f182" name="fields[182]" type="text"
                         value="[[datawaznoscidowoduosobistego]]" />
@@ -181,63 +192,63 @@
             <section class="section section--place">
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f192">Imię osoby drugiej uprawnionej do podpisania umowy</label>
-                    <input class="input visible" id="sqm-f192" name="fields[192]" type="text"
+                    <input class="input invisible" id="sqm-f192" name="fields[192]" type="text"
                         value="[[imiereprezentantaterminal2]]" />
                 </section>
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f193">Nazwisko osoby drugiej uprawnionej do podpisania
-                        umowy</label><input class="input visible" id="sqm-f193" name="fields[193]" type="text"
+                        umowy</label><input class="input invisible" id="sqm-f193" name="fields[193]" type="text"
                         value="[[nazwiskoreprezentantterminal2]]" />
                 </section>
 
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f282">Email osoby drugiej reprezentujacej firmę</label>
-                    <input class="input visible" id="sqm-f282" name="fields[282]" type="text"
+                    <input class="input invisible" id="sqm-f282" name="fields[282]" type="text"
                         value="[[emailreprezentant2terminal]]" />
                 </section>
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f194">Telefon</label>
-                    <input class="input visible" id="sqm-f194" name="fields[194]" type="text"
+                    <input class="input invisible" id="sqm-f194" name="fields[194]" type="text"
                         value="[[telefonterminalreprezentant2]]" />
                 </section>
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f195">Pesel</label>
-                    <input class="input visible" id="sqm-f195" name="fields[195]" type="text"
+                    <input class="input invisible" id="sqm-f195" name="fields[195]" type="text"
                         value="[[peselreprezentant2]]" />
                 </section>
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f197">Seria i numer dowodu lub paszportu</label>
-                    <input class="input visible" id="sqm-f197" name="fields[197]" type="text"
+                    <input class="input invisible" id="sqm-f197" name="fields[197]" type="text"
                         value="[[numeriseriadowodureprezentant2]]" />
                 </section>
 
                
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f198">Data wydania dokumentu tożsamości (dd-mm-rrr)</label>
-                    <input class="input visible" id="sqm-f198" name="fields[198]" type="text"
+                    <input class="input invisible" id="sqm-f198" name="fields[198]" type="text"
                         value="[[datawydaniadowoduosobistego2]]" />
                 </section>
 
-                <section class="section section--dataCompany">
+                <section class="section section--dataCompany section--dataCompanyDocument">
                     <label class="label" for="sqm-f199">Data ważności dokumentu tożsamości (dd-mm-rrr)</label>
-                    <input class="input visible" id="sqm-f199" name="fields[199]" type="text"
+                    <input class="input invisible" id="sqm-f199" name="fields[199]" type="text"
                         value="[[datawaznoscidowoduosobistego2]]" />
                 </section>
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f196">Miejscowość urodzenia</label>
-                    <input class="input visible" id="sqm-f196" name="fields[196]" type="text"
+                    <input class="input invisible" id="sqm-f196" name="fields[196]" type="text"
                         value="[[miejscowoscurodzenia2]]" />
                 </section>
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f316">Obywatelstwo</label>
-                    <input class="input visible" id="sqm-f316" name="fields[316]" type="text"
+                    <input class="input invisible" id="sqm-f316" name="fields[316]" type="text"
                         value="[[obywatelstworeprezentanta2terminal]]" />
                 </section>
             </section>
@@ -248,7 +259,7 @@
 
 
 
-            <input name="email" type="hidden" id="sqm-femail" value="[[email]]" />
+            <input name="email" type="hidden" id="sqm-femail" value="[[email]]@" />
             <input name="mlid" type="hidden" value="251" />
             <input id="statusdecyzjiklienta" name="fields[115]" type="hidden" value="92% Uzyskano-Reprezentant firmy" />
             <input id="nazwalistyadresowej" name="fields[122]" type="hidden" value="REPRENENTANCJA FIRMY" />
@@ -301,8 +312,8 @@
 
         <form class="formBackStep" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php"
             method="POST">
-            <input id="sqm-femail" class="" name="email" type="hidden" value="[[email]]" />
-            <input name="mlid" type="hidden" value="242" />
+            <input id="sqm-femail" class="" name="email" type="hidden" value="[[email]]@" />
+            <input name="mlid" type="hidden" value="246" />
             <input name="req" type="hidden" value="email" />
             <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
             <input name="coregister" type="hidden" value="" />
@@ -321,7 +332,7 @@
     <button class="section__button section__button--step js-button--nextStep">Dalej</button>
 
 </section>
-<footer class="footer"> Copyrigt 2024</footer>
+<footer class="footer"> Copyright 2024</footer>
 </body>
 
 
