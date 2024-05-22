@@ -141,6 +141,11 @@
   min-width: 800px;
 }
 
+.section--dataCompanyDisable {
+  display: none;
+
+}
+
 .section--reprezentant {
   display: grid;
   grid-template-columns: 1fr;

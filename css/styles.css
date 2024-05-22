@@ -66,9 +66,18 @@
   margin-left: 24px;
   margin-right: 24px;
 }
-
 .progress-bar {
   height: 100%;
-  width: 75%;
   background-color: #4caf50;
+  width: 25%;
+}
+.progress-bar--representation{
+  width: 50%;
+}
+.progress-bar--pointData{
+  width: 70%;
+}
+
+.hidden{
+  display: none;
 }
