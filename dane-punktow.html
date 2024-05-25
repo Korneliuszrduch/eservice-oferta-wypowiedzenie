@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/headers.css">
@@ -20,42 +24,31 @@
     <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/print.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
-
     <link rel="icon" href="./images">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <script defer src="js/script_place.js"></script>
-    
-
 
    
 
- 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <!--
-      <script defer src="https://terminal.terminaleservice.pl/js/script_place.js"></script>
+<!--
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/foote.css?5r">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?5">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?5">
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css">
+    <script defer src="https://terminal.terminaleservice.pl/js/script_place.js?5"></script>
+     -->
 
--->
-
-    <!-- strona z wordpresa  https://terminaleservice.pl/instalacjaterminala1/-->
+    <!-- strona z wordpresa  https://terminaleservice.pl/instalacjaterminala1/
+    https://mail.korneliuszrduch.pl/u/5n/-->
 
 
     <title>Dane punktów</title>
@@ -102,15 +95,27 @@
 
 
             <section class="section section--place">
-                <section class="section section--dataCompany">
-                    <label class="label" for="sqm-f140">Nazwa punktu</label>
-                    <input class="input visible" id="sqm-f140" name="fields[140]" type="text"
-                        value="[[nazwapunktuinstalacjiterminal1]]"/>
+
+
+
+                <section class="section section--dataCompany hidden">
+                    <label class="label" for="sqm-f317"> Forma prawna </label>
+                    <select class="input visible" id="sqm-f317" name="fields[317]" type="text">
+                        <option value="[[formaprawnafirmy]]">[[formaprawnafirmy]]</option>
+           
+                    </select>
                 </section>
 
                 <section class="section section--dataCompany">
-                    <label class="label" for="sqm-f134">Nazwa ulicy instalacji terminala</label><input class="input visible"
-                        id="sqm-f134" name="fields[134]" type="text" value="[[ulicainstalacjiterminal1]]" />
+                    <label class="label" for="sqm-f140">Nazwa punktu</label>
+                    <input class="input visible" id="sqm-f140" name="fields[140]" type="text"
+                        value="[[nazwapunktuinstalacjiterminal1]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f134">Nazwa ulicy instalacji terminala</label><input
+                        class="input visible" id="sqm-f134" name="fields[134]" type="text"
+                        value="[[ulicainstalacjiterminal1]]" />
                 </section>
 
 
@@ -134,7 +139,8 @@
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f293">Imię i nazwisko osoby kontaktowej w punkcie</label>
-                    <input class="input visible" id="sqm-f293" name="fields[293]" type="text" value="[[osobakontaktowapunkt1]]"/>
+                    <input class="input visible" id="sqm-f293" name="fields[293]" type="text"
+                        value="[[osobakontaktowapunkt1]]" />
                 </section>
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f294">Telefon kontaktowy w punkcie</label>
@@ -155,7 +161,7 @@
 
                 <section class="section section--dataCompany">
                     <label class="label" for="sqm-f143"> Terminal stacjonarny </label>
-                    <select class="input visible" id="sqm-f143" name="fields[143]" type="text" >
+                    <select class="input visible" id="sqm-f143" name="fields[143]" type="text">
                         <option value="[[terminalstandardowystacjonarny]]">[[terminalstandardowystacjonarny]]
                         </option>
                         <option value="1 x Terminal stacjonarny">1 x Terminal stacjonarny</option>
@@ -164,9 +170,9 @@
 
                         <option value="1 x Terminal stacjonarny + pinpad">1 x Terminal stacjonarny + pinpad
                         </option>
-                        <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady 
+                        <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady
                         </option>
-                        <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady 
+                        <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady
                         </option>
                         <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
                         <option value="Nie dotyczy">Nie dotyczy</option>
@@ -192,203 +198,204 @@
 
 
 
-                <section class="section section--place">
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f295">Nazwa punktu 2</label>
-                        <input class="input invisible" id="sqm-f295" name="fields[295]" type="text"
-                            value="[[nazwapunktuinstalacjiterminal2]]" />
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f296">Nazwa ulicy instalacji terminala</label><input class="input invisible"
-                            id="sqm-f296" name="fields[296]" type="text" value="[[ulicainstalacjiterminal2]]"/>
-                    </section>
-
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f304">Numer budynku / numer lokalu</label>
-                        <input class="input invisible" id="sqm-f304" name="fields[304]" type="text"
-                            value="[[numerbudynkuilokalupunkt2]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f297">Miasto instalacji terminala</label>
-                        <input class="input invisible" id="sqm-f297" name="fields[297]" type="text"
-                            value="[[miastoinstalacjiterminal2]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f298">Kod pocztowy (XX-XXX)</label>
-                        <input class="input invisible" id="sqm-f298" name="fields[298]" type="text"
-                            value="[[kodpocztowyinstalacjiterminal2]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f299">Imię i nazwisko osoby kontaktowej w punkcie</label>
-                        <input class="input invisible" id="sqm-f299" name="fields[299]" type="text"
-                            value="[[osobakontaktowapunkt2]]"/>
-                    </section>
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f300">Telefon kontaktowy w punkcie</label>
-                        <input class="input invisible" id="sqm-f300" name="fields[300]" type="text"
-                            value="[[telefonosobadokontaktuwpunkcie2]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f301">Numer rachunku bankowego</label>
-                        <input class="input invisible" id="sqm-f301" name="fields[301]" type="text"
-                            value="[[numerrachunkubankowegoterminalpunkt2]]"/>
-                    </section>
-
-
-
-
-
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f302"> Terminal stacjonarny </label>
-                        <select class="input invisible" id="sqm-f302" name="fields[302]" type="text">
-                            <option value="[[terminalstacjonarnypunkt2]]">[[terminalstacjonarnypunkt2]]
-                            </option>
-                            <option value="1 x Terminal stacjonarny">1 x Terminal stacjonarny</option>
-                            <option value="2 x Terminale stacjonarne">2 x Terminale stacjonarne</option>
-                            <option value="3 x Terminale stacjonarne">3 x Terminale stacjonarne</option>
-
-                            <option value="1 x Terminal stacjonarny + pinpad">1 x Terminal stacjonarny + pinpad
-                            </option>
-                            <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady 
-                            </option>
-                            <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady 
-                            </option>
-                            <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
-                            <option value="Nie dotyczy">Nie dotyczy</option>
-                            <option value=""></option>
-                        </select>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f303"> Terminal przenośny </label>
-                        <select class="input invisible" id="sqm-f303" name="fields[303]" type="text" required>
-
-                            <option value="[[terminalprzenosnypunkt2]]">[[terminalprzenosnypunkt2]] </option>
-                            <option value="1 x Terminal Przenośny">1 x Terminal przenośny</option>
-                            <option value="2 x Terminale Przenośne">2 x Terminale przenośne</option>
-                            <option value="3 x Terminale Przenośne">3 x Terminale przenośne</option>
-                            <option value="Aplikacja na telefon">Aplikacja na telefon</option>Przenośny</option>
-                            <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
-                            <option value="Nie dotyczy">Nie dotyczy</option>
-                            <option value=""></option>
-                        </select>
-                    </section>
+            <section class="section section--place">
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f295">Nazwa punktu 2</label>
+                    <input class="input invisible" id="sqm-f295" name="fields[295]" type="text"
+                        value="[[nazwapunktuinstalacjiterminal2]]" />
                 </section>
-            
-                <section class="section section--place">
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f305">Nazwa punktu 3</label>
-                        <input class="input invisible" id="sqm-f305" name="fields[305]" type="text"
-                            value="[[nazwapunktuinstalacjiterminal3]]"/>
-                    </section>
 
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f306">Nazwa ulicy instalacji terminala</label><input class="input invisible"
-                            id="sqm-f306" name="fields[306]" type="text" value="[[ulicainstalacjiterminal3]]"/>
-                    </section>
-
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f307">Numer budynku / numer lokalu</label>
-                        <input class="input invisible" id="sqm-f307" name="fields[307]" type="text"
-                            value="[[numerbudynkuilokalupunkt3]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f308">Miasto instalacji terminala</label>
-                        <input class="input invisible" id="sqm-f308" name="fields[308]" type="text"
-                            value="[[miastoinstalacjiterminal3]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f309">Kod pocztowy (XX-XXX)</label>
-                        <input class="input invisible" id="sqm-f309" name="fields[309]" type="text"
-                            value="[[kodpocztowyinstalacjiterminal3]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f310">Imię i nazwisko osoby kontaktowej w punkcie</label>
-                        <input class="input invisible" id="sqm-f310" name="fields[310]" type="text"
-                            value="[[osobakontaktowapunkt3]]"/>
-                    </section>
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f311">Telefon kontaktowy w punkcie</label>
-                        <input class="input invisible" id="sqm-f311" name="fields[311]" type="text"
-                            value="[[telefonosobadokontaktuwpunkcie3]]"/>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f312">Numer rachunku bankowego</label>
-                        <input class="input invisible" id="sqm-f312" name="fields[312]" type="text"
-                            value="[[numerrachunkubankowegoterminalpunkt3]]"/>
-                    </section>
-
-
-
-
-
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f313"> Terminal stacjonarny </label>
-                        <select class="input invisible" id="sqm-f313" name="fields[313]" type="text" required>
-                            <option value="[[terminalstacjonarnypunkt3]]">[[terminalstacjonarnypunkt3]]
-                            </option>
-                            <option value="1 x Terminal stacjonarny">1 x Terminal stacjonarny</option>
-                            <option value="2 x Terminale stacjonarne">2 x Terminale stacjonarne</option>
-                            <option value="3 x Terminale stacjonarne">3 x Terminale stacjonarne</option>
-
-                            <option value="1 x Terminal stacjonarny + pinpad">1 x Terminal stacjonarny + pinpad
-                            </option>
-                            <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady 
-                            </option>
-                            <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady 
-                            </option>
-                            <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
-                            <option value="Nie dotyczy">Nie dotyczy</option>
-                            <option value=""></option>
-                        </select>
-                    </section>
-
-                    <section class="section section--dataCompany">
-                        <label class="label" for="sqm-f314"> Terminal przenośny </label>
-                        <select class="input invisible" id="sqm-f314" name="fields[314]" type="text" required>
-
-                            <option value="[[terminalprzenosnypunkt3]]">[[terminalprzenosnypunkt3]] </option>
-                            <option value="1 x Terminal Przenośny">1 x Terminal przenośny</option>
-                            <option value="2 x Terminale Przenośne">2 x Terminale przenośne</option>
-                            <option value="3 x Terminale Przenośne">3 x Terminale przenośne</option>
-                            <option value="Aplikacja na telefon">Aplikacja na telefon</option>Przenośny</option>
-                            <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
-                            <option value="Nie dotyczy">Nie dotyczy</option>
-                            <option value=""></option>
-                        </select>
-                    </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f296">Nazwa ulicy instalacji terminala</label><input
+                        class="input invisible" id="sqm-f296" name="fields[296]" type="text"
+                        value="[[ulicainstalacjiterminal2]]" />
                 </section>
-                       
+
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f304">Numer budynku / numer lokalu</label>
+                    <input class="input invisible" id="sqm-f304" name="fields[304]" type="text"
+                        value="[[numerbudynkuilokalupunkt2]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f297">Miasto instalacji terminala</label>
+                    <input class="input invisible" id="sqm-f297" name="fields[297]" type="text"
+                        value="[[miastoinstalacjiterminal2]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f298">Kod pocztowy (XX-XXX)</label>
+                    <input class="input invisible" id="sqm-f298" name="fields[298]" type="text"
+                        value="[[kodpocztowyinstalacjiterminal2]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f299">Imię i nazwisko osoby kontaktowej w punkcie</label>
+                    <input class="input invisible" id="sqm-f299" name="fields[299]" type="text"
+                        value="[[osobakontaktowapunkt2]]" />
+                </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f300">Telefon kontaktowy w punkcie</label>
+                    <input class="input invisible" id="sqm-f300" name="fields[300]" type="text"
+                        value="[[telefonosobadokontaktuwpunkcie2]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f301">Numer rachunku bankowego</label>
+                    <input class="input invisible" id="sqm-f301" name="fields[301]" type="text"
+                        value="[[numerrachunkubankowegoterminalpunkt2]]" />
+                </section>
 
 
 
-                    <input name="email" type="hidden" id="sqm-femail" value="[[email]]" />
-                    <input name="mlid" type="hidden" value="244" />
-                    <input id="statusdecyzjiklienta" name="fields[115]" type="hidden"
-                        value="94% Uzyskano-Instalacja terminala" />
-                    <input id="nazwalistyadresowej" name="fields[122]" type="hidden"
-                        value="INSTALACJA TERMINALA 1 KROK 3" />
-                    <input name="req" type="hidden" value="email" />
-                    <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+
+
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f302"> Terminal stacjonarny </label>
+                    <select class="input invisible" id="sqm-f302" name="fields[302]" type="text">
+                        <option value="[[terminalstacjonarnypunkt2]]">[[terminalstacjonarnypunkt2]]
+                        </option>
+                        <option value="1 x Terminal stacjonarny">1 x Terminal stacjonarny</option>
+                        <option value="2 x Terminale stacjonarne">2 x Terminale stacjonarne</option>
+                        <option value="3 x Terminale stacjonarne">3 x Terminale stacjonarne</option>
+
+                        <option value="1 x Terminal stacjonarny + pinpad">1 x Terminal stacjonarny + pinpad
+                        </option>
+                        <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady
+                        </option>
+                        <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady
+                        </option>
+                        <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
+                        <option value="Nie dotyczy">Nie dotyczy</option>
+                        <option value=""></option>
+                    </select>
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f303"> Terminal przenośny </label>
+                    <select class="input invisible" id="sqm-f303" name="fields[303]" type="text" required>
+
+                        <option value="[[terminalprzenosnypunkt2]]">[[terminalprzenosnypunkt2]] </option>
+                        <option value="1 x Terminal Przenośny">1 x Terminal przenośny</option>
+                        <option value="2 x Terminale Przenośne">2 x Terminale przenośne</option>
+                        <option value="3 x Terminale Przenośne">3 x Terminale przenośne</option>
+                        <option value="Aplikacja na telefon">Aplikacja na telefon</option>Przenośny</option>
+                        <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
+                        <option value="Nie dotyczy">Nie dotyczy</option>
+                        <option value=""></option>
+                    </select>
+                </section>
+            </section>
+
+            <section class="section section--place">
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f305">Nazwa punktu 3</label>
+                    <input class="input invisible" id="sqm-f305" name="fields[305]" type="text"
+                        value="[[nazwapunktuinstalacjiterminal3]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f306">Nazwa ulicy instalacji terminala</label><input
+                        class="input invisible" id="sqm-f306" name="fields[306]" type="text"
+                        value="[[ulicainstalacjiterminal3]]" />
+                </section>
+
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f307">Numer budynku / numer lokalu</label>
+                    <input class="input invisible" id="sqm-f307" name="fields[307]" type="text"
+                        value="[[numerbudynkuilokalupunkt3]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f308">Miasto instalacji terminala</label>
+                    <input class="input invisible" id="sqm-f308" name="fields[308]" type="text"
+                        value="[[miastoinstalacjiterminal3]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f309">Kod pocztowy (XX-XXX)</label>
+                    <input class="input invisible" id="sqm-f309" name="fields[309]" type="text"
+                        value="[[kodpocztowyinstalacjiterminal3]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f310">Imię i nazwisko osoby kontaktowej w punkcie</label>
+                    <input class="input invisible" id="sqm-f310" name="fields[310]" type="text"
+                        value="[[osobakontaktowapunkt3]]" />
+                </section>
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f311">Telefon kontaktowy w punkcie</label>
+                    <input class="input invisible" id="sqm-f311" name="fields[311]" type="text"
+                        value="[[telefonosobadokontaktuwpunkcie3]]" />
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f312">Numer rachunku bankowego</label>
+                    <input class="input invisible" id="sqm-f312" name="fields[312]" type="text"
+                        value="[[numerrachunkubankowegoterminalpunkt3]]" />
+                </section>
 
 
 
 
 
-                    <!--  
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f313"> Terminal stacjonarny </label>
+                    <select class="input invisible" id="sqm-f313" name="fields[313]" type="text" required>
+                        <option value="[[terminalstacjonarnypunkt3]]">[[terminalstacjonarnypunkt3]]
+                        </option>
+                        <option value="1 x Terminal stacjonarny">1 x Terminal stacjonarny</option>
+                        <option value="2 x Terminale stacjonarne">2 x Terminale stacjonarne</option>
+                        <option value="3 x Terminale stacjonarne">3 x Terminale stacjonarne</option>
+
+                        <option value="1 x Terminal stacjonarny + pinpad">1 x Terminal stacjonarny + pinpad
+                        </option>
+                        <option value="2 x Terminale stacjonarne + pinpady ">2 x Terminale stacjonarne + pinpady
+                        </option>
+                        <option value="3 x Terminale stacjonarne + pinpady ">3 x Terminale stacjonarne + pinpady
+                        </option>
+                        <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
+                        <option value="Nie dotyczy">Nie dotyczy</option>
+                        <option value=""></option>
+                    </select>
+                </section>
+
+                <section class="section section--dataCompany">
+                    <label class="label" for="sqm-f314"> Terminal przenośny </label>
+                    <select class="input invisible" id="sqm-f314" name="fields[314]" type="text" required>
+
+                        <option value="[[terminalprzenosnypunkt3]]">[[terminalprzenosnypunkt3]] </option>
+                        <option value="1 x Terminal Przenośny">1 x Terminal przenośny</option>
+                        <option value="2 x Terminale Przenośne">2 x Terminale przenośne</option>
+                        <option value="3 x Terminale Przenośne">3 x Terminale przenośne</option>
+                        <option value="Aplikacja na telefon">Aplikacja na telefon</option>Przenośny</option>
+                        <option value="Liczba zgodna z ustaleniami">Liczba zgodna z ustaleniami</option>
+                        <option value="Nie dotyczy">Nie dotyczy</option>
+                        <option value=""></option>
+                    </select>
+                </section>
+            </section>
+
+
+
+
+            <input name="email" type="hidden" id="sqm-femail" value="[[email]]" />
+            <input name="mlid" type="hidden" value="244" />
+            <input id="statusdecyzjiklienta" name="fields[115]" type="hidden"
+                value="94% Uzyskano-Instalacja terminala" />
+            <input id="nazwalistyadresowej" name="fields[122]" type="hidden" value="INSTALACJA TERMINALA 1 KROK 3" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+
+
+
+
+
+            <!--  
 
                                           
                                       
@@ -431,25 +438,27 @@
         <form class="formBackStep" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php"
             method="POST">
             <input id="sqm-femail" class="" name="email" type="hidden" value="[[email]]" />
-            <input name="mlid" type="hidden" value="243" />
+            <input name="mlid" type="hidden" value="242" />
             <input name="req" type="hidden" value="email" />
             <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
             <input name="coregister" type="hidden" value="" />
         </form>
 
-
+        <section class="section-button">
+            <button class="section-button__button section-button__button--representative js-button--removePlace">Usuń
+                punkt</button>
+            <button class="section-button__button section-button__button--representative js-button--addPlace">Dodaj
+                punkt</button>
+        </section>
+        <section class="section-button">
+            <button class="section-button__button section-button__button--step js-button--backStep">
+                <<< Wstecz</button>
+                    <button class="section-button__button section-button__button--step js-button--nextStep">Dalej
+                        >>></button>
+        </section>
 
 </div>
-<section class="section section--buttons">
 
-    <button class="section__button js-button--removePlace">Usuń punkt</button>
-    <button class="section__button js-button--addPlace">Dodaj punkt</button>
-</section>
-<section class="section section--buttons">
-    <button class="section__button section__button--step js-button--backStep">Wstecz</button>
-    <button class="section__button section__button--step js-button--nextStep">Dalej</button>
-
-</section>
 <footer class="footer"> Copyright 2024</footer>
 </body>
 

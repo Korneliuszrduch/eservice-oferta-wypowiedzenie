@@ -1,25 +1,17 @@
 .section {
-
   display: grid;
   grid-template-columns: 1fr auto;
   margin: 6px;
 }
 
 .section--editor {
-
   display: grid;
   grid-template-columns: 1.7fr 1fr;
   margin: 10px;
   max-width: 650px;
-
   background-color: rgb(223, 224, 220);
   font-size: 0.9em;
-
-
 }
-
-
-
 .section--termination {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -33,7 +25,6 @@
 }
 
 .section--terminationCompany {
-
   margin: 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -58,15 +49,10 @@
 .section--signed {
   margin-top: 100px;
 }
-
-
 .section__span {
   display: grid;
-
   padding: 4px
 }
-
-
 .section__form {
   width: 100%;
   display: grid;
@@ -74,19 +60,13 @@
 }
 
 .section--wayToFinalize {
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
 }
 
-
-
-
-
 .section--stepToFinalize {
   display: grid;
-
   grid-template-columns: 1fr;
   place-items: center;
 }
@@ -99,11 +79,6 @@
 .section__img--terminals {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
-
-
-
-
 }
 
 .section--oneColumn {
@@ -111,7 +86,6 @@
   grid-template-columns: 1fr;
   margin: 10px;
   max-width: 650px;
-
   background-color: rgb(223, 224, 220);
 
 }
@@ -173,44 +147,44 @@
 
 }
 
-
-
-
-
-.section--buttons {
-
+.section-button {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin: 30px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-
-  max-height: 34px;
-
-
-}
-
-.section__button {
-  background-color: rgb(247, 78, 11);
-
-  color: white;
+  grid-template-columns: auto auto;
+  justify-content: center;
   border: none;
-  border-radius: 2px;
-}
 
-.section__button:hover {
-  background-color: rgba(255, 10, 10, 0.994);
+  gap: 10px;
 
 }
 
+.section-button__button {
+  margin: 10px;
+  background-color: green;
+  color: aliceblue;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
 
-.section__button--step {
-  background-color: rgb(21, 199, 8);
 }
 
-.section__button--step:hover {
-  background-color: rgb(33, 149, 24);
+.section-button__button--step {
+  width: 100px;
+}
+
+
+.section-button__button--step:hover {
+  width: 100px;
+  background-color: rgb(42, 208, 42);
+}
+
+.section-button__button--representative {
+  background-color: rgba(228, 94, 10, 0.983);
+
+}
+.section-button__button--representative:hover {
+  background-color: rgb(240, 100, 100);
+
 }
 
 .section--steps {

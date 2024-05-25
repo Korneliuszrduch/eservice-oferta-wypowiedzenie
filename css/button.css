@@ -1,7 +1,10 @@
 
+
+
+
 .button--data {
     background-color: green;
-    /* Kolor tła */
+
   
   }
   
@@ -22,17 +25,17 @@
 
   .button {
     background-color: rgba(200, 12, 12, 0.655);
-    /* Kolor tła */
+   
     color: white;
-    /* Kolor napisu */
+   
     padding: 10px 15px;
-    /* Odstępy wewnętrzne */
+    
     border: none;
-    /* Brak obramowania */
+    
     border-radius: 5px;
-    /* Promień zaokrąglenia */
+   
     cursor: pointer;
-    /* Zmiana kursora na wskaźnik */
+    
   
     margin: 10px;
   
@@ -46,8 +49,8 @@
 
   .button--call{
     display: inline-block;
-    width: 100px; /* Określ szerokość przycisku */
-    height: 38px; /* Określ wysokość przycisku */
+    width: 100px; 
+    height: 38px; 
     
     border-radius: 20%;
     background-color: blue;
@@ -58,6 +61,6 @@
     font-size: 16px;
     cursor: pointer;
     border: none;
-    overflow: hidden; /* Zatrzymaj automatyczne rozciąganie */
+    overflow: hidden; 
   }
 
