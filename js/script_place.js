@@ -14,18 +14,16 @@
     const addPlaceButton = document.querySelector(".js-button--addPlace");
     const removePlaceButtton = document.querySelector(".js-button--removePlace");
     const sectionsPlace = document.querySelectorAll(".section--place");
-
     const forms = document.querySelectorAll("form");
-
-
     document.addEventListener('DOMContentLoaded', () => {
-        updateVisibility();
         hideSectionPlace();
+        updateVisibility();
         forms.forEach(form => {
             form.addEventListener("submit", event => {
                 event.preventDefault();
             });
         });
+
     });
 
     buttonNextStep.addEventListener("click", () => sendFormDataCompany());
@@ -46,7 +44,7 @@
         const invalidInputs = document.querySelectorAll(".input.visible.incorrect");
         if (invalidInputs.length > 0) {
             alert("Wypełnij wszystkie formularze", invalidInputs.length);
-            console.log("liczba wierszy niewypelnionych ", invalidInputs.length);
+            // console.log("liczba wierszy niewypelnionych ", invalidInputs.length);
         } else {
             formDataCompany.submit();
         }
@@ -60,6 +58,7 @@
             sectionsPlace[currentSectionIndex].style.display = "grid";
             sectionsPlace[currentSectionIndex].classList.remove('hidden');
             const inputs = sectionsPlace[currentSectionIndex].querySelectorAll(".input");
+            // console.log(inputs);
             inputs.forEach(input => {
                 input.classList.remove("invisible");
                 input.classList.add("visible");
@@ -67,6 +66,7 @@
         };
 
         updateVisibility();
+        //  console.log(hiddenSectionPlace);
 
     };
 
@@ -87,9 +87,9 @@
     const checkAndAddEmptyClass = () => {
         sectionsPlace.forEach(section => {
             const inputs = section.querySelectorAll(".input.visible");
-            console.log(inputs);
+            //  console.log(inputs);
             inputs.forEach(input => {
-                console.log(input);
+                //console.log(input);
                 if (input.value.trim() !== "") {
                     input.classList.remove("incorrect");
                     input.classList.add("correct");
@@ -98,41 +98,61 @@
                     input.classList.remove("correct");
                 }
             });
-
         });
     };
 
+
+
     const updateVisibility = () => {
+        // Przeglądamy wszystkie sekcje
         dataCompanyDocumentSections.forEach(section => {
+            // Jeśli legalFormField nie jest "Jednoosobowa działalność" ani "Spółka cywilna"
             if (legalFormField.value !== "Jednoosobowa działalność" && legalFormField.value !== "Spółka cywilna") {
                 section.classList.add('hidden');
+                const hiddenSections = document.querySelectorAll('.hidden');
+                hiddenSections.forEach(section => {
+                    //console.log("liczba sekcji z hidden" ,section);
+                    const inputs = section.querySelectorAll('input');
+                    //  console.log(inputs);
+                    inputs.forEach(input => {
+                        // console.log("liczba inputów sekcji z hidden", input);
+                        input.classList.remove('visible');
+                        input.classList.add('invisible');
+                    });
+                });
             }
-
             else {
+
                 section.classList.remove('hidden');
+                const inputs = section.querySelectorAll('input');
+                inputs.forEach((input, index) => {
+                    console.log("inputy", input);
+                    if (index < 4) {
+                        input.classList.remove('invisible');
+                        input.classList.add('visible');
+                    } else {
+                        input.classList.remove('visible');
+                        input.classList.add('invisible');
+                    }
+
+                });
+
+                const hiddenSections = document.querySelectorAll('.hidden');
+                hiddenSections.forEach(section => {
+                    const inputs = section.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.classList.remove('visible');
+                        input.classList.add('invisible');
+                    });
+                });
             }
-
-            //   const inputsInSection = section.querySelectorAll(".input");
-            //  inputsInSection.forEach(sectioninput => {
-            //    const inputsInSections = sectioninput.querySelectorAll(".input")
-
-            //   console.log("Liczba inputów  section--dataCompanyDocument:", inputsInSections.length);
-            //   if (legalFormField.value !== "Jednoosobowa działalność") {
-            ////      sectioninput.classList.remove('visible');
-            //       sectioninput.classList.add('invisible');
-            //   }
-
-            // else {
-            //      sectioninput.classList.remove('invisible');
-            //      sectioninput.classList.add('visible');
-            // }
-            // })
-        })
-
-
-        legalFormField.addEventListener('change', updateVisibility);
-
+        });
     };
 
-}
+
+    legalFormField.addEventListener('change', updateVisibility);
+
+};
+
+
 
