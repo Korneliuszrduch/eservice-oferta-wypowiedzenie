@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-
+    <!--  
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/list.css">
@@ -25,9 +25,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="js/script.js"></script>
 
-   
-       <!--  
-   
+-->
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,9 +45,9 @@
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css">
-    
+
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css">
-    -->
+
 
     <title>Edytor Substrybenta</title>
 </head>
@@ -355,10 +355,13 @@
                             <select class="section__select" id="sqm-f207" name="fields[207]">
                                 <option value="[[terminalkomercyjnystacjonarny]]">[[terminalkomercyjnystacjonarny]]
                                 </option>
+                                <option value="Terminal stacjonarny">Terminal stacjonarny</option>
                                 <option value="Terminal stacjonarny + pinpad">Terminal stacjonarny + pinpad</option>
-                                <option value="Terminal stacjonarny integrowany z systemem kasowym">Terminal stacjonarny integrowany z systemem kasowym</option>
-                                <option value="Terminal pinpad integrowany z systemem kasowym">Terminal pinpad integrowany z systemem kasowym</option>
-                               
+                                <option value="Terminal stacjonarny integrowany z systemem kasowym">Terminal stacjonarny
+                                    integrowany z systemem kasowym</option>
+                                <option value="Terminal pinpad integrowany z systemem kasowym">Terminal pinpad
+                                    integrowany z systemem kasowym</option>
+
                                 <option value=""></option>
                             </select>
                         </section>
@@ -376,7 +379,8 @@
                                 <option value="Terminal przenośny">Terminal przenośny</option>
                                 <option value="Terminal przenośny bluetooth">Terminal przenośny bluetooth</option>
                                 <option value="Terminal przenośny Wifi">Terminal przenośny Wifi</option>
-                                <option value="Terminal przenośny integrowany z systemem">Terminal przenośny integrowany z systemem</option>
+                                <option value="Terminal przenośny integrowany z systemem">Terminal przenośny integrowany
+                                    z systemem</option>
                                 <option value="Terminal przenośny SmartPos">Terminal przenośny SmartPos</option>
                                 <option value="Aplikacja na androida">Aplikacja na androida</option>
                                 <option value="Aplikacja / Terminal Smartpos">Aplikacja / Terminal Smartpos</option>
@@ -398,7 +402,8 @@
                                 </option>
                                 <option value="[[dodatkowypinpaddlaklienta]]">[[dodatkowypinpaddlaklienta]]</option>
                                 <option value="Dodatkowy pinpad dla klienta">Dodatkowy pinpad dla klienta</option>
-                                <option value="Pinpad do kasy lub systemu kasowego">Pinpad do kasy lub systemu kasowego</option>
+                                <option value="Pinpad do kasy lub systemu kasowego">Pinpad do kasy lub systemu kasowego
+                                </option>
                                 <option value=" "></option>
                             </select>
                         </section>
@@ -847,6 +852,13 @@
                         </section>
                     </section>
 
+                    <section class="section section--oneColumn">
+                        <section class="section section--product">Obroty miesięczne </section>
+                        <section class="section section--productValue" for="sqm-f183">
+                            <input class="section__input" name="fields[183]" type="text" value="[[obrotymiesiecznewgotowce]]" placeholder="Obroty miesięczne"
+                                data-placeholder="Obroty miesięczne" />
+                        </section>
+                    </section>
 
 
 
@@ -884,11 +896,13 @@
                             name="fields[207]">
                             <option value="[[terminalkomercyjnystacjonarny]]">[[terminalkomercyjnystacjonarny]]
                             </option>
-                            <option value="Terminal pinpad integrowany z systemem kasowym">Terminal pinpad integrowany z systemem kasowym</option>
+                            <option value="Terminal pinpad integrowany z systemem kasowym">Terminal pinpad integrowany z
+                                systemem kasowym</option>
                             <option value="Terminal stacjonarny">Terminal stacjonarny</option>
                             <option value="Terminal stacjonarny + pinpad">Terminal stacjonarny + pinpad</option>
-                         
-                            <option value="Terminal stacjonarny integrowany z kasą lub systemem">Terminal stacjonarny integrowany z kasą lub systemem</option>
+
+                            <option value="Terminal stacjonarny integrowany z kasą lub systemem">Terminal stacjonarny
+                                integrowany z kasą lub systemem</option>
                             <option value=""></option>
                         </select></section>
                     <section class="section section--productValue"><input id="sqm-f208" class="section__input"
@@ -2370,7 +2384,7 @@
                 Zamawianie terminala
 
             </summary>
-           
+
             <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
                 <div id="sqm-liveform"
                     style="border-width: 13px 4px 10px 1px; border-radius: 4px; background: #ffffff; border-color: #ffffff; color: #000000; padding: 0px; border-style: solid;"
@@ -2683,6 +2697,8 @@
                                     <option value="Druk zmiany konta na terminalu">Druk zmiany konta na terminalu
                                     </option>
                                     <option value="Druk wypowiedzenia umów">Druk wypowiedzenia umów</option>
+                                    <option value="Druk wypowiedzenia umów konkurencja elektronicznie">Druk
+                                        wypowiedzenia umów konkurencja elektronicznie</option>
                                     <option value="Druk wypowiedzenia umów PWOB 12 miesięcy od instalacji">Druk
                                         wypowiedzenia umów PWOB 12 miesięcy od instalacji</option>
                                     <option value="Druk zmiany danych terminala">Druk zmiany danych terminala</option>
