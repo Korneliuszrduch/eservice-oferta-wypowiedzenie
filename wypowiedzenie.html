@@ -12,7 +12,9 @@
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ <!--
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/headers.css">
@@ -28,22 +30,22 @@
     <link rel="stylesheet" href="css/responsive-styles.css">
     <script defer src="js/script.js"></script>
 -->
+   
+<script defer src="https://terminal.terminaleservice.pl/js/script.js?"></script>
 
-<script defer src="https://terminal.terminaleservice.pl/js/script.js"></script>
-
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?">
 <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?">
+<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?">
 
 
     <title> Wypowiedzenie</title>
@@ -73,30 +75,22 @@
 
                 </section>
 
-                <section class="section section--companyNameTerminal"><!-- Wybierz Opcję -->
-                    <div class="dropdown" onclick="toggleDropdown()">
-                        <p class="section__paragraf">Nazwa operatora terminali:</p>
-                        <div class="dropdown-select" id="selectedOption">- Wybierz Operatora terminali -></div>
-                        <div class="dropdown-options" id="dropdownOptions">
-                            <div class="dropdown-option"
-                                onclick="selectOption('Elavon ul. Puławska 17, 02-515 Warszawa')">Elavon </div>
-                            <div class="dropdown-option"
-                                onclick="selectOption('Fiserv Polska S.A. Al. Jerozolimskie 100, 00-807 Warszawa')">
-                                Fiserv Polska - Dawniej Polcard</div>
-                            <div class="dropdown-option"
-                                onclick="selectOption('Pep - Biuro zarządu ul. Tajęcina 113, 36-002 Jasionka')">Pep
-                            </div>
-                            <div class="dropdown-option"
-                                onclick="selectOption('PayTel SA  ul. Żwirki i Wigury 14, 02-092 Warszawa')">Paytel
-                            </div>
-                            <div class="dropdown-option"
-                                onclick="selectOption(' Planet Pay Sp. z o.o. ul. Jutrzenki 139, 02-231 Warszawa')">
-                                Planet Pay</div>
-                            <div class="dropdown-option"
-                                onclick="selectOption(' Worldline ul. Prosta 68, 00-838 Warszawa')">Worldline</div>
-                            <div class="dropdown-option" onclick="selectOption('')">Inny. Uzupełnię ręcznie po
-                                wydrukowaniu</div>
-                        </div>
+                <section class="section section--companyNameTerminal">
+                    <div class="dropdown">
+            
+                        
+                
+                            <select class="dropdownoption">
+                                <option value=>Operator terminali płatniczych -></option>
+                                <option value="Fiserv Polska - Dawniej Polcard">Fiserv Polska S.A. Al. Jerozolimskie 100, 00-807 Warszawa </option>
+                                <option value="Elavon ul. Puławska 17, 02-515 Warszawa">Elavon ul. Puławska 17, 02-515 Warszawa</option>
+                                <option value="PayTel SA">PayTel SA ul. Żwirki i Wigury 14, 02-092 Warszawa </option>
+                                <option value=>Planet Pay Sp. z o.o. ul. Jutrzenki 139, 02-231 Warszawa</option>
+                                <option value=>Worldline ul. Prosta 68, 00-838 Warszawa</option>
+                                <option value="Inny. Uzupełnię ręcznie po wydrukowaniu"></option>
+            
+                            </select>
+                      
                     </div>
                 </section>
             </section>
@@ -112,6 +106,7 @@
         </div>
 
         <button class="button" id="printButton">Drukuj wypowiedzenie</button>
+        <button class="button" id="printToPdf">Zapisz wypowiedzenie do .pdf</button>
 
 </body>
 

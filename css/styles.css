@@ -14,32 +14,21 @@
 
 
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+
+
+
+
+.dropdownoption {
+  -webkit-appearance: none; /* Usuwa strzałkę w Chrome, Safari i Opera */
+            -moz-appearance: none;    /* Usuwa strzałkę w Firefox */
+            appearance: none;         /* Usuwa strzałkę w standardzie */
+            border: none;             /* Usuwa border */
+            background: none;         /* Usuwa tło */
+            padding: 10px;            /* Ustawienie odstępów wewnętrznych */
+            font-size: 16px;          /* Ustawienie rozmiaru czcionki */
+               
 }
 
-.dropdown-select {
-
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown-options {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1;
-}
-
-.dropdown-option {
-  padding: 8px;
-  cursor: pointer;
-}
 
 .progress{
 
