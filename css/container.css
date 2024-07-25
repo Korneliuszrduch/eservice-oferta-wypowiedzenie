@@ -1,12 +1,9 @@
-
 .container {
 
     background-color: rgb(255, 255, 255);
     display: grid;
-
     max-width: 800px;
     margin: 0 auto;
-
     margin-top: 10px;
 
 }
@@ -14,21 +11,39 @@
 .container__iframe {
     width: 80%;
     height: 40vh;
-
     place-self: center;
 }
 
-.container--dataCompany{
-
+.container--dataCompany {
     background-color: white;
-
     display: grid;
     max-width: none;
     height: auto;
-    
+
 }
 
+.container__item {
+    display: grid;
+}
 
+.container__section {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
 
-  
+.container__section--non-cash-transactions {
 
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.container__section--average-transakction {
+
+    grid-template-columns: 1fr 1fr;
+}
+
+.container__button {
+    display: grid;
+
+}

@@ -25,11 +25,11 @@
     <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/print.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
-    <script defer src="js/script.js"></script>
+    <script defer src="js/script_offer.js"></script>
 
-    
- <!--
-    <script defer src="https://terminal.terminaleservice.pl/js/script.js"></script>
+
+    <!--
+    <script defer src="https://terminal.terminaleservice.pl/js/script_offer.js"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?">
@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?">
 
   -->
- 
+
 
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -305,28 +305,114 @@
         </section>
         <h1 class="h1">Dostępne terminale:</h1>
         <p class="paragraf">Terminale przenośne</p>
-<section class="section__img section__img--terminals">
-    
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/ingnico-iwl220.bmp" alt="iwl 220">
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/MOVE_3500.png" alt="Move 3500">
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Przenosny A50.bmp" alt="A50">
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Smiley-A920.bmp" alt="920">
-</section>
-<p class="paragraf">Terminale stacjonarne</p>
-<section class="section__img section__img--terminals">
-    
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/iCT220-pinpadbialy.webp" alt="iwl 220">
- 
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Verifone.webp" alt="verifone">
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Lane_300.jpg" alt="lane 3000">
-    <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/verifone-pinpad-1000se-contactless.jpg" alt="verifone pinpad">
-   
-   
-</section>
+        <section class="section__img section__img--terminals">
+
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/ingnico-iwl220.bmp" alt="iwl 220">
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/MOVE_3500.png" alt="Move 3500">
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Przenosny A50.bmp" alt="A50">
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Smiley-A920.bmp" alt="920">
+        </section>
+        <p class="paragraf">Terminale stacjonarne</p>
+        <section class="section__img section__img--terminals">
+
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/iCT220-pinpadbialy.webp"
+                alt="iwl 220">
+
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Verifone.webp" alt="verifone">
+            <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Lane_300.jpg" alt="lane 3000">
+            <img class="img--terminals"
+                src="https://terminal.terminaleservice.pl/img/verifone-pinpad-1000se-contactless.jpg"
+                alt="verifone pinpad">
 
 
+        </section>
 
-        <h3 class="h1">Podsumowanie</h3>
+
+        <h1 class="h1">Sprawdź ile zaoszczędzisz - Przelicznik ofert</h1>
+
+        <div class="container container--conversion">
+
+            <section class="container__section">
+                <span class="container__item"></span>
+                <span class="container__item"><strong>Eservice</strong></span>
+                <span class="container__item"><strong>Twój operator</strong></span>
+            </section>
+
+            <section class="container__section">
+                <span class="container__item">Wszystkie miesięczne stałe opłaty</span>
+                <span class="container__item"><strong>[[cenaterminalkomercyjnystacjonarny]]</strong></span>
+                <input class="container__input" id="sqm-324" name="fields[324]" type="text"
+                    value="[[calkowitemiesiecznekosztystaleterminalkonkurencja]]" placeholder="stałe miesięczne koszty za terminal"
+                    data-placeholder="stałe miesięczne koszty za terminal" />
+            </section>
+
+         
+
+
+            <section class="container__section">
+                <span class="container__item">Liczba miesięcy zwolnienia z opłat stałych</span>
+                <span class="container__item"><strong>[[liczbamiesiecyzwolnieniazdzierzawy]]</strong></span>
+                <input class="container__input" id="sqm-325" name="fields[325]" type="text"
+                    value="[[liczbamiesiecyzwolnieniazkosztowstalychkonkurencja]]" placeholder="Liczba miesięcy zwolnienia z kosztów stałych"
+                    data-placeholder="Liczba miesięcy zwolnienia z kosztów stałych" />
+            </section>
+
+           
+            <section class="container__section container__section--non-cash-transactions">
+                <span class="container__item">Obroty miesięczne poprzez terminal</span>
+                <input class="container__input" id="sqm-183" name="fields[183]" type="text"
+                    value="[[obrotymiesiecznewgotowce]]" placeholder="Obroty miesięczne kartowe" data-placeholder="Obroty miesięczne kartowe" />
+            </section>
+
+           
+
+            <section class="container__section container__section--average-transakction">
+                <span class="container__item">Średnia wartość transakcji</span>
+                <input class="container__input" id="sqm-184" name="fields[184]" type="text"
+                    value="[[sredniawartosctransakcji]]" placeholder="Średnia wartość transakcji" data-placeholder="Średnia wartość transakcji" />
+            </section>
+            <section class="container__section">
+                <span class="container__item">Obrót zwolniony z prowizji</span>
+                <span class="container__item"><strong>[[obrotzwolnionyzprowizji]]</strong></span>
+                <input class="container__input" id="sqm-319" name="fields[319]" type="text"
+                    value="[[obrotzwolnionyzprowizjikonkurencja]]" placeholder="Obrót kartowy zwolniony z prowizji" data-placeholder="Obrót kartowy zwolniony z prowizji" />
+            </section>
+
+            <section class="container__section">
+                <span class="container__item">Średnia prowizja</span>
+                <span class="container__item"><strong>[[visapolskabbiz]]</strong></span>
+                <input class="container__input" id="sqm-326" name="fields[326]" type="text"
+                    value="[[sredniaprowizjaterminalkonkurencja]]" placeholder="Średnia prowizja na karty"
+                    data-placeholder="Średnia prowizja na karty" />
+            </section>
+            <section class="container__section">
+                <span class="container__item">Opłata autoryzacyjna do transakcji</span>
+                <span class="container__item"><strong>[[autoryzacja]]</strong></span>
+                <input class="container__input" id="sqm-320" name="fields[320]" type="text"
+                    value="[[autoryzacjatransakcjikonkurencja]]" placeholder="Opłata do transakcji"
+                    data-placeholder="Opłata do transakcji" />
+            </section>
+            <section class="container__section">
+                <span class="container__item">Instalacja terminala</span>
+                <span class="container__item"><strong>[[cenainstalacji]]</strong></span>
+                <input class="container__input" id="sqm-323" name="fields[323]" type="text"
+                    value="[[cenainstalacjiterminalakonkurencja]]" placeholder="cena za instalację terminala"
+                    data-placeholder="cena za instalację terminala" />
+            </section>
+            <section class="container__section">
+                <span class="container__item">Całkowity 12 miesięczny koszt </span>
+                <input class="container__input" id="sqm-321" name="fields[321]" type="text"
+                    value="[[kosztyutrzymaniaterminalaeservice]]" />
+                    <input class="container__input" id="sqm-322" name="fields[322]" type="text"
+                    value="[[kosztyutrzymaniaterminalakonkurencja]]" />
+            </section>
+
+
+            <button class="container__button">Przelicz</button>
+
+        </div>
+
+        <h1 class="h1">Podsumowanie</h1>
 
         <section class="section">
 
@@ -363,7 +449,7 @@
                     </i>
         </section>
 
-        <h3 class="h1">Proces posiadania terminala</h3>
+        <h1 class="h1">Proces posiadania terminala</h1>
         <section class="section section--wayToFinalize">
             <section class="section section--stepToFinalize">
                 <p class="paragraf">1. Podaj dane do umowy</p>
@@ -383,7 +469,7 @@
 
         </section>
 
-        <h3 class="h1">Pytania i odpowiedzi </h3>
+        <h1 class="h1">Pytania i odpowiedzi </h1>
         <details class="section">
             <summary>Pytanie 1: Czy terminal obsługuje BLIK?</summary>
             <p class="paragraf"> Tak. Prowizja to tylko
@@ -448,7 +534,7 @@
                 terminala i jest na czas nieokreślony. Zainstalujemy terminal dopiero wtedy, gdy będziemy wiedzieć jak
                 wygląda rozwiązanie umowy u Twego obecnego operatora. Druk wypowiedzenia do Twojego obecnego operatora
                 wygenerujemy dla Ciebie po podaniu Twoich danych. Tutaj dopiero możesz zdecydować czy {{sam|sama}}
-                wyślesz wypowiedzenie, czy my mamy nadać bezpłatnie kuriera po druk wypowiedzenia.
+                wyślesz wypowiedzenie, czy my mamy to zrobić.
             </p>
         </details>
         <details class="section">
@@ -499,7 +585,7 @@
 
 
 
-        <h3 class="h1">Dane kontaktowe: </h3>
+        <h1 class="h1">Dane kontaktowe: </h1>
         <p class="paragraf">Korneliusz Rduch</p>
 
         <p class="paragraf"><strong>Tel :  <a
@@ -517,3 +603,6 @@
 </body>
 
 </html>
+
+
+
