@@ -38,6 +38,10 @@
 
 }
 
+.container__section--different-price{
+    grid-template-columns: 1fr 1fr;
+}
+
 .container__section--average-transakction {
 
     grid-template-columns: 1fr 1fr;
@@ -47,3 +51,4 @@
     display: grid;
 
 }
+
