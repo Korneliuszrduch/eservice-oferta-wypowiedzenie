@@ -6,6 +6,7 @@
     margin: 0 auto;
     margin-top: 10px;
 
+
 }
 
 .container__iframe {
@@ -21,8 +22,12 @@
     height: auto;
 
 }
+
 .container--conversion {
-    margin: 10px;
+
+    display: grid;
+    gap: 10px;
+    font-size: 75%;
 }
 
 .container__item {
@@ -34,34 +39,34 @@
     margin-bottom: 5px;
     margin-left: 0;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-}
-
-.container__section--non-cash-transactions {
-
     grid-template-columns: 1fr 1fr;
 
+    gap: 10px;
 }
 
-.container__section--different-price{
-    grid-template-columns: 1fr 1fr;
+.container__section--company{
+
+  font-size: 100%;
 }
 
-.container__section--average-transakction {
 
-    grid-template-columns: 1fr 1fr;
+
+.container__section--hide {
+    display: none;
 }
 
-.container__section--summary{
+.container__section--summary {
     grid-template-columns: 1fr;
     display: none;
+    margin:15px;
+    font-size: 18px;
 
 }
 
-.container__section--summary.visible{
+.container__section--summary.visible {
 
     display: grid;
-  
+
     color: blue;
 }
 
@@ -74,7 +79,7 @@
     border-radius: 5px;
     cursor: pointer;
     justify-self: center;
-   
+
 }
 
 .container__button:hover {
@@ -82,7 +87,15 @@
 }
 
 
-.container__input{
+.container__input {
     display: grid;
+    text-align: right;
+    box-sizing: border-box;
+
 }
 
+.container__input.incorrect{
+        border: 3px solid red; /* Dodaj czerwoną obwódkę wokół pustego pola */
+      }
+
+ 
