@@ -1,269 +1,596 @@
 
 {
+    document.addEventListener('DOMContentLoaded', () => {
 
-  /*  const handleSectionVisibility = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                alert("Zaoszczędziłeś!");
-                observer.unobserve(entry.target); // Po wywołaniu alertu przestajemy obserwować sekcję
+
+        /*  const handleSectionVisibility = (entries, observer) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      alert("Zaoszczędziłeś!");
+                      observer.unobserve(entry.target); // Po wywołaniu alertu przestajemy obserwować sekcję
+                  }
+              });
+          };
+      
+          // Konfiguracja IntersectionObserver
+          const observer = new IntersectionObserver(handleSectionVisibility, {
+              root: null, // Przestrzeń widoku przeglądarki
+              threshold: 0.1 // Próg, przy którym wywołuje się zdarzenie (10% widoczności)
+          });
+      
+          // Znalezienie sekcji do obserwowania
+          const summarySection = document.querySelector(".container__section--summary");
+          if (summarySection) {
+              observer.observe(summarySection);
+          }
+      
+      
+      */
+
+
+
+
+
+        const checkOptions = () => {
+            if (document.getElementById('option1').checked) {
+                doOption1();
             }
+            if (document.getElementById('option2').checked) {
+                doOption2();
+            }
+            if (document.getElementById('option3').checked) {
+
+                hideForm();
+                hideButton();
+                showUploadFile();
+
+            }
+        };
+
+        document.querySelectorAll('input[name="costOption"]').forEach((input) => {
+            input.addEventListener('change', checkOptions);
         });
-    };
-
-    // Konfiguracja IntersectionObserver
-    const observer = new IntersectionObserver(handleSectionVisibility, {
-        root: null, // Przestrzeń widoku przeglądarki
-        threshold: 0.1 // Próg, przy którym wywołuje się zdarzenie (10% widoczności)
-    });
-
-    // Znalezienie sekcji do obserwowania
-    const summarySection = document.querySelector(".container__section--summary");
-    if (summarySection) {
-        observer.observe(summarySection);
-    }
-
-
-*/
 
 
 
+        const doOption1 = () => {
+            showInvoiceCommissionAmount();
+            hiddenUploadFile();
+            showButton();
+            showForm();
+            hiddenFieldsForOption1();
+            hiddenCommissionRateCompetition();
+            showCalculatedCommissionRateCompetition();
+            updateTotalCostToOption1();
+
+        };
+
+        const doOption2 = () => {
 
 
-    const fixedMonthlyCostsTerminal = () => {
-        const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
-        const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
-        const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
-        const gprsCost = parseFloat(document.getElementById("sqm-f212")?.textContent) || 0;
-        const serviceCost = parseFloat(document.getElementById("sqm-f213")?.textContent) || 0;
-        const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
-        const bestPrice = Math.min(
-            ...[terminalCostStacjonarny, terminalCostPrzenosny, pinPadCost].filter(cost => cost > 0)
-        );
-        const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost);
-        document.getElementById("fixed-monthly-costs").value = fixedMonthlyCosts;
-        console.log("Najlepsza cena:", bestPrice);
+            hideInvoiceCommissionAmount();
+            hiddenUploadFile();
+            showButton();
+            showForm();
+            ShowFieldsForOption();
+            showCommissionRateCompetition();
+            hiddenCalculatedCommissionRateCompetition();
+            updateTotalCostToOption2();
 
-        return {
-
-            fixedMonthlyCosts,
-         
-
-        }
-    };
-
-    const summaryCalculation = () => {
-
-        const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
-        const handleSummaryCalculation = document.querySelector(".container__section--summary");
-        console.log(savingMoney);
+        };
 
 
 
-        if (savingMoney > 100) {
-            handleSummaryCalculation.classList.add("visible");
-        }
-        else {
-            handleSummaryCalculation.classList.remove("visible");
-        }
-    };
-
-    const updateTotalCost = () => {
-
-        const monthlyCardTurnover = parseFloat(document.getElementById("sqm-f183").value) || 0;
-        const averageTransaction = parseFloat(document.getElementById("sqm-f184").value) || 0;
-        const commissionRate = parseFloat(document.getElementById("sqm-f217").value) || 0;
-        const authorizationFee = parseFloat(document.getElementById("sqm-f219").value) || 0;
-        const exemptRevenue = parseFloat(document.getElementById("sqm-f318").value) || 0;
-       const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
-        const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
-        const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
-       const gprsCost = parseFloat(document.getElementById("sqm-f212")?.textContent) || 0;
-       const serviceCost = parseFloat(document.getElementById("sqm-f213")?.textContent) || 0;
-       const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
-        const monthsOfRentExemption = parseFloat(document.getElementById("sqm-f215").value) || 0;
-        const priceInstalationTerminal = parseFloat(document.getElementById("sqm-f233").value) || 0;
-        const { fixedMonthlyCosts } = fixedMonthlyCostsTerminal();
-      
-
-        const timeOfCooperation = parseFloat(document.getElementById("sqm-f327").value) || 0;
-        const fixedMonthlyCostsCompetition = parseFloat(document.getElementById("sqm-f329").value) || 0;
-        const monthsOfRentExemptionCompetition = parseFloat(document.getElementById("sqm-f325").value) || 0;
-        const exemptRevenueCompetition = parseFloat(document.getElementById("sqm-f319").value) || 0;
-        const commissionRateCompetition = parseFloat(document.getElementById("sqm-f326").value) || 0;
-        const authorizationFeeCompetition = parseFloat(document.getElementById("sqm-f320").value) || 0;
-        const priceInstalationTerminalCompetition = parseFloat(document.getElementById("sqm-f323").value) || 0;
 
 
-        const monthlyCommission = (timeOfCooperation * monthlyCardTurnover - exemptRevenue >= 0)
-            ? Math.max(0,
-                authorizationFee * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRate / 100
-            )
-            : 0;
-        const amountOfCommissionFromExemptTurnover = (timeOfCooperation * monthlyCardTurnover) - exemptRevenue >= 0
-            ? Math.max(0, (exemptRevenue / averageTransaction) * authorizationFee + (exemptRevenue * commissionRate) / 100)
-            : 0;
-        const monthlyTotalCost = Math.max(0, monthlyCommission + fixedMonthlyCosts - (monthsOfRentExemption * fixedMonthlyCosts));
-        const totalCost = (priceInstalationTerminal + (timeOfCooperation * monthlyCommission) - amountOfCommissionFromExemptTurnover + Math.max(0, (timeOfCooperation - monthsOfRentExemption) * fixedMonthlyCosts)).toFixed(2);
+        const hideInvoiceCommissionAmount = () => {
 
-        const monthlyCommissionCompetition = (timeOfCooperation * monthlyCardTurnover - exemptRevenueCompetition >= 0)
-            ? Math.max(0,
-                authorizationFeeCompetition * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRateCompetition / 100
-            )
-            : 0;
-        const amountOfCommissionFromExemptTurnoverCompetition = (timeOfCooperation * monthlyCardTurnover) - exemptRevenueCompetition >= 0
-            ? Math.max(0, (exemptRevenueCompetition / averageTransaction) * authorizationFeeCompetition + (exemptRevenueCompetition * commissionRateCompetition) / 100)
-            : 0;
-        const monthlyTotalCostCompetition = Math.max(0, monthlyCommissionCompetition + Math.max(0, fixedMonthlyCostsCompetition - (monthsOfRentExemptionCompetition * fixedMonthlyCostsCompetition))).toFixed(2);
-        const totalCostCompetition = ((priceInstalationTerminalCompetition + (timeOfCooperation * monthlyCommissionCompetition) - amountOfCommissionFromExemptTurnoverCompetition + Math.max(0, (timeOfCooperation - monthsOfRentExemptionCompetition) * fixedMonthlyCostsCompetition))).toFixed(2);
-        const savingMoney = totalCostCompetition - totalCost;
+            const invoiceCommissionAmount = document.querySelector(".js-invoice-commission-amount");
+            invoiceCommissionAmount.classList.add("hidden");
+        };
 
-        document.getElementById("sqm-f328").value = savingMoney <= 0 ? "Brak oszczędności lub niepoprawne dane" : `${savingMoney.toFixed(2)} zł`;
-        document.getElementById("monthly-total-cost").value = monthlyTotalCost;
-        document.getElementById("monthly-total-cost-competition").value = monthlyTotalCostCompetition;
-        document.getElementById("sqm-f321").value = totalCost + " zł";
-        document.getElementById("sqm-f322").value = totalCostCompetition + " zł";
+        const showInvoiceCommissionAmount = () => {
+
+            const invoiceCommissionAmount = document.querySelector(".js-invoice-commission-amount");
+            invoiceCommissionAmount.classList.remove("hidden");
+        };
+
+        const showUploadFile = () => {
+            const fileUploadSection = document.querySelector(".js-file-upload");
+            fileUploadSection.classList.remove("hidden");
+
+        };
+        const hiddenUploadFile = () => {
+            const fileUploadSection = document.querySelector(".js-file-upload");
+            fileUploadSection.classList.add("hidden");
+
+        };
 
 
-
-        console.log("koszt terminal stacjonarny :", terminalCostStacjonarny);
-        console.log("koszt terminal przenosny  :", terminalCostPrzenosny);
-        console.log("cena pinpada :", pinPadCost);
-        console.log("GPRS Koszt", gprsCost);
-        console.log("Serwis koszt :", serviceCost);
-        console.log("logo:", logoCost);
-        console.log("liczba zwolnienia z opłat", monthsOfRentExemption);
-
-        console.log("Obrót kartowy :", monthlyCardTurnover);
-        console.log("prowizja eservice:", commissionRate);
-        console.log("zwolniona prowizja:", exemptRevenue);
-        console.log("opłata autoryzacyjna:", authorizationFee);
-        console.log("średnia wartośc transakcji", averageTransaction);
-        console.log("opłata instalacyjna ", priceInstalationTerminal);
-        console.log("Czas współpracy liczba miesieczy ", timeOfCooperation);
-        console.log("Suma Miesięczne opłaty stałe:", fixedMonthlyCosts);
-        console.log("Prowizja eservice miesieczna  :", monthlyCommission);
-        console.log("Całkowity 12 miesięczny koszt:", totalCost);
-
-        console.log("liczba zwolnienia z opłat konkurencja", monthsOfRentExemptionCompetition);
-        console.log("Miesięczne płaty stałe konkurencja", fixedMonthlyCostsCompetition);
-        console.log("prowizja konkurencja:", commissionRateCompetition);
-        console.log("zwolniona prowizja konkurencja:", exemptRevenueCompetition);
-        console.log("opłata autoryzacyjna konkurencja:", authorizationFeeCompetition);
-        console.log("opłata instalacyjna konkurencja:", priceInstalationTerminalCompetition);
-        console.log("Miesięczne opłaty stałe: konkurencja", fixedMonthlyCostsCompetition);
-        console.log("Całe prowizja  konkurencja :", monthlyCommissionCompetition);
-        console.log("kwota prowizji zwolnionej", amountOfCommissionFromExemptTurnoverCompetition);
-        console.log("Całkowity 12 miesięczny koszt konkurencja :", totalCostCompetition);
-
-        event.preventDefault();
-
-      
-        fixedMonthlyCostsTerminal();
-       
-        // alert("Uwaga");
-  
-    };
-
-    const sendFormDataCompany = () => {
-        checkAndAddEmptyClass();
-        const formCalculate = document.querySelector(".js-form--calculate");
-    
-
-        const invalidInputs = document.querySelectorAll(".container__input.incorrect");
-        if (invalidInputs.length > 0) {
-            alert("Wypełnij wszystkie formularze", invalidInputs.length);
-        
-        } else {
-           formCalculate.submit();
-        }
-    };
+        const hideForm = () => {
+            const formCalculate = document.querySelector(".js-form--calculate");
+            formCalculate.classList.add("hidden");
 
 
-    const checkAndAddEmptyClass = () => {
-       const containerConnersion = document.querySelectorAll(".container--conversion")
-        containerConnersion.forEach(section => {
-            const inputs = section.querySelectorAll(".container__input");
-             console.log(inputs);
-            inputs.forEach(input => {
-                //console.log(input);
-                if (input.value.trim() !== "") {
-                    input.classList.remove("incorrect");
-                    input.classList.add("correct");
-                } else {
-                    input.classList.add("incorrect");
-                    input.classList.remove("correct");
-                }
+        };
+
+        const showForm = () => {
+            const formCalculate = document.querySelector(".js-form--calculate");
+            formCalculate.classList.remove("hidden");
+
+
+        };
+
+
+        const hideButton = () => {
+            const buttonRecalculate = document.querySelector(".js-button")
+            buttonRecalculate.classList.add("hidden");
+
+        };
+
+        const showButton = () => {
+            const buttonRecalculate = document.querySelector(".js-button")
+            buttonRecalculate.classList.remove("hidden");
+
+        };
+
+        showCommissionRateCompetition = () => {
+            const commissionRateCompetition = document.getElementById("sqm-f326");
+            commissionRateCompetition.classList.remove("hidden");
+        };
+
+        hiddenCommissionRateCompetition = () => {
+            const commissionRateCompetition = document.getElementById("sqm-f326");
+            //  commissionRateCompetition.value === ""
+            //   ?
+            commissionRateCompetition.classList.add("hidden")
+            // : 
+            //   commissionRateCompetition.classList.remove("hidden");
+
+        };
+
+        hiddenCalculatedCommissionRateCompetition = () => {
+            const calculatedCommissionRateCompetition = document.querySelector(".js-calculated-average-commission-rate-competition");
+            calculatedCommissionRateCompetition.classList.add("hidden")
+        };
+       showCalculatedCommissionRateCompetition = () => {
+            const calculatedCommissionRateCompetition = document.querySelector(".js-calculated-average-commission-rate-competition");
+            calculatedCommissionRateCompetition.classList.remove("hidden")
+        };
+
+
+
+
+
+        const hiddenFieldsForOption1 = () => {
+            const authorizationFeeCompetition = document.querySelector(".js-authorization-Fee-Competition");
+
+            const exemptRevenueCompetition = document.getElementById("sqm-f319");
+            const monthsOfRentExemptionCompetition = document.getElementById("sqm-f325");
+            authorizationFeeCompetition.classList.add("hidden");
+
+            exemptRevenueCompetition.classList.add("hidden");
+            monthsOfRentExemptionCompetition.classList.add("hidden");
+        };
+
+        const ShowFieldsForOption = () => {
+            const authorizationFeeCompetition = document.querySelector(".js-authorization-Fee-Competition");
+
+            const exemptRevenueCompetition = document.getElementById("sqm-f319");
+            const monthsOfRentExemptionCompetition = document.getElementById("sqm-f325");
+            authorizationFeeCompetition.classList.remove("hidden");
+
+            exemptRevenueCompetition.classList.remove("hidden");
+            monthsOfRentExemptionCompetition.classList.remove("hidden");
+
+
+        };
+
+
+
+
+
+
+
+        const fixedMonthlyCostsTerminal = () => {
+            const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
+            const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
+            const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
+            const gprsCost = parseFloat(document.getElementById("sqm-f212")?.textContent) || 0;
+            const serviceCost = parseFloat(document.getElementById("sqm-f213")?.textContent) || 0;
+            const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
+            const rkas = parseFloat(document.getElementById("sqm-f290")?.textContent) || 0;
+            const bestPrice = Math.min(
+                ...[terminalCostStacjonarny, terminalCostPrzenosny, pinPadCost].filter(cost => cost > 0)
+            );
+            const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost + rkas);
+            document.getElementById("fixed-monthly-costs").value = fixedMonthlyCosts;
+            console.log("Najlepsza cena:", bestPrice);
+
+            return {
+
+                fixedMonthlyCosts,
+
+
+            }
+        };
+
+        const summaryCalculation = () => {
+
+            const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
+            const handleSummaryCalculation = document.querySelector(".container__section--summary");
+            //console.log(savingMoney);
+
+
+
+            if (savingMoney > 100) {
+                handleSummaryCalculation.classList.add("visible");
+            }
+            else {
+                handleSummaryCalculation.classList.remove("visible");
+            }
+        };
+
+
+        const updateTotalCostToOption1 = () => {
+
+            const monthlyCardTurnover = parseFloat(document.getElementById("sqm-f183").value) || 0;
+            const averageTransaction = parseFloat(document.getElementById("sqm-f184").value) || 0;
+            const commissionRate = parseFloat(document.getElementById("sqm-f217").value) || 0;
+            const authorizationFee = parseFloat(document.getElementById("sqm-f219").value) || 0;
+            const exemptRevenue = parseFloat(document.getElementById("sqm-f318").value) || 0;
+            const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
+            const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
+            const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
+            const gprsCost = parseFloat(document.getElementById("sqm-f212")?.textContent) || 0;
+
+            const serviceCost = parseFloat(document.getElementById("sqm-f213")?.textContent) || 0;
+            const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
+            const monthsOfRentExemption = parseFloat(document.getElementById("sqm-f215").value) || 0;
+            const priceInstalationTerminal = parseFloat(document.getElementById("sqm-f233").value) || 0;
+            const { fixedMonthlyCosts } = fixedMonthlyCostsTerminal();
+
+            const timeOfCooperation = parseFloat(document.getElementById("sqm-f327").value) || 0;
+            const fixedMonthlyCostsCompetition = parseFloat(document.getElementById("sqm-f329").value) || 0;
+            // const monthsOfRentExemptionCompetition = parseFloat(document.getElementById("sqm-f325").value) || 0;
+            const monthsOfRentExemptionCompetition = 0;
+            // const exemptRevenueCompetition = parseFloat(document.getElementById("sqm-f319").value) || 0;
+            const exemptRevenueCompetition = 0;
+            //  const commissionRateCompetition = parseFloat(document.getElementById("sqm-f326").value) || 0;
+
+            const authorizationFeeCompetition = 0;
+            const priceInstalationTerminalCompetition = parseFloat(document.getElementById("sqm-f323").value) || 0;
+            const invoiceCommissionAmount = parseFloat(document.getElementById("sqm-f330").value) || 0;
+            const monthlyCommissionCompetition = parseFloat(invoiceCommissionAmount) || 0;
+
+
+            const calculatedCommissionRateCompetition = (invoiceCommissionAmount / monthlyCardTurnover) * 100;
+console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCompetition);
+            const monthlyCommission = (timeOfCooperation * monthlyCardTurnover - exemptRevenue >= 0)
+                ? Math.max(0,
+                    authorizationFee * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRate / 100
+                )
+                : 0;
+            const amountOfCommissionFromExemptTurnover = (timeOfCooperation * monthlyCardTurnover) - exemptRevenue >= 0
+                ? Math.max(0, (exemptRevenue / averageTransaction) * authorizationFee + (exemptRevenue * commissionRate) / 100)
+                : 0;
+            const monthlyTotalCost = Math.max(0, monthlyCommission + fixedMonthlyCosts - (monthsOfRentExemption * fixedMonthlyCosts));
+            const totalCost = (priceInstalationTerminal + (timeOfCooperation * monthlyCommission) - amountOfCommissionFromExemptTurnover + Math.max(0, (timeOfCooperation - monthsOfRentExemption) * fixedMonthlyCosts)).toFixed(2);
+
+
+
+            const amountOfCommissionFromExemptTurnoverCompetition = (timeOfCooperation * monthlyCardTurnover) - exemptRevenueCompetition >= 0
+                ? Math.max(0, (exemptRevenueCompetition / averageTransaction) * authorizationFeeCompetition + (exemptRevenueCompetition *  calculatedCommissionRateCompetition) / 100)
+                : 0;
+            const monthlyTotalCostCompetition = Math.max(0, monthlyCommissionCompetition + Math.max(0, fixedMonthlyCostsCompetition - (monthsOfRentExemptionCompetition * fixedMonthlyCostsCompetition))).toFixed(2);
+            const totalCostCompetition = ((priceInstalationTerminalCompetition + (timeOfCooperation * monthlyCommissionCompetition) - amountOfCommissionFromExemptTurnoverCompetition + Math.max(0, (timeOfCooperation - monthsOfRentExemptionCompetition) * fixedMonthlyCostsCompetition))).toFixed(2);
+            const savingMoney = totalCostCompetition - totalCost;
+
+        document.querySelector(".js-calculated-average-commission-rate-competition").value =calculatedCommissionRateCompetition;
+
+            document.getElementById("sqm-f328").value = savingMoney <= 0 ? "Brak oszczędności lub niepoprawne dane" : `${savingMoney.toFixed(2)} zł`;
+
+
+            document.getElementById("monthly-total-cost").value = monthlyTotalCost;
+           // document.getElementById("sqm-f326").value = ((invoiceCommissionAmount / monthlyCardTurnover) * 100).toFixed(2);
+            document.getElementById("monthly-total-cost-competition").value = monthlyTotalCostCompetition;
+            document.getElementById("sqm-f321").value = totalCost + " zł";
+            document.getElementById("sqm-f322").value = totalCostCompetition + " zł";
+
+
+
+            console.log("koszt terminal stacjonarny :", terminalCostStacjonarny);
+            console.log("koszt terminal przenosny  :", terminalCostPrzenosny);
+            console.log("cena pinpada :", pinPadCost);
+            console.log("GPRS Koszt", gprsCost);
+            console.log("Serwis koszt :", serviceCost);
+            console.log("logo:", logoCost);
+            console.log("liczba zwolnienia z opłat", monthsOfRentExemption);
+
+            console.log("Obrót kartowy :", monthlyCardTurnover);
+            console.log("prowizja eservice:", commissionRate);
+            console.log("zwolniona prowizja:", exemptRevenue);
+            console.log("opłata autoryzacyjna:", authorizationFee);
+            console.log("średnia wartośc transakcji", averageTransaction);
+            console.log("opłata instalacyjna ", priceInstalationTerminal);
+            console.log("Czas współpracy liczba miesieczy ", timeOfCooperation);
+            console.log("Suma Miesięczne opłaty stałe:", fixedMonthlyCosts);
+            console.log("Prowizja eservice miesieczna  :", monthlyCommission);
+            console.log("Całkowity 12 miesięczny koszt:", totalCost);
+
+            console.log("liczba zwolnienia z opłat konkurencja", monthsOfRentExemptionCompetition);
+            console.log("Miesięczne płaty stałe konkurencja", fixedMonthlyCostsCompetition);
+            console.log("prowizja konkurencja:", calculatedCommissionRateCompetition);
+            console.log("zwolniona prowizja konkurencja:", exemptRevenueCompetition);
+            console.log("opłata autoryzacyjna konkurencja:", authorizationFeeCompetition);
+            console.log("opłata instalacyjna konkurencja:", priceInstalationTerminalCompetition);
+            console.log("Miesięczne opłaty stałe: konkurencja", fixedMonthlyCostsCompetition);
+
+            console.log("Obrót kartowy :", monthlyCardTurnover);
+            console.log("prowizja z faktury  :", invoiceCommissionAmount);
+            console.log("wyliczona Całe prowizja  konkurencja :", monthlyCommissionCompetition);
+            //console.log("kwota prowizji zwolnionej", amountOfCommissionFromExemptTurnoverCompetition);
+            console.log("Całkowity 12 miesięczny koszt konkurencja :", totalCostCompetition);
+
+
+            // event.preventDefault();
+
+
+            fixedMonthlyCostsTerminal();
+
+            // alert("Uwaga");
+
+        };
+
+
+
+
+        const updateTotalCostToOption2 = () => {
+
+            const monthlyCardTurnover = parseFloat(document.getElementById("sqm-f183").value) || 0;
+            const averageTransaction = parseFloat(document.getElementById("sqm-f184").value) || 0;
+            const commissionRate = parseFloat(document.getElementById("sqm-f217").value) || 0;
+            const authorizationFee = parseFloat(document.getElementById("sqm-f219").value) || 0;
+            const exemptRevenue = parseFloat(document.getElementById("sqm-f318").value) || 0;
+            const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
+            const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
+            const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
+            const gprsCost = parseFloat(document.getElementById("sqm-f212")?.textContent) || 0;
+            const serviceCost = parseFloat(document.getElementById("sqm-f213")?.textContent) || 0;
+            const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
+            const monthsOfRentExemption = parseFloat(document.getElementById("sqm-f215").value) || 0;
+            const priceInstalationTerminal = parseFloat(document.getElementById("sqm-f233").value) || 0;
+            const { fixedMonthlyCosts } = fixedMonthlyCostsTerminal();
+
+
+            const timeOfCooperation = parseFloat(document.getElementById("sqm-f327").value) || 0;
+            const fixedMonthlyCostsCompetition = parseFloat(document.getElementById("sqm-f329").value) || 0;
+            const monthsOfRentExemptionCompetition = parseFloat(document.getElementById("sqm-f325").value) || 0;
+            const exemptRevenueCompetition = parseFloat(document.getElementById("sqm-f319").value) || 0;
+            const commissionRateCompetition = parseFloat(document.getElementById("sqm-f326").value) || 0;
+            //  const commissionRateCompetition = [[sredniaprowizjaterminalkonkurencja]];
+            const authorizationFeeCompetition = parseFloat(document.getElementById("sqm-f320").value) || 0;
+            const priceInstalationTerminalCompetition = parseFloat(document.getElementById("sqm-f323").value) || 0;
+
+
+            const monthlyCommission = (timeOfCooperation * monthlyCardTurnover - exemptRevenue >= 0)
+                ? Math.max(0,
+                    authorizationFee * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRate / 100
+                )
+                : 0;
+            const amountOfCommissionFromExemptTurnover = (timeOfCooperation * monthlyCardTurnover) - exemptRevenue >= 0
+                ? Math.max(0, (exemptRevenue / averageTransaction) * authorizationFee + (exemptRevenue * commissionRate) / 100)
+                : 0;
+            const monthlyTotalCost = Math.max(0, monthlyCommission + fixedMonthlyCosts - (monthsOfRentExemption * fixedMonthlyCosts));
+            const totalCost = (priceInstalationTerminal + (timeOfCooperation * monthlyCommission) - amountOfCommissionFromExemptTurnover + Math.max(0, (timeOfCooperation - monthsOfRentExemption) * fixedMonthlyCosts)).toFixed(2);
+
+            const monthlyCommissionCompetition = (timeOfCooperation * monthlyCardTurnover - exemptRevenueCompetition >= 0)
+                ? Math.max(0,
+                    authorizationFeeCompetition * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRateCompetition / 100
+                )
+                : 0;
+            const amountOfCommissionFromExemptTurnoverCompetition = (timeOfCooperation * monthlyCardTurnover) - exemptRevenueCompetition >= 0
+                ? Math.max(0, (exemptRevenueCompetition / averageTransaction) * authorizationFeeCompetition + (exemptRevenueCompetition * commissionRateCompetition) / 100)
+                : 0;
+            const monthlyTotalCostCompetition = Math.max(0, monthlyCommissionCompetition + Math.max(0, fixedMonthlyCostsCompetition - (monthsOfRentExemptionCompetition * fixedMonthlyCostsCompetition))).toFixed(2);
+            const totalCostCompetition = ((priceInstalationTerminalCompetition + (timeOfCooperation * monthlyCommissionCompetition) - amountOfCommissionFromExemptTurnoverCompetition + Math.max(0, (timeOfCooperation - monthsOfRentExemptionCompetition) * fixedMonthlyCostsCompetition))).toFixed(2);
+            const savingMoney = totalCostCompetition - totalCost;
+
+            document.getElementById("sqm-f328").value = savingMoney <= 0 ? "Brak oszczędności lub niepoprawne dane" : `${savingMoney.toFixed(2)} zł`;
+            document.getElementById("monthly-total-cost").value = monthlyTotalCost;
+            //  document.getElementById("sqm-f326").value = monthlyCommissionCompetition;
+            document.getElementById("monthly-total-cost-competition").value = monthlyTotalCostCompetition;
+            document.getElementById("sqm-f321").value = totalCost + " zł";
+            document.getElementById("sqm-f322").value = totalCostCompetition + " zł";
+
+
+
+            console.log("koszt terminal stacjonarny :", terminalCostStacjonarny);
+            console.log("koszt terminal przenosny  :", terminalCostPrzenosny);
+            console.log("cena pinpada :", pinPadCost);
+            console.log("GPRS Koszt", gprsCost);
+            console.log("Serwis koszt :", serviceCost);
+            console.log("logo:", logoCost);
+            console.log("liczba zwolnienia z opłat", monthsOfRentExemption);
+
+            console.log("Obrót kartowy :", monthlyCardTurnover);
+            console.log("prowizja eservice:", commissionRate);
+            console.log("zwolniona prowizja:", exemptRevenue);
+            console.log("opłata autoryzacyjna:", authorizationFee);
+            console.log("średnia wartośc transakcji", averageTransaction);
+            console.log("opłata instalacyjna ", priceInstalationTerminal);
+            console.log("Czas współpracy liczba miesieczy ", timeOfCooperation);
+            console.log("Suma Miesięczne opłaty stałe:", fixedMonthlyCosts);
+            console.log("Prowizja eservice miesieczna  :", monthlyCommission);
+            console.log("Całkowity 12 miesięczny koszt:", totalCost);
+
+            console.log("liczba zwolnienia z opłat konkurencja", monthsOfRentExemptionCompetition);
+            console.log("Miesięczne płaty stałe konkurencja", fixedMonthlyCostsCompetition);
+            console.log("prowizja konkurencja:", commissionRateCompetition);
+            //   console.log("zwolniona prowizja konkurencja:", exemptRevenueCompetition);
+            console.log("opłata autoryzacyjna konkurencja:", authorizationFeeCompetition);
+            //  console.log("opłata instalacyjna konkurencja:", priceInstalationTerminalCompetition);
+            console.log("Miesięczne opłaty stałe: konkurencja", fixedMonthlyCostsCompetition);
+            console.log("Obrót kartowy :", monthlyCardTurnover);
+            console.log("Całe prowizja  konkurencja :", monthlyCommissionCompetition);
+            console.log("kwota prowizji zwolnionej", amountOfCommissionFromExemptTurnoverCompetition);
+            console.log("Całkowity 12 miesięczny koszt konkurencja :", totalCostCompetition);
+
+            // event.preventDefault();
+
+
+            fixedMonthlyCostsTerminal();
+
+            // alert("Uwaga");
+
+        };
+
+        const sendFormDataCompany = () => {
+            checkAndAddEmptyClass();
+            const formCalculate = document.querySelector(".js-form--calculate");
+            const invalidInputs = document.querySelectorAll(".container__input.incorrect");
+            if (invalidInputs.length > 0) {
+                alert("Wypełnij wszystkie formularze", invalidInputs.length);
+
+            } else {
+                formCalculate.submit();
+            }
+        };
+
+
+        const checkAndAddEmptyClass = () => {
+            const containerConnersion = document.querySelectorAll(".container--conversion")
+
+
+            containerConnersion.forEach(section => {
+                const inputs = section.querySelectorAll(".container__input");
+                //  console.log(inputs);
+                inputs.forEach(input => {
+                    //console.log(input);
+
+
+                    if (section.classList.contains("hidden")) {
+
+                        input.classList.remove("incorrect");
+                        input.classList.add("correct");
+                    }
+
+                    else {
+
+
+
+
+                        if (input.value.trim() !== "") {
+                            input.classList.remove("incorrect");
+                            input.classList.add("correct");
+                        }
+                        else {
+                            input.classList.add("incorrect");
+                            input.classList.remove("correct");
+                        }
+                    };
+                });
             });
+        };
+
+
+        const buttonRecalculate = document.querySelector(".js-button");
+        buttonRecalculate.addEventListener("click", () => {
+
+            if (document.getElementById('option1').checked) {
+                updateTotalCostToOption1();
+                summaryCalculation();
+                hiddenCommissionRateCompetition();
+                checkAndAddEmptyClass();
+                // showCommissionRateCompetition();
+                sendFormDataCompany();
+
+            }
+            if (document.getElementById('option2').checked) {
+                updateTotalCostToOption2();
+                summaryCalculation();
+                hiddenCommissionRateCompetition();
+                checkAndAddEmptyClass();
+                showCommissionRateCompetition();
+                sendFormDataCompany();
+                //   console.log("myFunction is called");
+            }
+
+
+
+        })
+
+
+
+
+        const buttonNextStep = document.querySelector(".js-nextStep");
+        buttonNextStep.addEventListener("click", () => {
+            event.preventDefault();
+
+            const formNextStep = document.querySelector(".js-form--DataCompany");
+            // console.log(buttonNextStep);
+
+            // console.log(formNextStep);
+            formNextStep.submit();
+
+
+
         });
-    };
 
 
-    const buttonRecalculate = document.querySelector(".js-button");
-    buttonRecalculate.addEventListener("click", () => {
-        updateTotalCost();
+
+
+
+
+        const showAlertCalculate = () => {
+
+
+
+
+            const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
+            if (savingMoney === 0) {
+
+
+                setTimeout(function () {
+                    alert("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.");
+                }, 45000); // 5000 milisekund = 5 sekund
+
+
+
+            } else {
+
+                setTimeout(function () {
+                    alert(`${savingMoney} zł zaoszczędzisz`);
+                }, 2000); // 2000 milisekund = 5 sekund
+
+
+            }
+
+            const conversionSection = document.querySelector(".container--conversion");
+            conversionSection.scrollIntoView({ behavior: "smooth" });
+            // console.log("Wartość savingMoney:", savingMoney);
+        };
+
+
+
+
+
+
+        //console.log("zaoszczedzone pieniadze", savingMoney);
+        checkOptions();
+        showAlertCalculate();
+
+
+
+        // fixedMonthlyCostsTerminal();
+        // updateTotalCostToOption2();
         summaryCalculation();
-        checkAndAddEmptyClass();
-      sendFormDataCompany();
+        //  checkAndAddEmptyClass();
+        // handleSectionVisibility();
 
-    })
-
-
-
-
-    const buttonNextStep = document.querySelector(".js-nextStep");
-    buttonNextStep.addEventListener("click", () => {
-        event.preventDefault();
-
-        const formNextStep = document.querySelector(".js-form--DataCompany");
-        console.log(buttonNextStep);
-
-        console.log(formNextStep);
-        formNextStep.submit();
 
 
 
     });
-
-
-
-
-
-
-    const showAlertCalculate = () => {
-
-
-
-        
-        const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
-        if (savingMoney === 0) {
-
-
-            setTimeout(function() {
-                alert("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.");
-            }, 45000); // 5000 milisekund = 5 sekund
-
-
-            
-        } else {
-          
-            setTimeout(function() {
-                alert(`${savingMoney} zł zaoszczędzisz`);
-            }, 2000); // 2000 milisekund = 5 sekund
-          
-          
-        }
-
-        const conversionSection = document.querySelector(".container--conversion");
-        conversionSection.scrollIntoView({ behavior: "smooth" });
-       // console.log("Wartość savingMoney:", savingMoney);
-    };
-
-    window.onload = showAlertCalculate();
-
-    fixedMonthlyCostsTerminal();
-    // updateTotalCost();
-    summaryCalculation();
-
-   // handleSectionVisibility();
 
 }

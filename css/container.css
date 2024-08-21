@@ -28,10 +28,12 @@
     display: grid;
     gap: 10px;
     font-size: 75%;
+ 
 }
 
 .container__item {
     display: grid;
+   
 }
 
 .container__section {
@@ -42,6 +44,7 @@
     grid-template-columns: 1fr 1fr;
 
     gap: 10px;
+    align-items: center;
 }
 
 .container__section--company{
@@ -98,4 +101,27 @@
         border: 3px solid red; /* Dodaj czerwoną obwódkę wokół pustego pola */
       }
 
+     .container__input--calculate{
+
+        border: none;
+        outline: none;
+     }
+
+
+     .container__section--options{
+        grid-template-columns: 1fr;
+        gap:10px;
+        margin-bottom: 15px;
+        padding: 20px;
+
+      }
+
+     .container__section--option{
+        grid-template-columns: auto 1fr;
+    
+
+     }
  
+     .container__input--options{
+        display: block;
+     }
