@@ -54,6 +54,7 @@
 
 
         const doOption1 = () => {
+
             showInvoiceCommissionAmount();
             hiddenUploadFile();
             showButton();
@@ -61,6 +62,7 @@
             hiddenFieldsForOption1();
             hiddenCommissionRateCompetition();
             showCalculatedCommissionRateCompetition();
+            checkAndAddEmptyClass();
             updateTotalCostToOption1();
 
         };
@@ -75,6 +77,7 @@
             ShowFieldsForOption();
             showCommissionRateCompetition();
             hiddenCalculatedCommissionRateCompetition();
+            checkAndAddEmptyClass();
             updateTotalCostToOption2();
 
         };
@@ -86,13 +89,21 @@
         const hideInvoiceCommissionAmount = () => {
 
             const invoiceCommissionAmount = document.querySelector(".js-invoice-commission-amount");
+            const inputInvoiceCommissionAmount = document.getElementById("sqm-f330");
+            inputInvoiceCommissionAmount.classList.add("hidden");
             invoiceCommissionAmount.classList.add("hidden");
+
+
+
+
         };
 
         const showInvoiceCommissionAmount = () => {
 
             const invoiceCommissionAmount = document.querySelector(".js-invoice-commission-amount");
             invoiceCommissionAmount.classList.remove("hidden");
+            const inputInvoiceCommissionAmount = document.getElementById("sqm-f330");
+            inputInvoiceCommissionAmount.classList.remove("hidden");
         };
 
         const showUploadFile = () => {
@@ -153,7 +164,7 @@
             const calculatedCommissionRateCompetition = document.querySelector(".js-calculated-average-commission-rate-competition");
             calculatedCommissionRateCompetition.classList.add("hidden")
         };
-       showCalculatedCommissionRateCompetition = () => {
+        showCalculatedCommissionRateCompetition = () => {
             const calculatedCommissionRateCompetition = document.querySelector(".js-calculated-average-commission-rate-competition");
             calculatedCommissionRateCompetition.classList.remove("hidden")
         };
@@ -216,20 +227,24 @@
         };
 
         const summaryCalculation = () => {
-
+            const timeOfCooperation = parseFloat(document.getElementById("sqm-f327").value) || 0;
             const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
             const handleSummaryCalculation = document.querySelector(".container__section--summary");
-            //console.log(savingMoney);
+            const summaryElement = document.querySelector(".js-summary");
+            const buttonNextStep = document.querySelector(".js-nextStep");
+            summaryElement.textContent = `W ciągu ${timeOfCooperation} miesięcy zaoszczędzisz ${savingMoney} zł, jeśli zmienisz operatora terminali płatniczych. Jeśli z obecnym operatorem ostatnio podpisywałeś umowę czy rozszerzenie na nowy terminal i minęło już ponad 2 lata, to 90% operatorów ma umowy z jednomiesięcznym okresem wypowiedzenia. Po kliknięciu przycisku "Podaję dane", przekieruję Cię do podania danych do umowy, a na końcu automatycznie wygeneruje się druk wypowiedzenia do twojego operatora terminali płatniczych. Kliknij przycisk "Podaję dane" i oszczędzaj!`;
 
-
-
-            if (savingMoney > 100) {
-                handleSummaryCalculation.classList.add("visible");
-            }
-            else {
-                handleSummaryCalculation.classList.remove("visible");
-            }
+            // Logika widoczności sekcji na podstawie wartości savingMoney
+            if (savingMoney >= 100) {
+            handleSummaryCalculation.classList.add("visible");
+            buttonNextStep.classList.remove("hidden");
+             } else {
+               handleSummaryCalculation.classList.remove("visible");
+           buttonNextStep.classList.add("hidden");
+             }
         };
+
+
 
 
         const updateTotalCostToOption1 = () => {
@@ -265,7 +280,7 @@
 
 
             const calculatedCommissionRateCompetition = (invoiceCommissionAmount / monthlyCardTurnover) * 100;
-console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCompetition);
+            console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCompetition);
             const monthlyCommission = (timeOfCooperation * monthlyCardTurnover - exemptRevenue >= 0)
                 ? Math.max(0,
                     authorizationFee * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRate / 100
@@ -280,19 +295,19 @@ console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCo
 
 
             const amountOfCommissionFromExemptTurnoverCompetition = (timeOfCooperation * monthlyCardTurnover) - exemptRevenueCompetition >= 0
-                ? Math.max(0, (exemptRevenueCompetition / averageTransaction) * authorizationFeeCompetition + (exemptRevenueCompetition *  calculatedCommissionRateCompetition) / 100)
+                ? Math.max(0, (exemptRevenueCompetition / averageTransaction) * authorizationFeeCompetition + (exemptRevenueCompetition * calculatedCommissionRateCompetition) / 100)
                 : 0;
             const monthlyTotalCostCompetition = Math.max(0, monthlyCommissionCompetition + Math.max(0, fixedMonthlyCostsCompetition - (monthsOfRentExemptionCompetition * fixedMonthlyCostsCompetition))).toFixed(2);
             const totalCostCompetition = ((priceInstalationTerminalCompetition + (timeOfCooperation * monthlyCommissionCompetition) - amountOfCommissionFromExemptTurnoverCompetition + Math.max(0, (timeOfCooperation - monthsOfRentExemptionCompetition) * fixedMonthlyCostsCompetition))).toFixed(2);
             const savingMoney = totalCostCompetition - totalCost;
 
-        document.querySelector(".js-calculated-average-commission-rate-competition").value =calculatedCommissionRateCompetition;
+            document.querySelector(".js-calculated-average-commission-rate-competition").value = calculatedCommissionRateCompetition.toFixed(2);
 
             document.getElementById("sqm-f328").value = savingMoney <= 0 ? "Brak oszczędności lub niepoprawne dane" : `${savingMoney.toFixed(2)} zł`;
 
 
             document.getElementById("monthly-total-cost").value = monthlyTotalCost;
-           // document.getElementById("sqm-f326").value = ((invoiceCommissionAmount / monthlyCardTurnover) * 100).toFixed(2);
+            // document.getElementById("sqm-f326").value = ((invoiceCommissionAmount / monthlyCardTurnover) * 100).toFixed(2);
             document.getElementById("monthly-total-cost-competition").value = monthlyTotalCostCompetition;
             document.getElementById("sqm-f321").value = totalCost + " zł";
             document.getElementById("sqm-f322").value = totalCostCompetition + " zł";
@@ -337,6 +352,7 @@ console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCo
 
 
             fixedMonthlyCostsTerminal();
+            summaryCalculation();
 
             // alert("Uwaga");
 
@@ -440,7 +456,7 @@ console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCo
 
 
             fixedMonthlyCostsTerminal();
-
+            summaryCalculation();
             // alert("Uwaga");
 
         };
@@ -459,36 +475,33 @@ console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCo
 
 
         const checkAndAddEmptyClass = () => {
-            const containerConnersion = document.querySelectorAll(".container--conversion")
-
+            const containerConnersion = document.querySelectorAll(".container--conversion");
 
             containerConnersion.forEach(section => {
                 const inputs = section.querySelectorAll(".container__input");
-                //  console.log(inputs);
+                console.log("Section Inputs:", inputs);
+
                 inputs.forEach(input => {
-                    //console.log(input);
+                    console.log("Current Input:", input); // Wyświetla aktualnie przetwarzany input
 
-
-                    if (section.classList.contains("hidden")) {
-
+                    // Sprawdzenie, czy sekcja jest ukryta
+                    if (input.classList.contains("hidden")) {
                         input.classList.remove("incorrect");
                         input.classList.add("correct");
-                    }
-
-                    else {
-
-
-
-
+                        console.log("Hidden: Input set to correct:", input);
+                    } else {
+                        // Sprawdzenie, czy input jest pusty
                         if (input.value.trim() !== "") {
                             input.classList.remove("incorrect");
                             input.classList.add("correct");
-                        }
-                        else {
+                            console.log("Visible: Input set to correct:", input);
+                        } else {
+                            // Jeżeli input jest pusty i widoczny, dodaj klasę incorrect
                             input.classList.add("incorrect");
                             input.classList.remove("correct");
+                            console.log("Visible: Input set to incorrect:", input);
                         }
-                    };
+                    }
                 });
             });
         };
@@ -582,10 +595,10 @@ console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCo
 
 
 
-        // fixedMonthlyCostsTerminal();
+        fixedMonthlyCostsTerminal();
         // updateTotalCostToOption2();
         summaryCalculation();
-        //  checkAndAddEmptyClass();
+        checkAndAddEmptyClass();
         // handleSectionVisibility();
 
 
