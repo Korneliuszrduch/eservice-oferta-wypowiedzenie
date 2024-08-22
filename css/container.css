@@ -90,6 +90,11 @@
 }
 
 
+.container__button--next-step{
+    
+}
+
+
 .container__input {
     display: grid;
     text-align: right;
@@ -124,4 +129,9 @@
  
      .container__input--options{
         display: block;
+     }
+
+     .container__input--calculated-average-commission-rate-competition{
+
+        border: none;
      }
