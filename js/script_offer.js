@@ -26,25 +26,121 @@
       
       
       */
+          const ShowPhoneTopups = () =>{
+
+            const commissionRateOrange = document.querySelector(".js-commission-rate-orange");
+            const sectionCommisionPhoneCard = document.querySelector(".js-phone-top-ups");
+            commissionRateOrange.textContent.trim() === ""
+            ? sectionCommisionPhoneCard.classList.add("hidden")
+           : sectionCommisionPhoneCard.classList.remove("hidden");
 
 
 
+        };
+       
 
 
-        const checkOptions = () => {
-            if (document.getElementById('option1').checked) {
+
+        const setSideForProductType = () => {
+            const typeProduct = document.querySelector(".js-product-type").textContent.trim();
+            const sectionQuestionsAplication = document.querySelector(".js-questions-to-aplication");
+            const sectionQuestionsterminals = document.querySelector(".js-questions-terminals");
+            const sectionImageTerminals = document.querySelector(".js-offer-section-image-terminals");
+            const sectionService = document.querySelector(".js-offer-section-service"); 
+            const sectionIntro = document.querySelector(".js-offer-section-intro-for-terminals");
+            const sectionImageAplication = document.querySelector(".js-offer-section-image-for-aplication");
+            const sectionImagesTerminals = document.querySelector(".js-offer-section-image-for-terminals");
+            const sectionImagesStepsAplication = document.querySelector(".js-offer-section-image-steps-for-aplication");
+            const sectionImageIntroAplication = document.querySelector(".js-offer-section-image-intro-for-aplication")
+            // Warunek dla tekstu "Aplikacja eService Tom"
+            if (typeProduct === "Aplikacja eService Tom") {
+                sectionQuestionsAplication.classList.remove("hidden");
+                sectionQuestionsterminals.classList.add("hidden");
+                sectionImageTerminals.classList.add("hidden");
+                sectionService.classList.add("hidden");
+                sectionIntro.classList.add("hidden");
+                sectionImageAplication.classList.remove("hidden");
+                sectionImagesTerminals.classList.add("hidden");
+                sectionImagesStepsAplication.classList.remove("hidden");
+                sectionImageIntroAplication.classList.remove("hidden");
+             
+              
+            }
+            // Warunek dla wartości 1
+            else if (typeProduct === "Komercyjna") {
+                sectionQuestionsAplication.classList.add("hidden");
+                sectionQuestionsterminals.classList.remove("hidden");
+                sectionImageTerminals.classList.remove("hidden");
+                sectionService.classList.remove("hidden");
+                sectionIntro.classList.remove("hidden");
+                sectionImageAplication.classList.add("hidden");
+                sectionImagesTerminals.classList.remove("hidden");
+                sectionImagesStepsAplication.classList.add("hidden");
+                sectionImageIntroAplication.classList.add("hidden");
+            }
+            // Warunek dla wartości 2
+            else if (typeProduct === "3") {
+                function2();
+            }
+        };
+
+        const setMemoryOptions = () => {
+            const memoryOption = document.getElementById("sqm-f332").value;
+            console.log("Początek setMemoryOptions, memoryOption:", memoryOption);
+
+            const option1 = document.getElementById("option1");
+            const option2 = document.getElementById("option2");
+            const option3 = document.getElementById("option3");
+
+            // Resetowanie zaznaczenia, aby upewnić się, że tylko jedna opcja jest wybrana
+            option1.checked = false;
+            option2.checked = false;
+            option3.checked = false;
+
+            if (memoryOption === "option1") {
+                option1.checked = true;
+                console.log("Wybrano option1 w setMemoryOptions");
                 doOption1();
-            }
-            if (document.getElementById('option2').checked) {
+            } else if (memoryOption === "option2") {
+                option2.checked = true;
+                console.log("Wybrano option2 w setMemoryOptions");
                 doOption2();
-            }
-            if (document.getElementById('option3').checked) {
-
+            } else if (memoryOption === "option3") {
+                option3.checked = true;
+                console.log("Wybrano option3 w setMemoryOptions");
                 hideForm();
                 hideButton();
                 showUploadFile();
-
             }
+
+            console.log("Koniec setMemoryOptions");
+        };
+
+        const checkOptions = () => {
+            event.preventDefault();
+            const memoryOption = document.getElementById("sqm-f332");
+            console.log("Początek checkOptions");
+
+            if (document.getElementById('option1').checked) {
+                doOption1();
+                memoryOption.value = "option1";
+                memoryOption.setAttribute('value', 'option1');
+                console.log("Ustawiono option1", memoryOption);
+            } else if (document.getElementById('option2').checked) {
+                doOption2();
+                memoryOption.value = "option2";
+                memoryOption.setAttribute('value', 'option2');
+                console.log("Ustawiono option2", memoryOption);
+            } else if (document.getElementById('option3').checked) {
+                hideForm();
+                hideButton();
+                showUploadFile();
+                memoryOption.value = "option3";
+                memoryOption.setAttribute('value', 'option3');
+                console.log("Ustawiono option3", memoryOption);
+            }
+
+            console.log("Koniec checkOptions");
         };
 
         document.querySelectorAll('input[name="costOption"]').forEach((input) => {
@@ -216,7 +312,7 @@
             );
             const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost + rkas);
             document.getElementById("fixed-monthly-costs").value = fixedMonthlyCosts;
-            console.log("Najlepsza cena:", bestPrice);
+            //console.log("Najlepsza cena:", bestPrice);
 
             return {
 
@@ -236,19 +332,19 @@
 
             // Logika widoczności sekcji na podstawie wartości savingMoney
             if (savingMoney >= 100) {
-            handleSummaryCalculation.classList.add("visible");
-            buttonNextStep.classList.remove("hidden");
-             } else {
-               handleSummaryCalculation.classList.remove("visible");
-           buttonNextStep.classList.add("hidden");
-             }
+                handleSummaryCalculation.classList.add("visible");
+                buttonNextStep.classList.remove("hidden");
+            } else {
+                handleSummaryCalculation.classList.remove("visible");
+                buttonNextStep.classList.add("hidden");
+            }
         };
 
 
 
 
-        const updateTotalCostToOption1 = () => {
-
+        const updateTotalCostToOption1 = (event) => {
+            if (event) event.preventDefault();
             const monthlyCardTurnover = parseFloat(document.getElementById("sqm-f183").value) || 0;
             const averageTransaction = parseFloat(document.getElementById("sqm-f184").value) || 0;
             const commissionRate = parseFloat(document.getElementById("sqm-f217").value) || 0;
@@ -280,7 +376,7 @@
 
 
             const calculatedCommissionRateCompetition = (invoiceCommissionAmount / monthlyCardTurnover) * 100;
-            console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCompetition);
+            //console.log("wyliczona prowizja konkurencja opcja 1", calculatedCommissionRateCompetition);
             const monthlyCommission = (timeOfCooperation * monthlyCardTurnover - exemptRevenue >= 0)
                 ? Math.max(0,
                     authorizationFee * monthlyCardTurnover / averageTransaction + monthlyCardTurnover * commissionRate / 100
@@ -362,7 +458,7 @@
 
 
         const updateTotalCostToOption2 = () => {
-
+            if (event) event.preventDefault();
             const monthlyCardTurnover = parseFloat(document.getElementById("sqm-f183").value) || 0;
             const averageTransaction = parseFloat(document.getElementById("sqm-f184").value) || 0;
             const commissionRate = parseFloat(document.getElementById("sqm-f217").value) || 0;
@@ -469,6 +565,7 @@
                 alert("Wypełnij wszystkie formularze", invalidInputs.length);
 
             } else {
+                setMemoryOptions();
                 formCalculate.submit();
             }
         };
@@ -479,27 +576,27 @@
 
             containerConnersion.forEach(section => {
                 const inputs = section.querySelectorAll(".container__input");
-                console.log("Section Inputs:", inputs);
+                //console.log("Section Inputs:", inputs);
 
                 inputs.forEach(input => {
-                    console.log("Current Input:", input); // Wyświetla aktualnie przetwarzany input
+                    // console.log("Current Input:", input); // Wyświetla aktualnie przetwarzany input
 
                     // Sprawdzenie, czy sekcja jest ukryta
                     if (input.classList.contains("hidden")) {
                         input.classList.remove("incorrect");
                         input.classList.add("correct");
-                        console.log("Hidden: Input set to correct:", input);
+                        //  console.log("Hidden: Input set to correct:", input);
                     } else {
                         // Sprawdzenie, czy input jest pusty
                         if (input.value.trim() !== "") {
                             input.classList.remove("incorrect");
                             input.classList.add("correct");
-                            console.log("Visible: Input set to correct:", input);
+                            // console.log("Visible: Input set to correct:", input);
                         } else {
                             // Jeżeli input jest pusty i widoczny, dodaj klasę incorrect
                             input.classList.add("incorrect");
                             input.classList.remove("correct");
-                            console.log("Visible: Input set to incorrect:", input);
+                            // console.log("Visible: Input set to incorrect:", input);
                         }
                     }
                 });
@@ -600,9 +697,10 @@
         summaryCalculation();
         checkAndAddEmptyClass();
         // handleSectionVisibility();
+        setMemoryOptions();
+        setSideForProductType();
 
-
-
+        ShowPhoneTopups();
 
     });
 

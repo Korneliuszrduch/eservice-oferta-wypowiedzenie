@@ -30,6 +30,20 @@
     font-size: 75%;
  
 }
+.container--questions{
+    display: block;
+    margin:8px;
+}
+
+.container--phone-top-ups{
+
+    margin:0;
+}
+
+.container--questions-to-aplication{
+    margin:8px;
+    display: block;
+}
 
 .container__item {
     display: grid;
