@@ -2153,7 +2153,7 @@
 
         </details>
         <details class="section section--editor">
-            <summary>Oferta likePos</summary>
+            <summary>Oferta eService Tom</summary>
 
 
             <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
@@ -2183,7 +2183,7 @@
                             <option value=" "></option>
                         </select></section>
                     <section class="section section--productValue"><input id="sqm-f210" class="section__input"
-                            name="fields[210]" type="text" value="4.99zł" placeholder="Cena przenośny"
+                            name="fields[210]" type="text" value="4.99 zł" placeholder="Cena przenośny"
                             data-placeholder="Cena przenośny" /></section>
                 </section>
                 <section class="section section--oneColumn">
@@ -2213,12 +2213,12 @@
                 <section class="section section--oneColumn">
                     <section class="section section--product"><select id="sqm-f290" class="section__select"
                             name="fields[290]">
-                            <option value="[[rkas]]">[[rkas]]</option>
                             <option value="Raportowanie KAS">Raportowanie KAS</option>
+                            <option value="[[rkas]]">[[rkas]]</option>
                             <option value=""></option>
                         </select></section>
                     <section class="section section--productValue"><input id="sqm-f291" class="section__input"
-                            name="fields[291]" type="text" value="[[rkascena]]" placeholder="Cena za raportowanie KAS"
+                            name="fields[291]" type="text" value="8 zł" placeholder="Cena za raportowanie KAS"
                             data-placeholder="Cena za raportowanie KAS" />
                     </section>
                 </section>
@@ -2236,22 +2236,22 @@
                 <section class="section section--editor">
                     <section class="section section--product">Liczba zwolnienia z dzierżawy</section>
                     <section class="section section--productValue"><input id="sqm-f215" class="section__input"
-                            name="fields[215]" type="text" value="12" /></section>
+                            name="fields[215]" type="text" value="0" /></section>
                 </section>
                 <section class="section section--editor">
                     <section class="section section--product">Prowizja Visa Polska bez biznes</section>
                     <section class="section section--productValue"><input id="sqm-f217" class="section__input"
-                            name="fields[217]" type="text" value="0.69%" /></section>
+                            name="fields[217]" type="text" value="0.69 %" /></section>
                 </section>
                 <section class="section section--editor">
                     <section class="section section--product">Prowizja Mastercard Polska bez biznes</section>
                     <section class="section section--productValue"><input id="sqm-f218" class="section__input"
-                            name="fields[218]" type="text" value="0.79%" /></section>
+                            name="fields[218]" type="text" value="0.79 %" /></section>
                 </section>
                 <section class="section section--editor">
                     <section class="section section--product">Prowizja Blik</section>
                     <section class="section section--productValue"><input id="sqm-f286" class="section__input"
-                            name="fields[286]" type="text" value="n/d" /></section>
+                            name="fields[286]" type="text" value="0.39 %" /></section>
                 </section>
                 <section class="section section--editor">
                     <section class="section section--product">Opłata autoryzacyjna</section>
@@ -2333,14 +2333,14 @@
                 <section class="section section--editor">
                     <section class="section section--product">Cena instalacji</section>
                     <section class="section section--productValue"><input id="sqm-f233" class="section__input"
-                            name="fields[233]" type="text" value="n/d" /></section>
+                            name="fields[233]" type="text" value="0 zł" /></section>
                 </section>
 
 
                 <section class="section section--editor">
                     <section class="section section--product">Cena deinstalacji</section>
                     <section class="section section--productValue">
-                        <input id="sqm-f268" class="section__input" name="fields[268]" type="text" value="n/d" />
+                        <input id="sqm-f268" class="section__input" name="fields[268]" type="text" value="0 zł" />
                     </section>
                 </section>
                 <section class="section section--oneColumn">
@@ -2360,16 +2360,17 @@
                 <section class="section section--oneColumn">
                     <section class="section section--product">Info prowizja pwob</section><select id="sqm-f278"
                         class="section section--productValue" name="fields[278]">
-                        <option
-                            value="Przez 12 miesięcy lub do 100 000 zł obrotu na terminalu prowizja to 0%. Po tym okresie prowizja określa poniższe zestawienie. Wartości z gwiazdką są dostępne u nas po roku po zgłoszeniu się w celu negocjacji wartości bazowych">
-                            Przez 12 miesięcy lub do 100 000 zł obrotu na terminalu prowizja to 0%. Po tym okresie
-                            prowizja określa poniższe zestawienie. Wartości z gwiazdką są dostępne u nas po roku po
-                            zgłoszeniu się w celu negocjacji wartości bazowych"></option>
-
-                        <option value="[[prowizjepwob]]">[[prowizjepwob]]</option>
                         <option value="Prowizję określa poniższe zestawienie.">Prowizję określa poniższe
                             zestawienie.
                         </option>
+                        <option
+                            value="Przez 12 miesięcy lub do 100 000 zł obrotu jest brak prowizji. Po tym okresie
+                            prowizja określa poniższe zestawienie.">
+                            Przez 12 miesięcy lub do 100 000 zł obrotu jest brak prowizji. Po tym okresie
+                            prowizja określa poniższe zestawienie."></option>
+
+                        <option value="[[prowizjepwob]]">[[prowizjepwob]]</option>
+                     
                         <option value=""></option>
                     </select>
 
@@ -2379,6 +2380,7 @@
                     <section class="section section--productValue"><select id="sqm-f288" class="section__select"
                             name="fields[288]">
 
+                            <option value=""></option>
                             <option
                                 value="Wideo terminal w telefonie: https://terminaleservice.pl/terminal-w-telefonie">
                                 Wideo terminal w telefonie: https://terminaleservice.pl/terminal-w-telefonie
@@ -2389,9 +2391,55 @@
                                 terminal SmartPos: https://terminaleservice.pl/terminal-platniczy</option>
                             <option value="[[stronazwideoproduktowe]]">[[stronazwideoproduktowe]]</option>
 
-                            <option value=""></option>
                         </select></section>
                 </section>
+
+                <section class="section section--oneColumn">
+                    <section class="section section--product">Obroty miesięczne terminal</section>
+                    <section class="section section--productValue">
+                        <input class="section__input" id="sqm-183" name="fields[183]" type="text"
+                            value="[[obrotymiesiecznewgotowce]]" placeholder="Obroty miesięczne terminal"
+                            data-placeholder="Obroty miesięczne terminal">
+
+                    </section>
+                </section>
+
+
+                <section class="section section--oneColumn">
+                    <section class="section section--product">Obrót zwolniony z prowizji</section>
+                    <section class="section section--productValue">
+                        <input class="section__input" id="sqm-318" name="fields[318]" type="text"
+                            value="[[obrotzwolnionyzprowizji]]" placeholder="Obrót zwolniony z prowizji"
+                            data-placeholder="Obrót zwolniony z prowizji">
+
+                    </section>
+                </section>
+
+
+                <section class="section section--oneColumn">
+                    <section class="section section--product">Średnia wartość transakcji</section>
+                    <section class="section section--productValue">
+                        <input class="section__input" id="sqm-184" name="fields[184]" type="text"
+                            value="[[sredniawartosctransakcji]]" placeholder="Średnia wartość transakcji"
+                            data-placeholder="Średnia wartość transakcji">
+
+                    </section>
+                </section>
+
+
+                <section class="section section--oneColumn">
+                    <section class="section section--product">Czas współpracy z operatorem</section>
+                    <section class="section section--productValue">
+                        <input class="section__input" id="sqm-327" name="fields[327]" type="text"
+                            value="[[liczbamiesiecywspolpracyterminal]]" placeholder="Czas współpracy z operatorem"
+                            data-placeholder="Czas współpracy z operatoremi">
+
+                    </section>
+                </section>
+
+
+
+
                 <section class="section section--oneColumn">
                     <section class="section section--product">Status decyzji klienta terminale</section>
                     <section class="section section--productValue"><select id="sqm-f115" class="section__select"
@@ -2479,9 +2527,10 @@
                     <section class="section section--product">Rodzaj umowy</section>
                     <section class="section section--productValue"><select id="sqm-f161" class="section__select"
                             name="fields[161]">
+                            <option value="Aplikacja eService Tom">Aplikacja eService Tom</option>
                             <option value="Komercyjna">Komercyjna</option>
                             <option value="[[rodzajumowyterminale]]">[[rodzajumowyterminale]]</option>
-                            <option value="Aplikacja eService Tom">Aplikacja eService Tom</option>
+                   
                             <option value="Polska Bezgotówkowa-SmartPos">Polska Bezgotówkowa-SmartPos</option>
                             <option value="PWOB-SmartPos lub likePos">PWOB-SmartPos lub likePos</option>
                             <option value="Polska Bezgotówkowa-Standardowy">Polska Bezgotówkowa-Standardowy</option>
