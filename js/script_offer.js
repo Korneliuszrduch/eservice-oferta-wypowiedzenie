@@ -57,9 +57,9 @@
             const priceTerminalPortable = document.querySelector(".js-price-terminal-portable");
             const pricePinpad = document.querySelector(".js-price-pinpad");
             const aplicationEserviceTom = document.querySelector(".js-aplication-eservicet-tom").textContent.trim();
-            const sectionOneTimeFeesApliction = document.querySelector(".js-one-time-fees-aplication"); 
-            const sectionOneTimeFeesTerminals = document.querySelector(".js-one-time-fees-terminals");  
-            const sectionWideoForAplication = document.querySelector(".js-offer-section-wideo-for-aplication");  
+            const sectionOneTimeFeesApliction = document.querySelector(".js-one-time-fees-aplication");
+            const sectionOneTimeFeesTerminals = document.querySelector(".js-one-time-fees-terminals");
+            const sectionWideoForAplication = document.querySelector(".js-offer-section-wideo-for-aplication");
 
             const hasPrice = priceTerminalSmartPos.textContent.trim() ||
                 priceTerminalStacionary.textContent.trim() ||
@@ -694,20 +694,27 @@
 
 
         //console.log("zaoszczedzone pieniadze", savingMoney);
-        checkOptions();
-        showAlertCalculate();
-
-
-
         fixedMonthlyCostsTerminal();
-        // updateTotalCostToOption2();
-        summaryCalculation();
-        checkAndAddEmptyClass();
-        // handleSectionVisibility();
+        doOption1();
+        doOption1();
+        checkOptions();
         setMemoryOptions();
         setSideForProductType();
 
         ShowPhoneTopups();
+        showAlertCalculate();
+
+
+
+
+        // updateTotalCostToOption2();
+        summaryCalculation();
+
+        // handleSectionVisibility();
+
+
+
+
 
     });
 
