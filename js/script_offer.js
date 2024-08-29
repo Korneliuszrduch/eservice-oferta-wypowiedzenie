@@ -26,18 +26,18 @@
       
       
       */
-          const ShowPhoneTopups = () =>{
+        const ShowPhoneTopups = () => {
 
             const commissionRateOrange = document.querySelector(".js-commission-rate-orange");
             const sectionCommisionPhoneCard = document.querySelector(".js-phone-top-ups");
             commissionRateOrange.textContent.trim() === ""
-            ? sectionCommisionPhoneCard.classList.add("hidden")
-           : sectionCommisionPhoneCard.classList.remove("hidden");
+                ? sectionCommisionPhoneCard.classList.add("hidden")
+                : sectionCommisionPhoneCard.classList.remove("hidden");
 
 
 
         };
-       
+
 
 
 
@@ -46,44 +46,49 @@
             const sectionQuestionsAplication = document.querySelector(".js-questions-to-aplication");
             const sectionQuestionsterminals = document.querySelector(".js-questions-terminals");
             const sectionImageTerminals = document.querySelector(".js-offer-section-image-terminals");
-            const sectionService = document.querySelector(".js-offer-section-service"); 
+            const sectionService = document.querySelector(".js-offer-section-service");
             const sectionIntro = document.querySelector(".js-offer-section-intro-for-terminals");
+            const sectionImageIntroAplication = document.querySelector(".js-offer-section-image-intro-for-aplication");
             const sectionImageAplication = document.querySelector(".js-offer-section-image-for-aplication");
             const sectionImagesTerminals = document.querySelector(".js-offer-section-image-for-terminals");
-            const sectionImagesStepsAplication = document.querySelector(".js-offer-section-image-steps-for-aplication");
-            const sectionImageIntroAplication = document.querySelector(".js-offer-section-image-intro-for-aplication")
-            // Warunek dla tekstu "Aplikacja eService Tom"
-            if (typeProduct === "Aplikacja eService Tom") {
+            const sectionImagesStepsAplication = document.querySelector(".js-offer-section-image-steps-for-aplication")
+            const priceTerminalSmartPos = document.querySelector(".js-price-smartpos");
+            const priceTerminalStacionary = document.querySelector(".js-price-terminal-stationary");
+            const priceTerminalPortable = document.querySelector(".js-price-terminal-portable");
+            const pricePinpad = document.querySelector(".js-price-pinpad");
+            const aplicationEserviceTom = document.querySelector(".js-aplication-eservicet-tom").textContent.trim();
+            const sectionOneTimeFeesApliction = document.querySelector(".js-one-time-fees-aplication"); 
+            const sectionOneTimeFeesTerminals = document.querySelector(".js-one-time-fees-terminals");  
+            const sectionWideoForAplication = document.querySelector(".js-offer-section-wideo-for-aplication");  
+
+            const hasPrice = priceTerminalSmartPos.textContent.trim() ||
+                priceTerminalStacionary.textContent.trim() ||
+                priceTerminalPortable.textContent.trim() ||
+                pricePinpad.textContent.trim();
+
+            if (aplicationEserviceTom === "Aplikacja terminalowa eService Tom") {
                 sectionQuestionsAplication.classList.remove("hidden");
-                sectionQuestionsterminals.classList.add("hidden");
-                sectionImageTerminals.classList.add("hidden");
-                sectionService.classList.add("hidden");
-                sectionIntro.classList.add("hidden");
                 sectionImageAplication.classList.remove("hidden");
-                sectionImagesTerminals.classList.add("hidden");
                 sectionImagesStepsAplication.classList.remove("hidden");
                 sectionImageIntroAplication.classList.remove("hidden");
-             
-              
+                sectionOneTimeFeesApliction.classList.remove("hidden");
+                sectionWideoForAplication.classList.remove("hidden");
             }
-            // Warunek dla wartości 1
-            else if (typeProduct === "Komercyjna") {
-                sectionQuestionsAplication.classList.add("hidden");
-                sectionQuestionsterminals.classList.remove("hidden");
-                sectionImageTerminals.classList.remove("hidden");
-                sectionService.classList.remove("hidden");
+
+            if (hasPrice) {
+                console.log("pinpad cena", pricePinpad.textContent,
+                    "cena stacjonarny", priceTerminalStacionary.textContent,
+                    "cena przenośny", priceTerminalPortable.textContent,
+                    "cena smart pos", priceTerminalSmartPos.textContent);
+
                 sectionIntro.classList.remove("hidden");
-                sectionImageAplication.classList.add("hidden");
+                sectionService.classList.remove("hidden");
+                sectionImageTerminals.classList.remove("hidden");
+                sectionQuestionsterminals.classList.remove("hidden");
                 sectionImagesTerminals.classList.remove("hidden");
-                sectionImagesStepsAplication.classList.add("hidden");
-                sectionImageIntroAplication.classList.add("hidden");
-            }
-            // Warunek dla wartości 2
-            else if (typeProduct === "3") {
-                function2();
+                sectionOneTimeFeesTerminals.classList.remove("hidden");
             }
         };
-
         const setMemoryOptions = () => {
             const memoryOption = document.getElementById("sqm-f332").value;
             console.log("Początek setMemoryOptions, memoryOption:", memoryOption);
@@ -300,6 +305,8 @@
 
 
         const fixedMonthlyCostsTerminal = () => {
+            const aplicationCost = parseFloat(document.querySelector(".js-aplication-eservice-tom")?.textContent) || 0;
+            const terminalCostSmartPos = parseFloat(document.querySelector(".js-price-smartpos")?.textContent) || 0;
             const terminalCostStacjonarny = parseFloat(document.getElementById("sqm-f208")?.textContent) || 0;
             const terminalCostPrzenosny = parseFloat(document.getElementById("sqm-f210")?.textContent) || 0;
             const pinPadCost = parseFloat(document.getElementById("sqm-f211")?.textContent) || 0;
@@ -308,7 +315,7 @@
             const logoCost = parseFloat(document.getElementById("sqm-f214")?.textContent) || 0;
             const rkas = parseFloat(document.getElementById("sqm-f290")?.textContent) || 0;
             const bestPrice = Math.min(
-                ...[terminalCostStacjonarny, terminalCostPrzenosny, pinPadCost].filter(cost => cost > 0)
+                ...[aplicationCost, terminalCostSmartPos, terminalCostStacjonarny, terminalCostPrzenosny, pinPadCost].filter(cost => cost > 0)
             );
             const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost + rkas);
             document.getElementById("fixed-monthly-costs").value = fixedMonthlyCosts;

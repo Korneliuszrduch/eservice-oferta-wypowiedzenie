@@ -113,6 +113,7 @@
     display: grid;
     text-align: right;
     box-sizing: border-box;
+    width: 100%;
 
 }
 
@@ -124,6 +125,7 @@
 
         border: none;
         outline: none;
+        text-align: center;
      }
 
 
@@ -145,7 +147,4 @@
         display: block;
      }
 
-     .container__input--calculated-average-commission-rate-competition{
-
-        border: none;
-     }
+   

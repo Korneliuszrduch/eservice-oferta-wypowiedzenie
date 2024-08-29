@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--
 
-<!--
-        <link rel="stylesheet" href="css/offer.css">
+    <link rel="stylesheet" href="css/offer.css">
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/headers.css">
@@ -27,23 +27,31 @@
     <link rel="stylesheet" href="css/print.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
     <script defer src="js/script_offer.js"></script>
-   -->
-   
-    <script defer src="https://terminal.terminaleservice.pl/js/script_offer.js?A1"></script>
-        <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/offer.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?A1">
-     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?A1">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?A1">
+  -->
+
+  <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
+ 
+  <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
+ 
+  <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
+  <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
+
+
+    <script defer src="https://terminal.terminaleservice.pl/js/script_offer.js?a12"></script>
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/offer.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?a12">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?a12">
 
 
 
@@ -78,7 +86,7 @@
 
         </Header>
 
-        <section class="offer__section offer__section--intro js-offer-section-intro-for-terminals">
+        <section class="offer__section offer__section--intro js-offer-section-intro-for-terminals hidden">
             <h1 class="h1">Propozycja wspólpracy na przyjmowanie płatności bezgotówkowych</h1>
             <iframe class="container__iframe" src="https://www.youtube.com/embed/5qF3Gl8RwpQ?si=ndxkohXC-g9M94aG"
                 title="YouTube video player" frameborder="0"
@@ -86,14 +94,15 @@
                 allowfullscreen></iframe>
         </section>
 
-        <section class="offer__section offer__section--image js-offer-section-image-intro-for-aplication">
+        <section class="offer__section offer__section--image js-offer-section-image-intro-for-aplication hidden">
             <h1 class="h1">Propozycja wspólpracy na aplikację do telefonu eService Tom</h1>
-            <img class="img" src="https://terminal.terminaleservice.pl/img/eservice Tom.png" alt="zadowolenie z terminala">
+            <img class="img" src="https://terminal.terminaleservice.pl/img/eservice Tom.png"
+                alt="zadowolenie z terminala">
         </section>
 
         <paragraf class="paragraf hidden js-product-type">[[rodzajumowyterminale]]</paragraf>
 
-       
+
         <h1 class="h1">Dedykowany opiekun - Ja</h1>
         <p class="paragraf"><strong>[[!fname]]</strong>, od ponad <strong>10 lat</strong> zajmuję się terminalami
             płatniczymi w firmie
@@ -129,7 +138,7 @@
             bezpiecznie procesować twoje
             transakcje.
         </p>
-        <section class="offer__section offer__section--service js-offer-section-service">
+        <section class="offer__section offer__section--service js-offer-section-service hidden">
             <h1 class="h1">Szybka wizyta serwisanta</h1>
             <img class="img" src="https://terminal.terminaleservice.pl/img/serwisant 2.webp" alt="Serwisant terminali">
             <p class="paragraf">Jakość obsługi firmy nie poznaje się jak wszystko działa, ale jak chcesz coś załatwić.
@@ -165,17 +174,39 @@
                 <span class="section__span">
                     <strong> [[infonajempwob]]</strong></span>
             </section>
+
+
+
+            <section class="section "><span
+                    class="section__span js-aplication-eservicet-tom">[[aplikacjaeservicetom]]</span>
+
+                <span id="sqm-f334" class="section__span js-aplication-eservice-tom"><strong>[[cenaaplikcjaeservicetom]]</strong></span>
+
+            </section>
+
+            <section class="section"><span class="section__span">[[terminalsmartpos]]</span>
+
+                <span class="section__span js-price-smartpos"><strong>[[cenasmartpos]]</strong></span>
+
+            </section>
+
+
+
+
             <section class="section"><span class="section__span">[[terminalkomercyjnystacjonarny]]</span>
 
-                <span id="sqm-f208" class="section__span"><strong>[[cenaterminalkomercyjnystacjonarny]]</strong></span>
+                <span id="sqm-f208"
+                    class="section__span js-price-terminal-stationary"><strong>[[cenaterminalkomercyjnystacjonarny]]</strong></span>
 
             </section>
             <section class="section"><span class="section__span">[[terminalkomercyjnyprzenosny]]</span>
-                <span id="sqm-f210" class="section__span"><strong>[[cenaterminalkomercyjnyprzenosny]]</strong></span>
+                <span id="sqm-f210"
+                    class="section__span js-price-terminal-portable"><strong>[[cenaterminalkomercyjnyprzenosny]]</strong></span>
             </section>
             <section class="section">
                 <span class="section__span">[[dodatkowypinpaddlaklienta]]</span>
-                <span id="sqm-f211" class="section__span"><strong>[[cenadodatkowypinpad]]</strong></span>
+                <span id="sqm-f211"
+                    class="section__span js-price-pinpad"><strong>[[cenadodatkowypinpad]]</strong></span>
             </section>
 
 
@@ -304,13 +335,29 @@
                 </section>
             </div>
         </div>
-        <h1 class="h1">Opłaty jednorazowe</h1>
-        <section class="section"><span class="section__span">Instalacja z przeszkoleniem</span>
-            <span class="section__span"><strong>[[cenainstalacji]]</strong></span>
+
+
+        <section class="offer__section js-one-time-fees-terminals hidden">
+            <h1 class="h1">Opłaty jednorazowe</h1>
+            <section class="section"><span class="section__span">Instalacja terminala z przeszkoleniem</span>
+                <span class="section__span"><strong>[[cenainstalacji]]</strong></span>
+            </section>
+            <section class="section"><span class="section__span">Deinstalacja terminala</span>
+                <span class="section__span"><strong>[[oplatadeinstalacyjna]]</strong></span>
+            </section>
+
         </section>
-        <section class="section"><span class="section__span">Deinstalacja terminala lub aplikacji terminalowej</span>
-            <span class="section__span"><strong>[[oplatadeinstalacyjna]]</strong></span>
+
+
+        <section class="offer__section js-one-time-fees-aplication hidden">
+            <h1 class="h1">Opłaty jednorazowe aplikacja</h1>
+
+            <section class="section "><span class="section__span">Instalacja deinstalacja aplikacji eServiceTom</span>
+                <span class="section__span"><strong>0 zł</strong></span>
+            </section>
         </section>
+
+
         <h1 class="h1">Umowa:</h1>
         <section class="section"><span class="section__span">[[czastrwaniaumowyterminale]]</span>
         </section>
@@ -319,12 +366,27 @@
         </section>
 
 
-        <section class="offer__section offer__section--image js-offer-section-image-for-aplication">
-            <h1 class="h1">Widok zaakceptowanej transakcji poprzez aplikację do telefonu eService Tom</h1>
-            <img class="img" src="https://terminal.terminaleservice.pl/img/transakcje eService Tom.png" alt="transakcje z aplikacji">
+
+
+        <section class="offer__section js-offer-section-wideo-for-aplication hidden">
+            <h1 class="h1">Wideo jak działa aplikacja eService Tom</h1>
+
+            <iframe class="container__iframe" src="https://www.youtube.com/embed/c1Tsscphs0c?si=HT_XKhd8gdZU688K"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+
+
         </section>
 
-        <section class="offer__section offer__section--image-terminals js-offer-section-image-terminals">
+
+        <section class="offer__section offer__section--image js-offer-section-image-for-aplication hidden">
+            <h1 class="h1">Widok zaakceptowanej transakcji poprzez aplikację do telefonu eService Tom</h1>
+            <img class="img" src="https://terminal.terminaleservice.pl/img/transakcje eService Tom.png"
+                alt="transakcje z aplikacji">
+        </section>
+
+        <section class="offer__section offer__section--image-terminals js-offer-section-image-terminals hidden">
             <h1 class="h1">Dostępne terminale:</h1>
             <p class="paragraf">Terminale przenośne</p>
             <section class="section__img section__img--terminals">
@@ -353,8 +415,6 @@
         </section>
 
         <h1 class="h1">Sprawdź ile zaoszczędzisz - Przelicznik ofert</h1>
-
-
 
 
         <div class="container container--conversion">
@@ -405,7 +465,7 @@
 
 
 
-            <form class="form js-form--calculate" accept-charset="UTF-8"
+            <form class="form form--calculate js-form--calculate" accept-charset="UTF-8"
                 action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
 
 
@@ -570,10 +630,12 @@
                 <section class="container__section">
                     <span class="container__item">Całkowity koszt w czasie [[liczbamiesiecywspolpracyterminal]] miesięcy
                         [PLN] </span>
-                    <section class="container__section"> <input class="container__input--calculate" id="sqm-f321"
-                            name="fields[321]" type="text" value="[[kosztyutrzymaniaterminalaeservice]]" />
-                        <input class="container__input--calculate" id="sqm-f322" name="fields[322]" type="text"
-                            value="[[kosztyutrzymaniaterminalakonkurencja]]" />
+                    <section class="container__section">
+
+                        <input class="container__input container__input--calculate" id="sqm-f321" name="fields[321]"
+                            type="text" value="[[kosztyutrzymaniaterminalaeservice]]" />
+                        <input class="container__input container__input--calculate" id="sqm-f322" name="fields[322]"
+                            type="text" value="[[kosztyutrzymaniaterminalakonkurencja]]" />
                     </section>
                 </section>
 
@@ -581,8 +643,8 @@
                     <span class="container__item">Kwota Ooszczędności uwzględniając następne
                         [[liczbamiesiecywspolpracyterminal]]
                         miesiące współpracy </span>
-                    <input class="container__input--calculate" type="text" id="sqm-f328" name="fields[328]"
-                        value="[[oszczednoscnaterminalachwczasie]]" />
+                    <input class="container__input container__input--calculate" type="text" id="sqm-f328"
+                        name="fields[328]" value="[[oszczednoscnaterminalachwczasie]]" />
 
                 </section>
                 <input id="sqm-femail" class="" name="email" type="hidden" value="[[email]]" />
@@ -591,6 +653,10 @@
                 <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
                 <input name="coregister" type="hidden" value="" />
             </form>
+
+
+
+
 
 
 
@@ -643,7 +709,7 @@
         </section>
 
 
-        <section class="offer__section offer__section--image js-offer-section-image-steps-for-aplication">
+        <section class="offer__section offer__section--image js-offer-section-image-steps-for-aplication hidden">
             <h1 class=" h1">Jak uzykać dostęp do aplikacji płatniczej</h1>
             <section class="section section--stepToFinalize">
                 <p class="paragraf">1. Podaj dane do umowy</p>
@@ -651,16 +717,14 @@
                 <p class="paragraf">3. Zainstaluj aplikację</p>
             </section>
             <section class="section section--stepToFinalize">
-                <img class="section__img"
-                    src="https://terminal.terminaleservice.pl/img/pobranie-danych.gif">
-                <img class="section__img"
-                    src="https://terminal.terminaleservice.pl/img/podpisanie-dokumentow.webp">
+                <img class="section__img" src="https://terminal.terminaleservice.pl/img/pobranie-danych.gif">
+                <img class="section__img" src="https://terminal.terminaleservice.pl/img/podpisanie-dokumentow.webp">
                 <img class="section__img" src="https://terminal.terminaleservice.pl/img/pobierz eService Tom.png">
 
             </section>
         </section>
 
-        <section class="offer__section offer__section--image js-offer-section-image-for-terminals">
+        <section class="offer__section offer__section--image js-offer-section-image-for-terminals hidden">
             <h1 class=" h1">Jak otrzymać terminal</h1>
             <section class="section section--stepToFinalize">
                 <p class="paragraf">1. Podaj dane do umowy</p>
@@ -668,10 +732,8 @@
                 <p class="paragraf">3. Odbierz terminal</p>
             </section>
             <section class="section section--stepToFinalize">
-                <img class="section__img"
-                    src="https://terminal.terminaleservice.pl/img/pobranie-danych.gif">
-                <img class="section__img"
-                    src="https://terminal.terminaleservice.pl/img/podpisanie-dokumentow.webp">
+                <img class="section__img" src="https://terminal.terminaleservice.pl/img/pobranie-danych.gif">
+                <img class="section__img" src="https://terminal.terminaleservice.pl/img/podpisanie-dokumentow.webp">
                 <img class="section__img" src="https://terminal.terminaleservice.pl/img/odebranie-terminala.webp">
 
             </section>
@@ -680,10 +742,10 @@
 
 
 
-     
 
-        <div class="container container--questions js-questions-terminals">
-            <h1 class="h1">Pytania i odpowiedzi </h1>
+
+        <div class="container container--questions js-questions-terminals hidden">
+            <h1 class="h1">Pytania i odpowiedzi terminale </h1>
             <details class="section">
                 <summary>Pytanie 1: Jakie funkcje mają nasze terminale?</summary>
                 <p class="paragraf"> Napiwek, wypłata gotówki, doładowania telefonów, preautoryzację, obciążanie klienta
@@ -947,12 +1009,13 @@
                     <input name="mlid" type="hidden" value="264" />
                     <input name="req" type="hidden" value="email" />
                     <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+                    <input id="lr_partnerterminal7" name="fields[86]" type="hidden" value=""/>
                 </form>
             </section>
             <section class="section__form">
                 <form class="form js-form--DataCompany" accept-charset="UTF-8"
                     action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
-                    <p class="paragraf">Wszystko jasne. Chcę podać dane.</p>
+                    <p class="paragraf">Chcę podać dane.</p>
                     <input id="sqm-femail" for="sqm-femail" name="email" type="hidden" value="[[email]]" placeholder=""
                         data-placeholder="">
                     <button class="button button--data js-nextStep">Podaję dane >> </button>

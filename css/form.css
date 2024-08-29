@@ -5,6 +5,8 @@
   max-width: auto;
   padding: 20px;
   font-size: auto;
+  gap:10px;
+  border-color: rgb(28, 23, 18);
 }
 
 .form--dataCompany {
@@ -20,4 +22,7 @@
 .form__span {
 
   margin-bottom: 30px
+}
+.form__input{
+justify-self: left;
 }
