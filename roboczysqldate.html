@@ -1,0 +1,62 @@
+nazwa bazy korneliuszrduch_terminaleserviceown
+user name : terminaleserviceown
+hasło: VvG6bChSnM7vL72VwKxZ
+
+
+ocalhost
+Database:
+korneliuszrduch_terminaleserviceown
+
+Nazwa użytkownika:
+korneliuszrduch_terminaleserviceown
+Hasło:
+VvG6bChSnM7vL72VwKxZ
+
+
+<?php
+include 'config.php';
+
+$sql = "SELECT id, username, email, phone FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <form action='php/update_contact.php' method='post'>
+                    <td><input type='text' name='username' value='{$row['username']}' readonly></td>
+                    <td><input type='email' name='email' value='{$row['email']}'></td>
+                    <td><input type='text' name='phone' value='{$row['phone']}'></td>
+                    <td>
+                        <input type='hidden' name='id' value='{$row['id']}'>
+                        <button type='submit'>Zapisz</button>
+                    </td>
+                </form>
+                
+            </tr>";
+    }
+} else {
+    echo "<tr><td colspan='4'>Brak użytkowników w bazie danych.</td></tr>";
+}
+
+$conn->close();
+?>
+
+
+
+
+<form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+            <section class="section section--oneColumn">
+                <section class="section section--product">Adres email</section>
+                <section class="section section--productValue"><input class="section__input" name="email" type="text"
+                        value="[[email]]" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
+                </section>
+            </section>
+            <button class="button button--sign" type="submit"> ZAPISZ LUB WYGENERUJ DANE </button>
+            <input name="mlid" type="hidden" value="231" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+            <input name="coregister" type="hidden" value="" />
+
+        </form>
+
+        <a class="button button--call" href="tel:[[phone]]">Zadzwoń</a>
