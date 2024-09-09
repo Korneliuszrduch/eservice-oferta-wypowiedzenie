@@ -7,9 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sprawdzenie istnienia inputu i warunku daty
         if (input) {
-            new Date(input.value) > currentDate ? row.classList.add('hidden') : row.classList.remove('hidden');
-            console.log("Data obecna:", currentDate);
-            console.log("Data kontaktu:", input.value);
+            const inputValue = input.value;
+            
+            // Używamy funkcji strzałkowej w if-else
+            !inputValue 
+                ? row.classList.add('hidden')
+                : (() => {
+                    new Date(input.value) > currentDate
+                        ? row.classList.add('hidden') 
+                        : row.classList.remove('hidden');
+                })();
         }
     });
 });
@@ -33,11 +40,14 @@ buttonHiddenContacts.addEventListener("click", () => {
         // Sprawdzenie istnienia inputu i warunku daty
         if (input) {
             new Date(input.value) > currentDate ? row.classList.add('hidden') : row.classList.remove('hidden');
-            console.log("Data obecna:", currentDate);
-            console.log("Data kontaktu:", input.value);
+          //  console.log("Data obecna:", currentDate);
+          //  console.log("Data kontaktu:", input.value);
         }
     });
 });
+
+
+
 
 
 
