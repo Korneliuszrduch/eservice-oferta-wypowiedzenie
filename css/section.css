@@ -204,3 +204,15 @@
 
 
 }
+
+.section_input--comments{
+
+  width: 100%; 
+  height: 100px;
+ 
+  padding: 10px; 
+  box-sizing: border-box; 
+  white-space: normal; 
+  overflow-y: scroll; 
+  vertical-align: top;
+}
