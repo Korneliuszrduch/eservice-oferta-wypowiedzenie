@@ -33,28 +33,30 @@ session_start();
      <script defer src="js/script_edytor_substrybenta"></script>
 
 -->
-
-
+<script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
+ <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
+ <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
+ <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B4">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B4">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B6">
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B4">
-    <script defer src="https://terminal.terminaleservice.pl/js/script_edytor_substrybenta.js?B4"></script>
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B6">
+    <script defer src="https://terminal.terminaleservice.pl/js/script_edytor_substrybenta.js?B23"></script>
 
 
     <title>Prosta Strona</title>
@@ -98,6 +100,24 @@ session_start();
         <br>
         <button type="submit">Zarejestruj się</button>
     </form>
+
+
+
+    
+    <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+            <section class="section section--oneColumn">
+                <section class="section section--product">Adres email</section>
+                <section class="section section--productValue"><input class="section__input" id="lr_partnerterminal7"name="email" type="text"
+                        value="" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
+                </section>
+            </section>
+            <button class="button button--sign" type="submit"> Wygeneruj dane </button>
+            <input name="mlid" type="hidden" value="231" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+            <input name="coregister" type="hidden" value="" />
+
+        </form>
 
     <?php
     // Czyszczenie danych sesji po ich użyciu

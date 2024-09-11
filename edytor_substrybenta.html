@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+ 
    <!--  
 
     <link rel="stylesheet" href="css/section.css">
@@ -25,9 +26,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="js/script_edytor_substrybenta"></script>
 
--->
- 
 
+-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -78,7 +78,7 @@
 
         <a class="button button--call" href="tel:[[phone]]">Zadzwoń</a>
 
-        <a class="button button--call" href=" https://terminal.terminaleservice.pl/indexsqldate.php">powrót do crm</a>
+        <a class="button button--call" href=" https://terminal.terminaleservice.pl/crm.php">powrót do crm</a>
        
 
 
@@ -93,7 +93,35 @@
         <paragraf><strong>9. Rodzaj umowy:</strong> [[rodzajumowyterminale]]</strong></paragraf>
         <paragraf><strong>10. Uwagi:</strong> [[uwagiterminale]]</paragraf>
 
+
+
+        <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+            <section class="section section--oneColumn">
+                <section class="section section--product">[[email]]</section>
+                <section class="section section--productValue">
+                </section>
+            </section>
+            <button class="button button--sign" type="submit"> Aktualna Oferta </button>
+ 
+            <input name="email" type="hidden" value="[[email]]" />
+            <input name="mlid" type="hidden" value="285" />
+            <input name="req" type="hidden" value="email" />
+            <input name="token" type="hidden" value="cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b" />
+            <input name="coregister" type="hidden" value="" />
+        </form>
+
         <details class="section section--editor">
+
+
+          
+
+
+        
+
+
+
+
+
             <summary>Wypisz z list</summary>
 
             <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
@@ -362,7 +390,7 @@
                                 inny
                             </option>
                             <option value="0%15 mail do usunięcia.">0%15 mail do usunięcia.</option>
-                            <option value="0%16 Branża nieobsługiwana">0%16 Branża nieobsługiwana</option>
+                            <option value="0% Branża nieobsługiwana">0% Branża nieobsługiwana</option>
                         </select></section>
                 </section>
 

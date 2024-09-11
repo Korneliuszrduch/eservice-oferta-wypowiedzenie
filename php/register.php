@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = "Telefon już istnieje w bazie. SID: " . $sid;
             
             // Przekierowanie na stronę z formularzem
-            header("Location: /indexsqldate.php");
+            header("Location: /crm.php");
             exit();
         } else {
             // Telefon nie istnieje, zapisz nowego użytkownika
@@ -49,14 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Przekierowanie na stronę z formularzem
-            header("Location: /indexsqldate.php");
+            header("Location: /crm.php");
             exit();
         }
 
         $stmt->close();
     } else {
         $_SESSION['message'] = "Proszę wypełnić wszystkie wymagane pola.";
-        header("Location: /indexsqldate.php");
+        header("Location: /crm.php");
         exit();
     }
 

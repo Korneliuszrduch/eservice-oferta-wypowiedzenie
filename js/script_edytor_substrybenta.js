@@ -1,25 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const currentDate = new Date();
+    // Odejmowanie 5 godzin od bieżącej daty
+    const currentDate = new Date(Date.now() + 5 * 60  * 1000);
 
-    const allDataTable = document.querySelectorAll('.data-table');
-    allDataTable.forEach(row => {
+    console.log("Bieżąca data (pomniejszona o 5 godzin):", currentDate);
+
+    document.querySelectorAll('.data-table').forEach(row => {
         const input = row.querySelector('.js-date-time-local');
 
-        // Sprawdzenie istnienia inputu i warunku daty
         if (input) {
             const inputValue = input.value;
             
-            // Używamy funkcji strzałkowej w if-else
-            !inputValue 
-                ? row.classList.add('hidden')
-                : (() => {
-                    new Date(input.value) > currentDate
-                        ? row.classList.add('hidden') 
-                        : row.classList.remove('hidden');
-                })();
+            if (inputValue) {
+                const inputDate = new Date(inputValue);
+                
+                if (inputDate > currentDate) {
+                    row.classList.add('hidden');
+                } else {
+                    row.classList.remove('hidden');
+                }
+            } else {
+                row.classList.add('hidden');
+            }
         }
     });
 });
+
+
+
 
 const buttonShowContacts = document.querySelector(".js-button-show-hidden");
 buttonShowContacts.addEventListener("click", () => {
