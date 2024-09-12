@@ -10,34 +10,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Sprawdzenie, czy wszystkie wymagane pola są wypełnione
     if (!empty($email)) {
-        // Sprawdzenie, czy telefon już istnieje w bazie danych
+        // Sprawdzenie, czy email już istnieje w bazie danych
         $stmt = $conn->prepare("SELECT sid, name_first, phone FROM nm_krduch2subscribers WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            // mail istnieje, pobranie imienia i telefonu
-            $stmt->bind_result($sid, $name_first, $phone);
+            // Email istnieje, pobranie danych użytkownika
+            $stmt->bind_result($sid, $name_first_db, $phone_db);
             $stmt->fetch();
             
             // Przechowywanie danych w sesji
-            $_SESSION['name_first'] = $name_first;
+            $_SESSION['name_first'] = $name_first_db;
             $_SESSION['email'] = $email;
-            $_SESSION['phone'] = $phone;
-            $_SESSION['message'] = "mail już istnieje w bazie. SID: " . $sid;
-            
+            $_SESSION['phone'] = $phone_db;
+            $_SESSION['sid'] = $sid;
+            $_SESSION['message'] = "Email już istnieje w bazie.";
+
             // Przekierowanie na stronę z formularzem
-            header("Location: /crm.php");
+            header("Location: /crm.php?edit=1");
             exit();
         } else {
-            // mail nie istnieje, zapisz nowego użytkownika
-
+            // Email nie istnieje, zapisanie nowego użytkownika
             $created = time(); // Pobierz aktualny timestamp
 
             $stmt = $conn->prepare("INSERT INTO nm_krduch2subscribers (name_first, email, phone, status, created) VALUES (?, ?, ?, 'active', ?)");
             $stmt->bind_param("ssss", $name_first, $email, $phone, $created);
-
 
             if ($stmt->execute()) {
                 $_SESSION['message'] = "Nowy użytkownik został zarejestrowany.";
@@ -61,5 +60,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $conn->close();
+}
+
+// Obsługa aktualizacji danych
+if (isset($_POST['update']) && isset($_SESSION['sid'])) {
+    $sid = $_SESSION['sid'];
+    $name_first = isset($_POST['name_first']) ? trim($_POST['name_first']) : '';
+    $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+
+    $stmt = $conn->prepare("UPDATE nm_krduch2subscribers SET name_first = ?, phone = ? WHERE sid = ?");
+    $stmt->bind_param("ssi", $name_first, $phone, $sid);
+
+    if ($stmt->execute()) {
+        $_SESSION['message'] = "Dane zostały zaktualizowane.";
+    } else {
+        $_SESSION['message'] = "Błąd: " . $stmt->error;
+    }
+
+    $stmt->close();
+    header("Location: /crm.php");
+    exit();
 }
 ?>
