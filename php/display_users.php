@@ -5,11 +5,31 @@ ini_set('display_errors', 1);
 
 // Pobieranie liczby SID-ów do wyświetlenia z formularza
 $limit = isset($_POST['number_of_sids']) ? intval($_POST['number_of_sids']) : 200; // Domyślnie 200, jeśli brak wartości
+$limit = max(1, $limit); // Ustawienie minimalnej wartości limitu na 1, aby uniknąć problemów
 
-// Ustawienie minimalnej wartości limitu na 1, aby uniknąć problemów
-$limit = max(1, $limit);
+$sort_by_sid = isset($_POST['sort_by_sid']) ? $_POST['sort_by_sid'] : null;
+$sort_by_date = isset($_POST['sort_by_date']) ? $_POST['sort_by_date'] : null;
 
-// Przygotowanie zapytania SQL z użyciem parametrów
+// Walidacja kierunku sortowania, aby uniknąć SQL Injection
+$valid_sort_orders = ['ASC', 'DESC'];
+if ($sort_by_sid && !in_array($sort_by_sid, $valid_sort_orders)) {
+    $sort_by_sid = null;
+}
+if ($sort_by_date && !in_array($sort_by_date, $valid_sort_orders)) {
+    $sort_by_date = null;
+}
+
+// Określanie, które kryterium sortowania będzie użyte
+if ($sort_by_sid) {
+    $order_by = "u.sid $sort_by_sid";
+} elseif ($sort_by_date) {
+    $order_by = "field_value_171 $sort_by_date";
+} else {
+    // Domyślne sortowanie, jeśli żadne kryterium nie zostało wybrane
+    $order_by = "u.sid DESC";
+}
+
+// Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
 $sql = "SELECT u.sid, u.name_first, u.email, u.phone, 
                MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
                MAX(CASE WHEN f.fid = 116 THEN f.value END) AS field_value_116,
@@ -19,8 +39,9 @@ $sql = "SELECT u.sid, u.name_first, u.email, u.phone,
         LEFT JOIN nm_krduch2subscribers_fields f ON u.sid = f.sid
         WHERE u.status = 'active'
         GROUP BY u.sid, u.name_first, u.email, u.phone
-     ORDER BY u.sid DESC
+        ORDER BY $order_by
         LIMIT ?";
+
 
 // Przygotowanie zapytania
 $stmt = $conn->prepare($sql);
