@@ -1,30 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Odejmowanie 5 godzin od bieżącej daty
-    const currentDate = new Date(Date.now() + 5 * 60  * 1000);
+    const inputMinuts = document.querySelector(".js-time-for-show");
+    const butonShowContacbeforTime = document.querySelector(".js-button-show-contacs");
 
-    console.log("Bieżąca data (pomniejszona o 5 godzin):", currentDate);
+    // Funkcja do wyświetlania kontaktów na podstawie czasu
+    const showContacs = () => {
+        // Pobranie wartości z inputa i przeliczenie minut na milisekundy
+        const minutes = parseInt(inputMinuts.value, 10) || 0;
+        const currentDate = new Date(Date.now() + minutes * 3600 * 1000);
 
-    document.querySelectorAll('.data-table').forEach(row => {
-        const input = row.querySelector('.js-date-time-local');
+        console.log("Bieżąca data (pomniejszona o " + minutes + " minut):", currentDate);
 
-        if (input) {
-            const inputValue = input.value;
-            
-            if (inputValue) {
-                const inputDate = new Date(inputValue);
-                
-                if (inputDate > currentDate) {
-                    row.classList.add('hidden');
+        document.querySelectorAll('.data-table').forEach(row => {
+            const input = row.querySelector('.js-date-time-local');
+
+            if (input) {
+                const inputValue = input.value;
+
+                if (inputValue) {
+                    const inputDate = new Date(inputValue);
+
+                    if (inputDate > currentDate) {
+                        row.classList.add('hidden');
+                    } else {
+                        row.classList.remove('hidden');
+                    }
                 } else {
-                    row.classList.remove('hidden');
+                    row.classList.add('hidden');
                 }
-            } else {
-                row.classList.add('hidden');
             }
-        }
+        });
+    };
+
+    // Wywołanie funkcji showContacs przy załadowaniu strony
+    showContacs();
+
+    // Dodanie nasłuchiwacza zdarzeń kliknięcia do przycisku
+    butonShowContacbeforTime.addEventListener("click", () => {
+      showContacs();
     });
 });
-
 
 
 
