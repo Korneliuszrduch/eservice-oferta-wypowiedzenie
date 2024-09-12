@@ -56,7 +56,7 @@ session_start();
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B6">
 
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B6">
-    <script defer src="https://terminal.terminaleservice.pl/js/script_edytor_substrybenta.js?B23"></script>
+    <script defer src="https://terminal.terminaleservice.pl/js/script_edytor_substrybenta.js?B29"></script>
 
 
     <title>Prosta Strona</title>
@@ -76,7 +76,7 @@ session_start();
     }
     ?>
 
-    <h1>Rejestracja</h1>
+    <h1>Rejestracja po telefonie</h1>
 
     <form action="/php/register.php" method="post">
 
@@ -98,8 +98,44 @@ session_start();
 
 
         <br>
-        <button type="submit">Zarejestruj się</button>
+        <button type="submit">Zarejestruj się po telefonie</button>
     </form>
+
+
+
+    <h1>Rejestracja po mailu</h1>
+    <?php
+// Wyświetlanie komunikatów
+if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    unset($_SESSION['message']);
+}
+
+$editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edycji
+?>
+<form action="/php/register_mail.php" method="post">
+
+    <label for="name_first">Imię:</label>
+    <input type="text" id="name_first" name="name_first"
+        value="<?php echo isset($_SESSION['name_first']) ? htmlspecialchars($_SESSION['name_first'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"
+        value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : ''; ?>"required >
+
+    <label for="phone">Telefon:</label>
+    <input type="text" id="phone" name="phone"
+        value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+
+
+
+
+
+    <br>
+    <button type="submit" name="<?php echo $editMode ? 'update' : 'register'; ?>">
+        <?php echo $editMode ? 'Zaktualizuj dane' : 'Zarejestruj'; ?>
+    </button>
+</form>
 
 
 
@@ -126,13 +162,42 @@ session_start();
     unset($_SESSION['phone']);
     ?>
 
+<input class="js-time-for-show" type="text" value="0.1" placeholder="Liczba minut przed pokazaniem kontaktu"/>
 
 
-    <form action="../php/display_users.php" method="post">
-        <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
-        <input type="number" id="number_of_sids" name="number_of_sids" value="10" min="1" required>
-        <button type="submit">Wyświetl</button>
-    </form>
+<button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
+
+
+<form method="POST" action="../php/display_users.php">
+    <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
+    <input type="number" id="number_of_sids" name="number_of_sids" value="10" min="1" required>
+
+    <fieldset>
+        <legend>Sortowanie:</legend>
+        <div>
+            <label for="sort_by_sid_asc">
+                <input type="radio" id="sort_by_sid_asc" name="sort_by_sid" value="ASC" />
+                SID rosnąco
+            </label>
+            <label for="sort_by_sid_desc">
+                <input type="radio" id="sort_by_sid_desc" name="sort_by_sid" value="DESC" />
+                SID malejąco
+            </label>
+        </div>
+        <div>
+            <label for="sort_by_date_asc">
+                <input type="radio" id="sort_by_date_asc" name="sort_by_date" value="ASC" />
+                Data rosnąco
+            </label>
+            <label for="sort_by_date_desc">
+                <input type="radio" id="sort_by_date_desc" name="sort_by_date" value="DESC" />
+                Data malejąco
+            </label>
+        </div>
+    </fieldset>
+
+    <button type="submit">Zastosuj sortowanie</button>
+</form>
 
 
 
@@ -154,3 +219,4 @@ session_start();
 </body>
 
 </html>
+
