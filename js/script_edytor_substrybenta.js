@@ -1,24 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const getParametr = (parametr) => new URLSearchParams(window.location.search).get(parametr);
     const inputMinuts = document.querySelector(".js-time-for-show");
     const butonShowContacbeforTime = document.querySelector(".js-button-show-contacs");
+    const allDataTable = document.querySelectorAll(".js-data-table");
+    const wartoscEmail = getParametr('mail');
+    const emailInputs = document.querySelectorAll('.js-email');
+    console.log("wartosc mail:", wartoscEmail);
+    console.log("emailInputs:", emailInputs);
 
-    // Funkcja do wyświetlania kontaktów na podstawie czasu
+    if (wartoscEmail) {
+        emailInputs.forEach(input => {
+            input.value = wartoscEmail;
+        });
+    }
+
     const showContacs = () => {
-        // Pobranie wartości z inputa i przeliczenie minut na milisekundy
         const minutes = parseInt(inputMinuts.value, 10) || 0;
-        const currentDate = new Date(Date.now() + minutes * 3600 * 1000);
-
+        const currentDate = new Date(Date.now() + minutes * 60 * 1000); // Odejmowanie minut
         console.log("Bieżąca data (pomniejszona o " + minutes + " minut):", currentDate);
 
-        document.querySelectorAll('.data-table').forEach(row => {
+        document.querySelectorAll('.js-data-table').forEach(row => {
             const input = row.querySelector('.js-date-time-local');
-
             if (input) {
                 const inputValue = input.value;
-
                 if (inputValue) {
                     const inputDate = new Date(inputValue);
-
                     if (inputDate > currentDate) {
                         row.classList.add('hidden');
                     } else {
@@ -27,50 +33,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     row.classList.add('hidden');
                 }
+            } else {
+                row.classList.add('hidden');
             }
         });
     };
 
-    // Wywołanie funkcji showContacs przy załadowaniu strony
+    // Wywołanie showContacs po załadowaniu strony
     showContacs();
 
-    // Dodanie nasłuchiwacza zdarzeń kliknięcia do przycisku
-    butonShowContacbeforTime.addEventListener("click", () => {
-      showContacs();
-    });
-});
-
-
-
-const buttonShowContacts = document.querySelector(".js-button-show-hidden");
-buttonShowContacts.addEventListener("click", () => {
-    const allDataTable = document.querySelectorAll(".data-table");
-    allDataTable.forEach(row => {
-        row.classList.remove("hidden");
-    });
-});
-
-const buttonHiddenContacts = document.querySelector(".js-button-hidden-contact");
-buttonHiddenContacts.addEventListener("click", () => {
-    const currentDate = new Date();
-
-    const allDataTable = document.querySelectorAll('.data-table');
-    allDataTable.forEach(row => {
-        const input = row.querySelector('.js-date-time-local');
-
-        // Sprawdzenie istnienia inputu i warunku daty
-        if (input) {
-            new Date(input.value) > currentDate ? row.classList.add('hidden') : row.classList.remove('hidden');
-          //  console.log("Data obecna:", currentDate);
-          //  console.log("Data kontaktu:", input.value);
+    allDataTable.forEach(dataTable => {
+        const inputInTable = dataTable.querySelector(".js-email-contact");
+        if (inputInTable && inputInTable.value === wartoscEmail) {
+            dataTable.classList.remove("hidden");
+            dataTable.classList.add("highlight");
+           
         }
     });
+
+    butonShowContacbeforTime.addEventListener("click", () => {
+        showContacs(); // Wywołanie funkcji, kiedy użytkownik kliknie przycisk
+    });
+
+    const buttonReadPhoneForUrl = document.querySelector(".js-read-phone-url");
+    buttonReadPhoneForUrl.addEventListener("click", () => {
+        const phone = getParametr("phone");
+        const fname = getParametr("fname");
+        const inputPhone = document.querySelector('.js-phone');
+        const inputFname = document.querySelector('.js-fname');
+        if (inputPhone && phone) {
+            inputPhone.value = phone;
+        }
+        if (inputFname && fname) {
+            inputFname.value = fname;
+        }
+    });
+
+    const buttonShowContacts = document.querySelector(".js-button-show-hidden");
+    buttonShowContacts.addEventListener("click", () => {
+        document.querySelectorAll(".js-data-table").forEach(row => {
+            row.classList.remove("hidden");
+        });
+    });
+
+    const buttonHiddenContacts = document.querySelector(".js-button-hidden-contact");
+    buttonHiddenContacts.addEventListener("click", () => {
+        const currentDate = new Date();
+        document.querySelectorAll('.js-data-table').forEach(row => {
+            const input = row.querySelector('.js-date-time-local');
+            if (input) {
+                const inputDate = new Date(input.value);
+                row.classList.toggle('hidden', inputDate > currentDate);
+            }
+        });
+    });
 });
-
-
-
-
-
-
-
-
