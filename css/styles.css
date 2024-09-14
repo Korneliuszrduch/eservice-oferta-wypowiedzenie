@@ -70,4 +70,12 @@
 .hidden{
   display: none;
 }
+.textarea{
 
+  min-height: 4em; /* wysokość odpowiadająca liczbie wierszy */
+  resize: none; /* uniemożliwia ręczne zmienianie wysokości */
+}
+.highlight{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #f9f4e9;
+}
