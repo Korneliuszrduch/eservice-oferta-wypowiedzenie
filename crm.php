@@ -42,21 +42,21 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B6">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B6">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B56">
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B6">
-    <script defer src="https://terminal.terminaleservice.pl/js/script_edytor_substrybenta.js?B29"></script>
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B56">
+    <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B56"></script>
 
 
     <title>Prosta Strona</title>
@@ -69,12 +69,7 @@ session_start();
 
 
 
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo "<p>" . htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8') . "</p>";
-        unset($_SESSION['message']);
-    }
-    ?>
+   
 
     <h1>Rejestracja po telefonie</h1>
 
@@ -116,15 +111,15 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 <form action="/php/register_mail.php" method="post">
 
     <label for="name_first">Imię:</label>
-    <input type="text" id="name_first" name="name_first"
+    <input class="js-fname" type="text" id="name_first" name="name_first"
         value="<?php echo isset($_SESSION['name_first']) ? htmlspecialchars($_SESSION['name_first'], ENT_QUOTES, 'UTF-8') : ''; ?>">
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email"
+    <input class = "js-email" type="email" id="email" name="email"
         value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : ''; ?>"required >
 
     <label for="phone">Telefon:</label>
-    <input type="text" id="phone" name="phone"
+    <input class="js-phone" type="text" id="phone" name="phone"
         value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone'], ENT_QUOTES, 'UTF-8') : ''; ?>">
 
 
@@ -137,13 +132,19 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
     </button>
 </form>
 
+<button class="js-read-phone-url">zaczytaj telefon & imię z url</button>
 
-
+<?php
+    if (isset($_SESSION['message'])) {
+        echo "<p>" . htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8') . "</p>";
+        unset($_SESSION['message']);
+    }
+    ?>
     
     <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
             <section class="section section--oneColumn">
                 <section class="section section--product">Adres email</section>
-                <section class="section section--productValue"><input class="section__input" id="lr_partnerterminal7"name="email" type="text"
+                <section class="section section--productValue"><input class="js-email" name="email" type="text"
                         value="" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
                 </section>
             </section>
@@ -166,7 +167,7 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 
 
 <button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
-
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FWarsaw&bgcolor=%23ffffff&showPrint=0&mode=WEEK&src=a29ybmVsaXVzei5yZHVjaEBnbWFpbC5jb20&color=%23039BE5" style="border:solid 1px #777" width="1200" height="600" frameborder="0" scrolling="no"></iframe>
 
 <form method="POST" action="../php/display_users.php">
     <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
