@@ -49,10 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const endDateStr = formatDate(endDate);
 
         // Generowanie linku do kalendarza Google
-        const calendarLink = `https://calendar.google.com/calendar/r/eventedit?text=Rozmowa telefoniczna z ${fname} ${phone} &details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}`;
+        const calendarLink = encodeURI(`https://calendar.google.com/calendar/r/eventedit?text=Rozmowa telefoniczna z ${fname} ${phone}&details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}`);
+
+       // const calendarLink = `https://calendar.google.com/calendar/r/eventedit?text=Rozmowa telefoniczna z ${fname} ${phone} &details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}`;
 
         console.log('Link do Google Calendar:', calendarLink);
-        window.location.href = calendarLink;
+        window.open(calendarLink, '_blank');
+
         // Wyświetlenie linku
         const linkElement = document.querySelector('.js-calendar-link');
         if (linkElement) {
@@ -67,4 +70,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (buttonAddEventToCalendar) {
         buttonAddEventToCalendar.addEventListener('click', generateCalendarLink);
     }
+
+
+
+
+   
+
+
+
+     const buttonPreparationOffer = document.querySelector(".js-preparation-of-the-offer");
+    buttonPreparationOffer.addEventListener("click", (event) => {
+        event.preventDefault();
+        const formOffer = document.querySelector(".js-offer");
+        const mlid = document.querySelector(".js-mlid");
+        const token = document.querySelector(".js-token");
+        const nameList = document.querySelector(".js-name-list");
+        
+        token.value = "da945ba7449d1e092316ba46f044f0b134483b6b";
+        mlid.value = "231";
+        nameList.value = "";
+        console.log("mlid", mlid.value);
+        console.log("token", token.value);
+        formOffer.submit();
+
+    });
+
+   
+    const buttonSentOfferToClient = document.querySelector(".js-send-of-the-offer-to-client");
+    buttonSentOfferToClient.addEventListener("click", (event) => {
+        event.preventDefault();
+        const formOffer = document.querySelector(".js-offer");
+        const mlid = document.querySelector(".js-mlid");
+        const token = document.querySelector(".js-token"); 
+        const nameList = document.querySelector(".js-name-list"); 
+        token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
+        mlid.value = "285";
+        nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
+        formOffer.submit(); 
+
+    });
+
+
+
+
+
+
+    
+
 });
