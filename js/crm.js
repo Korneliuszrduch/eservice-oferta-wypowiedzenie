@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     const getParametr = (parametr) => new URLSearchParams(window.location.search).get(parametr);
     const inputMinuts = document.querySelector(".js-time-for-show");
     const butonShowContacbeforTime = document.querySelector(".js-button-show-contacs");
@@ -86,18 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const readPhoneNameForUrl = () =>{
-        
-            const phone = getParametr("phone");
-            const fname = getParametr("fname");
-            const inputPhone = document.querySelector('.js-phone');
-            const inputFname = document.querySelector('.js-fname');
-            if (inputPhone && phone) {
-                inputPhone.value = phone;
-            }
-            if (inputFname && fname) {
-                inputFname.value = fname;
-            }
+    const readPhoneNameForUrl = () => {
+
+        const phone = getParametr("phone");
+        const fname = getParametr("fname");
+        const inputPhone = document.querySelector('.js-phone');
+        const inputFname = document.querySelector('.js-fname');
+        if (inputPhone && phone) {
+            inputPhone.value = phone;
+        }
+        if (inputFname && fname) {
+            inputFname.value = fname;
+        }
     }
 
     const buttonReadPhoneForUrl = document.querySelector(".js-read-phone-url");
@@ -123,10 +124,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
- 
-    readPhoneNameForUrl();
-     
-       
 
-    
+    readPhoneNameForUrl();
+
+    const ustawAlarm = () => {
+        const teraz = new Date();
+        const elementInputDaty = document.querySelector(".js-date-time-local");
+
+        // Pobranie wartości z inputu (w formacie 'YYYY-MM-DDTHH:MM')
+        const dataKontaktu = new Date(elementInputDaty.value);
+        console.log("Data z inputu: ", dataKontaktu.toString());
+        console.log("Obecny czas: ", teraz.toString());
+
+        // Obliczenie różnicy czasu
+        const roznicaCzasu = dataKontaktu - teraz;
+        console.log("Różnica czasu: ", roznicaCzasu);
+
+        // Sprawdzenie, czy data jest w przyszłości
+        if (roznicaCzasu > 0) {
+            setTimeout(() => {
+                console.log("Wywołanie powiadomienia...");
+                if (Notification.permission === "granted") {
+                    new Notification("Przypomnienie", {
+                        body: "Masz zaplanowany kontakt na teraz!",
+                    });
+                } else {
+                    alert("Masz zaplanowany kontakt na teraz!");
+                }
+            }, 10000);  // 10 sekund na test
+        } else {
+            alert("Wybrana data musi być w przyszłości.");
+        }
+    };
+
+    // Sprawdzenie, czy powiadomienia są wspierane i dozwolone
+    if ("Notification" in window) {
+        console.log("API powiadomień jest wspierane.");
+        if (Notification.permission === "default") {
+            Notification.requestPermission().then(permission => {
+                console.log("Status uprawnień powiadomień: ", permission);
+            });
+        } else {
+            console.log("Uprawnienia powiadomień są już udzielone lub odmówione.");
+        }
+    }
+
+    const buttonSetAlarm = document.querySelector(".js-set-alarm");
+    buttonSetAlarm.addEventListener("click", ustawAlarm);
+
+
 });
