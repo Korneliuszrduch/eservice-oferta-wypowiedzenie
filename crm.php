@@ -42,6 +42,7 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+        <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B58"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -56,7 +57,7 @@ session_start();
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B56">
 
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B56">
-    <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B56"></script>
+
 
 
     <title>Prosta Strona</title>
@@ -167,8 +168,10 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 
 
 <button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
-<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FWarsaw&bgcolor=%23ffffff&showPrint=0&mode=WEEK&src=a29ybmVsaXVzei5yZHVjaEBnbWFpbC5jb20&color=%23039BE5" style="border:solid 1px #777" width="1200" height="600" frameborder="0" scrolling="no"></iframe>
 
+
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FWarsaw&bgcolor=%23ffffff&showPrint=0&mode=WEEK&src=a29ybmVsaXVzei5yZHVjaEBnbWFpbC5jb20&color=%23039BE5" style="border:solid 1px #777" width="1200" height="600" frameborder="0" scrolling="no"></iframe>
+    <button class="js-set-alarm">Ustaw Alarm</button>
 <form method="POST" action="../php/display_users.php">
     <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
     <input type="number" id="number_of_sids" name="number_of_sids" value="10" min="1" required>
