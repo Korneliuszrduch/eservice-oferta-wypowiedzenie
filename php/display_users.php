@@ -92,15 +92,20 @@ if ($result->num_rows > 0) {
                          <td>
                         <select name='fields[115]' id='field115'>
                             <option value='$selectedOption'>$selectedOption</option>
-                            <option value='5% Ustalono inny termin'" . ($selectedOption === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
+                              <option value='0% 1 Niezainteresowany'" . ($selectedOption === '0% 1 Niezainteresowany' ? ' selected' : '') . ">0% 1 Niezainteresowany</option>
+                              <option value='0% 2 Niezainteresowany'" . ($selectedOption === '0% 2 Niezainteresowany' ? ' selected' : '') . ">0% 2 Niezainteresowany</option>
+                              <option value='0% 3 Niezainteresowany'" . ($selectedOption === '0% 3 Niezainteresowany' ? ' selected' : '') . ">0% 3 Niezainteresowany</option>
                             <option value='0% 1 Brak kontaktu'" . ($selectedOption === '0% 1 Brak kontaktu' ? ' selected' : '') . ">0% 1 Brak kontaktu</option>
                             <option value='0% 2 Brak kontaktu'" . ($selectedOption === '0% 2 Brak kontaktu' ? ' selected' : '') . ">0% 2 Brak kontaktu</option>
                             <option value='0% 3 Brak kontaktu'" . ($selectedOption === '0% 3 Brak kontaktu' ? ' selected' : '') . ">0% 3 Brak kontaktu</option>
-                            <option value='0% SMS'" . ($selectedOption === '0% SMS' ? ' selected' : '') . ">0% SMS</option>
+                            <option value='0% Wysłalem SMS'" . ($selectedOption === '0% Wysłalem SMS' ? ' selected' : '') . ">0% Wysłalem SMS</option>
+                            <option value='2% odbiera i się rozłącza'" . ($selectedOption === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
                             <option value='10% Omówić potrzeby'" . ($selectedOption === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
+                             <option value='5% Ustalono inny termin'" . ($selectedOption === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
                             <option value='14% Przygotować kalkulator'" . ($selectedOption === '14% Przygotować kalkulator' ? ' selected' : '') . ">14% Przygotować kalkulator</option>
                             <option value='18% Przedstawić ofertę'" . ($selectedOption === '18% Przedstawić ofertę' ? ' selected' : '') . ">18% Przedstawić ofertę</option>
-                              <option value='0% Branża nieobsługiwana'" . ($selectedOption === '0% Branża nieobsługiwana' ? ' selected' : '') . ">0% Branża nieobsługiwana</option>
+                            <option value='41% Kliknął w ofertę'" . ($selectedOption === '41% Kliknął w ofertę' ? ' selected' : '') . ">41% Kliknął w ofertę</option>
+                            <option value='0% Branża nieobsługiwana'" . ($selectedOption === '0% Branża nieobsługiwana' ? ' selected' : '') . ">0% Branża nieobsługiwana</option>
                             <option value='0%08 Obecny klient eservice'" . ($selectedOption === '0%08 Obecny klient eservice' ? ' selected' : '') . ">0%08 Obecny klient eservice</option>
                         </select>
                     </td>
