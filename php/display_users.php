@@ -26,7 +26,7 @@ if ($sort_by_sid) {
     $order_by = "field_value_171 $sort_by_date";
 } else {
     // Domyślne sortowanie, jeśli żadne kryterium nie zostało wybrane
-    $order_by = "u.sid DESC";
+    $order_by = "field_value_171 DESC";
 }
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
