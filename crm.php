@@ -42,7 +42,7 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-        <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B58"></script>
+        <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B60"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -109,30 +109,12 @@ if (isset($_SESSION['message'])) {
 
 $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edycji
 ?>
-<form action="/php/register_mail.php" method="post">
-
-    <label for="name_first">Imię:</label>
-    <input class="js-fname" type="text" id="name_first" name="name_first"
-        value="<?php echo isset($_SESSION['name_first']) ? htmlspecialchars($_SESSION['name_first'], ENT_QUOTES, 'UTF-8') : ''; ?>">
-
-    <label for="email">Email:</label>
-    <input class = "js-email" type="email" id="email" name="email"
-        value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : ''; ?>"required >
-
-    <label for="phone">Telefon:</label>
-    <input class="js-phone" type="text" id="phone" name="phone"
-        value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone'], ENT_QUOTES, 'UTF-8') : ''; ?>">
-
-
-
-
-
-    <br>
-    <button type="submit" name="<?php echo $editMode ? 'update' : 'register'; ?>">
-        <?php echo $editMode ? 'Zaktualizuj dane' : 'Zarejestruj'; ?>
-    </button>
+<form id="contactForm">
+    <input type="text" class="js-input-name-first" placeholder="First Name">
+    <input type="email" class="js-input-email" placeholder="Email" required>
+    <input type="text" class="js-input-phone" placeholder="Phone">
+    <button type="button" class="js-button-register-update-contact">Register / Update</button>
 </form>
-
 <button class="js-read-phone-url">zaczytaj telefon & imię z url</button>
 
 <?php

@@ -173,4 +173,35 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonSetAlarm.addEventListener("click", ustawAlarm);
 
 
+    const registerUpdateButton = document.querySelector('.js-button-register-update-contact');
+    registerUpdateButton.addEventListener('click', () => {
+        const nameFirst = document.querySelector('.js-input-name-first').value.trim();
+        const email = document.querySelector('.js-input-email').value.trim();
+        const phone = document.querySelector('.js-input-phone').value.trim();
+        const isUpdate = document.querySelector('.js-button-register-update-contact').dataset.update === 'true';
+
+        if (email) {
+            const formData = new FormData();
+            formData.append('name_first', nameFirst);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('update', isUpdate ? 'true' : 'false');
+
+            fetch('/php/register_mail.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(result => {
+                    alert(result);
+                    if (result.includes('Dane zostały zaktualizowane.') || result.includes('Nowy użytkownik został zarejestrowany.')) {
+                        // Optionally, you can update the button state or do something else
+                        document.querySelector('.js-button-register-update-contact').dataset.update = 'false'; // Reset update state
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            alert('Please fill out the required fields.');
+        }
+    });
 });
