@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             $stmt->close();
-            header("Location: /crm.php");
+            header("Location: /crm.php?mail=$email");
             exit();
         } else {
             // New registration mode
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['sid'] = $sid;
                 $_SESSION['message'] = "Email już istnieje w bazie.";
 
-                header("Location: /crm.php?edit=1");
+                header("Location: /crm.php?mail=$email");
                 exit();
             } else {
                 // Insert new user
@@ -61,13 +61,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 $stmt->close();
-                header("Location: /crm.php");
+                header("Location: /crm.php?mail=$email");
                 exit();
             }
         }
     } else {
         $_SESSION['message'] = "Proszę wypełnić wymagane pole email.";
-        header("Location: /crm.php");
+        header("Location: /crm.php?mail=$email");
         exit();
     }
 
