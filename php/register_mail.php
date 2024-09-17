@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include '../php/config.php';
 
@@ -8,7 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
     $update = isset($_POST['update']) ? $_POST['update'] : 'false';
-    $current_date = date("Y-m-d\TH:i");
+    $current_timestamp = time(); // Current Unix timestamp
+    $current_datetime = date("Y-m-d\TH:i"); // Current date in specific format
 
     if (!empty($email)) {
         if ($update === 'true' && isset($_SESSION['sid'])) {
@@ -42,14 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // Insert new user
                 $stmt = $conn->prepare("INSERT INTO nm_krduch2subscribers (name_first, email, phone, status, created) VALUES (?, ?, ?, 'active', ?)");
-                $stmt->bind_param("ssss", $name_first, $email, $phone, $current_date);
+                $stmt->bind_param("ssii", $name_first, $email, $phone, $current_timestamp);
 
                 if ($stmt->execute()) {
                     $sid = $stmt->insert_id;
 
                     // Insert current date into nm_krduch2subscribers_fields
                     $stmt_fields = $conn->prepare("INSERT INTO nm_krduch2subscribers_fields (sid, fid, value) VALUES (?, 171, ?)");
-                    $stmt_fields->bind_param("is", $sid, $current_date);
+                    $stmt_fields->bind_param("is", $sid, $current_datetime);
 
                     if ($stmt_fields->execute()) {
                         $_SESSION['message'] = "Nowy użytkownik został zarejestrowany z bieżącą datą.";
