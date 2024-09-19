@@ -105,6 +105,8 @@ if ($result->num_rows > 0) {
                             <option value='14% Przygotować kalkulator'" . ($selectedOption === '14% Przygotować kalkulator' ? ' selected' : '') . ">14% Przygotować kalkulator</option>
                             <option value='18% Przedstawić ofertę'" . ($selectedOption === '18% Przedstawić ofertę' ? ' selected' : '') . ">18% Przedstawić ofertę</option>
                             <option value='41% Kliknął w ofertę'" . ($selectedOption === '41% Kliknął w ofertę' ? ' selected' : '') . ">41% Kliknął w ofertę</option>
+                              <option value='42% Umówione spotkanie'" . ($selectedOption === '42% Umówione spotkanie' ? ' selected' : '') . ">42% Umówione spotkanie</option>
+                                <option value='43% Poprosił o kontakt'" . ($selectedOption === '43% Poprosił o kontakt' ? ' selected' : '') . ">43% Poprosił o kontakt</option>
                             <option value='0% Branża nieobsługiwana'" . ($selectedOption === '0% Branża nieobsługiwana' ? ' selected' : '') . ">0% Branża nieobsługiwana</option>
                             <option value='0%08 Obecny klient eservice'" . ($selectedOption === '0%08 Obecny klient eservice' ? ' selected' : '') . ">0%08 Obecny klient eservice</option>
                         </select>
