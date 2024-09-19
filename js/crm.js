@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const butonShowContacbeforTime = document.querySelector(".js-button-show-contacs");
     const allDataTable = document.querySelectorAll(".js-data-table");
     const wartoscEmail = getParametr('mail');
-    const emailInputs = document.querySelectorAll('.js-email');
+    const emailInputs = document.querySelectorAll('.js-input-email');
     console.log("wartosc mail:", wartoscEmail);
     console.log("emailInputs:", emailInputs);
 
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const phone = getParametr("phone");
         const fname = getParametr("fname");
-        const inputPhone = document.querySelector('.js-phone');
-        const inputFname = document.querySelector('.js-fname');
+        const inputPhone = document.querySelector('.js-input-phone');
+        const inputFname = document.querySelector('.js-input-name-first');
         if (inputPhone && phone) {
             inputPhone.value = phone;
         }
@@ -203,5 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Please fill out the required fields.');
         }
+
+
+
+
+     
     });
+
+
 });
