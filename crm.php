@@ -1,5 +1,8 @@
+
+
 <?php
 include '/php/config.php';
+
 ?>
 
 <?php
@@ -42,7 +45,7 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-        <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B60"></script>
+        <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B82"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -127,7 +130,7 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
     <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
             <section class="section section--oneColumn">
                 <section class="section section--product">Adres email</section>
-                <section class="section section--productValue"><input class="js-email" name="email" type="text"
+                <section class="section section--productValue"><input class="js-input-email" name="email" type="text"
                         value="" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
                 </section>
             </section>
@@ -205,4 +208,3 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 </body>
 
 </html>
-
