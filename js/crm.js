@@ -203,12 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Please fill out the required fields.');
         }
-
-
-
-
      
     });
+    
 
 
 });
