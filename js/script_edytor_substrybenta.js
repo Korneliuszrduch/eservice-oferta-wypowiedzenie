@@ -218,9 +218,9 @@ END:VCALENDAR
   buttonSentOfferToClient.addEventListener("click", (event) => {
     event.preventDefault();
     const formOffer = document.querySelector(".js-offer");
-    const mlid = document.querySelector(".js-mlid");
-    const token = document.querySelector(".js-token");
-    const nameList = document.querySelector(".js-name-list");
+    const mlid = document.querySelector(".js-mlid1");
+    const token = document.querySelector(".js-token1");
+    const nameList = document.querySelector(".js-name-list1");
     token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
     mlid.value = "285";
     nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
