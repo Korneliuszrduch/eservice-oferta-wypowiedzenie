@@ -38,6 +38,19 @@
 
         };
 
+        const ShowIntegrationTheCashRegisterSystem = () => {
+
+            const nameIntegrationTheCashRegisterSystem = document.querySelector(".js-name-cash-register-system");
+            const sectionIntegrationTheCashRegisterSystem = document.querySelector(".js-section-integration-with-the-cash-register-system");
+            nameIntegrationTheCashRegisterSystem.textContent.trim() === ""
+                ? sectionIntegrationTheCashRegisterSystem.classList.add("hidden")
+                : sectionIntegrationTheCashRegisterSystem.classList.remove("hidden");
+
+
+
+        };
+
+
 
 
 
@@ -711,6 +724,7 @@
         summaryCalculation();
 
         // handleSectionVisibility();
+        ShowIntegrationTheCashRegisterSystem();
 
 
 
