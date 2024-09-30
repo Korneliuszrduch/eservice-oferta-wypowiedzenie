@@ -92,6 +92,7 @@ if ($result->num_rows > 0) {
                          <td>
                         <select name='fields[115]' id='field115'>
                             <option value='$selectedOption'>$selectedOption</option>
+                                           <option value='0% Pomyłka'" . ($selectedOption === '0% Pomyłka' ? ' selected' : '') . ">0% Pomyłka</option>
                               <option value='0% 1 Brak kontaktu'" . ($selectedOption === '0% 1 Brak kontaktu' ? ' selected' : '') . ">0% 1 Brak kontaktu</option>
                             <option value='0% 2 Brak kontaktu'" . ($selectedOption === '0% 2 Brak kontaktu' ? ' selected' : '') . ">0% 2 Brak kontaktu</option>
                             <option value='0% 3 Brak kontaktu'" . ($selectedOption === '0% 3 Brak kontaktu' ? ' selected' : '') . ">0% 3 Brak kontaktu</option>
@@ -127,6 +128,8 @@ if ($result->num_rows > 0) {
                         <input name='token' type='hidden' value='da945ba7449d1e092316ba46f044f0b134483b6b' />
                         <input name='coregister' type='hidden' value='' />
                         <button type='submit'>Zapisz</button>
+                        <button type='button' class='js-delete-button' data-sid='" . htmlspecialchars($row['sid'], ENT_QUOTES, 'UTF-8') . "'>Delete</button>
+
                     </td>
                 </form>
             </tr>";
