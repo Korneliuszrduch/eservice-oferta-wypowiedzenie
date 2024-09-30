@@ -44,8 +44,8 @@ session_start();
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>
-     <!--   <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B82"></script>-->
+         <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
+     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B86"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
