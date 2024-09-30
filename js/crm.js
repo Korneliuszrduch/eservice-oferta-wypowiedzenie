@@ -1,5 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
+
+
+
+    document.querySelectorAll('.js-delete-button').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Get the subscriber SID from the form
+            const sid = this.dataset.sid;
+
+            // Confirm the action
+            if (confirm("Czy na pewno chcesz usunąć tego subskrybenta?")) {
+                // Send AJAX request to delete subscriber
+                fetch('php/delete_subscriber.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ sid: sid })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Subskrybent został usunięty.");
+                            // Optionally, remove the row from the table or reload the page
+                            this.closest('tr').remove();
+                        } else {
+                            alert("Wystąpił błąd: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Wystąpił problem z usunięciem subskrybenta.");
+                    });
+            }
+        });
+    });
+
+
+
+
+
+
+
+
     const getParametr = (parametr) => new URLSearchParams(window.location.search).get(parametr);
     const inputMinuts = document.querySelector(".js-time-for-show");
     const butonShowContacbeforTime = document.querySelector(".js-button-show-contacs");
@@ -14,6 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
             input.value = wartoscEmail;
         });
     }
+
+
+
+
+
+
 
     const showContacs = () => {
         const minutes = parseInt(inputMinuts.value, 10) || 0;
@@ -203,9 +256,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Please fill out the required fields.');
         }
-     
+
     });
-    
+
+
+
+
+
+
+
+
 
 
 });
