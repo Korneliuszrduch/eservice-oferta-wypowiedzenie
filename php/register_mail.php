@@ -3,17 +3,16 @@ session_start();
 include '../php/config.php';
 
 // Set timezone to your local timezone
-date_default_timezone_set('Europe/Warsaw'); // Adjust to your timezone
+date_default_timezone_set('Europe/Warsaw');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Initialize variables
     $name_first = isset($_POST['name_first']) ? trim($_POST['name_first']) : '';
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
     $update = isset($_POST['update']) ? $_POST['update'] : 'false';
     
-    $current_timestamp = time(); // Current timestamp in seconds
-    $current_datetime = date("Y-m-d\TH:i"); // Current date and time in ISO 8601 format
+    $current_timestamp = time();
+    $current_datetime = date("Y-m-d\TH:i");
 
     if (!empty($email)) {
         if ($update === 'true' && isset($_SESSION['sid'])) {
@@ -38,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                // Email exists, load user data
+                // Email exists
                 $stmt->bind_result($sid);
                 $stmt->fetch();
                 
@@ -82,9 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             $_SESSION['sid'] = $sid;
+
+            // Redirect to CRM page
+         //   header("Location: https://terminal.terminaleservice.pl/crm.php?mail=pralnianapolnej@gmail.com&phone=508790957");
+        
         }
 
-        header("Content-Type: text/plain");
+      //  header("Content-Type: text/plain");
         echo $_SESSION['message'];
     } else {
         echo "Proszę wypełnić wymagane pole email.";
