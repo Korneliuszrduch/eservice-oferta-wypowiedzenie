@@ -1,13 +1,18 @@
-
-
+<?php
+if (isset($_GET['mail']) && isset($_GET['phone'])) {
+    $email = htmlspecialchars($_GET['mail'], ENT_QUOTES, 'UTF-8');
+    $phone = htmlspecialchars($_GET['phone'], ENT_QUOTES, 'UTF-8');
+    echo "<p>Email: $email</p>";
+    echo "<p>Telefon: $phone</p>";
+}
+?>
 <?php
 include '/php/config.php';
-
 ?>
-
 <?php
 session_start();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -28,6 +33,7 @@ session_start();
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/label.css">
     <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
     <link rel="icon" href="./images">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -45,7 +51,7 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
          <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
-     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B86"></script>
+     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B96"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -58,6 +64,7 @@ session_start();
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/table.css?B57">
 
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B56">
 
@@ -103,15 +110,7 @@ session_start();
 
 
     <h1>Rejestracja po mailu</h1>
-    <?php
-// Wyświetlanie komunikatów
-if (isset($_SESSION['message'])) {
-    echo "<p>" . $_SESSION['message'] . "</p>";
-    unset($_SESSION['message']);
-}
 
-$editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edycji
-?>
 <form id="contactForm">
     <input type="text" class="js-input-name-first" placeholder="First Name">
     <input type="email" class="js-input-email" placeholder="Email" required>
@@ -155,7 +154,7 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 <button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
 
 
-<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FWarsaw&bgcolor=%23ffffff&showPrint=0&mode=WEEK&src=a29ybmVsaXVzei5yZHVjaEBnbWFpbC5jb20&color=%23039BE5" style="border:solid 1px #777" width="1200" height="600" frameborder="0" scrolling="no"></iframe>
+
     <button class="js-set-alarm">Ustaw Alarm</button>
 <form method="POST" action="../php/display_users.php">
     <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
@@ -194,16 +193,10 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == 1; // Sprawdzanie trybu edy
 
 
     <h1>Lista Użytkowników</h1>
-    <table>
-        <tr>
-            <th>Imię</th>
-            <th>Email</th>
-            <th>Telefon</th>
-            <th>Uwagi</th>
-            <th>Data next contact</th>
-        </tr>
+
+       
         <?php include 'php/display_users.php'; ?>
-    </table>
+
  
 </body>
 
