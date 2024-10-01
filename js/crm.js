@@ -1,20 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-
-
-
-
-
     document.querySelectorAll('.js-delete-button').forEach(function (button) {
         button.addEventListener('click', function (event) {
             event.preventDefault();
-
-            // Get the subscriber SID from the form
             const sid = this.dataset.sid;
-
-            // Confirm the action
             if (confirm("Czy na pewno chcesz usunąć tego subskrybenta?")) {
-                // Send AJAX request to delete subscriber
                 fetch('php/delete_subscriber.php', {
                     method: 'POST',
                     headers: {
@@ -26,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(data => {
                         if (data.success) {
                             alert("Subskrybent został usunięty.");
-                            // Optionally, remove the row from the table or reload the page
                             this.closest('tr').remove();
                         } else {
                             alert("Wystąpił błąd: " + data.message);
@@ -41,10 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    const buttonSaveDateContact = document.querySelectorAll(".js-save-button");
 
-
-
-
+    buttonSaveDateContact.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            
+         
+            const formDateContact = button.closest('tr').querySelector(".js-form-date-contact");
+            
+            if (formDateContact) {
+                formDateContact.submit(); // Wysłanie odpowiedniego formularza
+            } else {
+                console.error('Formularz nie został znaleziony dla tego przycisku.');
+            }
+        });
+    });
+    
 
 
     const getParametr = (parametr) => new URLSearchParams(window.location.search).get(parametr);
@@ -226,6 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonSetAlarm.addEventListener("click", ustawAlarm);
 
 
+
+
+
     const registerUpdateButton = document.querySelector('.js-button-register-update-contact');
     registerUpdateButton.addEventListener('click', () => {
         const nameFirst = document.querySelector('.js-input-name-first').value.trim();
@@ -246,20 +250,16 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => response.text())
                 .then(result => {
-                    alert(result);
-                    if (result.includes('Dane zostały zaktualizowane.') || result.includes('Nowy użytkownik został zarejestrowany.')) {
-                        // Optionally, you can update the button state or do something else
-                        document.querySelector('.js-button-register-update-contact').dataset.update = 'false'; // Reset update state
-                    }
+                    console.log('Server response:', result); // Logowanie odpowiedzi serwera dla debugowania
+
+                    // Odswiezanie strony crm.php z parametrem email
+                    window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
                 })
                 .catch(error => console.error('Error:', error));
         } else {
-            alert('Please fill out the required fields.');
+            console.error('Proszę wypełnić wymagane pola.'); // Można wyświetlić komunikat w inny sposób niż alert
         }
-
     });
-
-
 
 
 
