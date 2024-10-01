@@ -216,20 +216,26 @@ END:VCALENDAR
 
   const buttonSentOfferToClient = document.querySelector(".js-send-of-the-offer-to-client");
   buttonSentOfferToClient.addEventListener("click", (event) => {
-    event.preventDefault();
-    const formOffer = document.querySelector(".js-offer");
-    const mlid = document.querySelector(".js-mlid1");
-    const token = document.querySelector(".js-token1");
-    const nameList = document.querySelector(".js-name-list1");
-    token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
-    mlid.value = "285";
-    nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
-    console.log("mlid", mlid.value);
-    console.log("token", token.value);
-    console.log("formOffer", formOffer);
-    formOffer.submit();
-
+      event.preventDefault();
+      const confirmation = confirm("Czy na pewno chcesz wysłać ofertę?");
+      if (confirmation) {
+          const formOffer = document.querySelector(".js-offer");
+          const mlid = document.querySelector(".js-mlid1");
+          const token = document.querySelector(".js-token1");
+          const nameList = document.querySelector(".js-name-list1");
+          token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
+          mlid.value = "285";
+          nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
+          console.log("mlid", mlid.value);
+          console.log("token", token.value);
+          console.log("formOffer", formOffer);
+          formOffer.submit();
+      } else {
+   
+          console.log("Oferta nie została wysłana.");
+      }
   });
+  
 
 
   const buttonUpdateContact = document.querySelector(".js-button-update-contact");
