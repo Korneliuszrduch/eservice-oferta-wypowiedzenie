@@ -31,6 +31,8 @@ if ($sort_by_sid) {
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
 $sql = "SELECT u.sid, u.name_first, u.email, u.phone, 
+     MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
+       MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
     MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
                MAX(CASE WHEN f.fid = 183 THEN f.value END) AS field_value_183,
                MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
@@ -102,8 +104,13 @@ if ($result->num_rows > 0) {
                    <option value='Brak informacji o operatorze'" . ($selectedOptionCompanyOfTerminal === 'Brak informacji o operatorze' ? ' selected' : '') . ">Brak informacji o operatorze</option>
                         <option value='Inny'" . ($selectedOptionCompanyOfTerminal === 'Inny' ? ' selected' : '') . ">Inny</option>
                         </select>
-           <input type='text' name='fields[183]' value='" . htmlspecialchars($row['field_value_183'], ENT_QUOTES, 'UTF-8') . "' placeholder='Obroty miesieczne'>
+           <input type='text' name='fields[183]' value='" . htmlspecialchars($row['field_value_183'], ENT_QUOTES, 'UTF-8') . "' placeholder='Obroty miesięczne'>
+
+              <input type='text' name='fields[330]' value='" . htmlspecialchars($row['field_value_330'], ENT_QUOTES, 'UTF-8') . "' placeholder='Prowizja z faktury konkurencja'>
+
             <input type='text' name='fields[184]' value='" . htmlspecialchars($row['field_value_184'], ENT_QUOTES, 'UTF-8') . "' placeholder='Średnia wartość transakcji'>
+
+                      <input type='text' name='fields[329]' value='" . htmlspecialchars($row['field_value_329'], ENT_QUOTES, 'UTF-8') . "' placeholder='Opłaty stałe konkurencja'>
                     <input type='text' name='fields[120]' value='" . htmlspecialchars($row['field_value_120'], ENT_QUOTES, 'UTF-8') . "' placeholder='NIP'>
 
                     <input type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'placeholder='Imię'>
