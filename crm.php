@@ -42,16 +42,16 @@ session_start();
      <script defer src="js/script_edytor_substrybenta"></script>
 
 -->
-<script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
- <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
- <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
- <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-         <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
-     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B96"></script>
+    <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
+    <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B97"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -80,7 +80,7 @@ session_start();
 
 
 
-   
+
 
     <h1>Rejestracja po telefonie</h1>
 
@@ -111,35 +111,38 @@ session_start();
 
     <h1>Rejestracja po mailu</h1>
 
-<form id="contactForm">
-    <input type="text" class="js-input-name-first" placeholder="First Name">
-    <input type="email" class="js-input-email" placeholder="Email" required>
-    <input type="text" class="js-input-phone" placeholder="Phone">
-    <button type="button" class="js-button-register-update-contact">Register / Update</button>
-</form>
-<button class="js-read-phone-url">zaczytaj telefon & imię z url</button>
+    <form id="contactForm">
+        <input type="text" class="js-input-place-of-acquiring-the-customer" placeholder="Miejsce pozyskania klienta">
+        <input type="text" class="js-input-name-first" placeholder="First Name">
+        <input type="email" class="js-input-email" placeholder="Email" required>
+        <input type="text" class="js-input-phone" placeholder="Phone">
 
-<?php
+
+        <button type="button" class="js-button-register-update-contact">Register / Update</button>
+    </form>
+    <button class="js-read-phone-url">zaczytaj telefon & imię z url</button>
+
+    <?php
     if (isset($_SESSION['message'])) {
         echo "<p>" . htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8') . "</p>";
         unset($_SESSION['message']);
     }
     ?>
-    
-    <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
-            <section class="section section--oneColumn">
-                <section class="section section--product">Adres email</section>
-                <section class="section section--productValue"><input class="js-input-email" name="email" type="text"
-                        value="" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
-                </section>
-            </section>
-            <button class="button button--sign" type="submit"> Wygeneruj dane </button>
-            <input name="mlid" type="hidden" value="231" />
-            <input name="req" type="hidden" value="email" />
-            <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
-            <input name="coregister" type="hidden" value="" />
 
-        </form>
+    <form accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+        <section class="section section--oneColumn">
+            <section class="section section--product">Adres email</section>
+            <section class="section section--productValue"><input class="js-input-email" name="email" type="text"
+                    value="" placeholder="Adres e-mail" data-placeholder="Adres e-mail" />
+            </section>
+        </section>
+        <button class="button button--sign" type="submit"> Wygeneruj dane </button>
+        <input name="mlid" type="hidden" value="231" />
+        <input name="req" type="hidden" value="email" />
+        <input name="token" type="hidden" value="da945ba7449d1e092316ba46f044f0b134483b6b" />
+        <input name="coregister" type="hidden" value="" />
+
+    </form>
 
     <?php
     // Czyszczenie danych sesji po ich użyciu
@@ -148,44 +151,44 @@ session_start();
     unset($_SESSION['phone']);
     ?>
 
-<input class="js-time-for-show" type="text" value="0.1" placeholder="Liczba minut przed pokazaniem kontaktu"/>
+    <input class="js-time-for-show" type="text" value="0.1" placeholder="Liczba minut przed pokazaniem kontaktu" />
 
 
-<button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
+    <button class="button js-button-show-contacs" type="button"> Wyświetl kontakty przed czasem</button>
 
 
 
     <button class="js-set-alarm">Ustaw Alarm</button>
-<form method="POST" action="../php/display_users.php">
-    <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
-    <input type="number" id="number_of_sids" name="number_of_sids" value="10" min="1" required>
+    <form method="POST" action="../php/display_users.php">
+        <label for="number_of_sids">Liczba SID-ów do wyświetlenia:</label>
+        <input type="number" id="number_of_sids" name="number_of_sids" value="10" min="1" required>
 
-    <fieldset>
-        <legend>Sortowanie:</legend>
-        <div>
-            <label for="sort_by_sid_asc">
-                <input type="radio" id="sort_by_sid_asc" name="sort_by_sid" value="ASC" />
-                SID rosnąco
-            </label>
-            <label for="sort_by_sid_desc">
-                <input type="radio" id="sort_by_sid_desc" name="sort_by_sid" value="DESC" />
-                SID malejąco
-            </label>
-        </div>
-        <div>
-            <label for="sort_by_date_asc">
-                <input type="radio" id="sort_by_date_asc" name="sort_by_date" value="ASC" />
-                Data rosnąco
-            </label>
-            <label for="sort_by_date_desc">
-                <input type="radio" id="sort_by_date_desc" name="sort_by_date" value="DESC" />
-                Data malejąco
-            </label>
-        </div>
-    </fieldset>
+        <fieldset>
+            <legend>Sortowanie:</legend>
+            <div>
+                <label for="sort_by_sid_asc">
+                    <input type="radio" id="sort_by_sid_asc" name="sort_by_sid" value="ASC" />
+                    SID rosnąco
+                </label>
+                <label for="sort_by_sid_desc">
+                    <input type="radio" id="sort_by_sid_desc" name="sort_by_sid" value="DESC" />
+                    SID malejąco
+                </label>
+            </div>
+            <div>
+                <label for="sort_by_date_asc">
+                    <input type="radio" id="sort_by_date_asc" name="sort_by_date" value="ASC" />
+                    Data rosnąco
+                </label>
+                <label for="sort_by_date_desc">
+                    <input type="radio" id="sort_by_date_desc" name="sort_by_date" value="DESC" />
+                    Data malejąco
+                </label>
+            </div>
+        </fieldset>
 
-    <button type="submit">Zastosuj sortowanie</button>
-</form>
+        <button type="submit">Zastosuj sortowanie</button>
+    </form>
 
 
 
@@ -194,10 +197,10 @@ session_start();
 
     <h1>Lista Użytkowników</h1>
 
-       
-        <?php include 'php/display_users.php'; ?>
 
- 
+    <?php include 'php/display_users.php'; ?>
+
+
 </body>
 
 </html>
