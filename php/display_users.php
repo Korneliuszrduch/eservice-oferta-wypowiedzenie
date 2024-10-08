@@ -31,9 +31,12 @@ if ($sort_by_sid) {
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
 $sql = "SELECT u.sid, u.name_first, u.email, u.phone, 
+    MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
+               MAX(CASE WHEN f.fid = 183 THEN f.value END) AS field_value_183,
                MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
                MAX(CASE WHEN f.fid = 116 THEN f.value END) AS field_value_116,
                MAX(CASE WHEN f.fid = 115 THEN f.value END) AS field_value_115,
+                   MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
                MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120
         FROM nm_krduch2subscribers u
         LEFT JOIN nm_krduch2subscribers_fields f ON u.sid = f.sid
@@ -54,20 +57,7 @@ $result = $stmt->get_result();
 // Sprawdzenie, czy zapytanie zwróciło wyniki
 if ($result->num_rows > 0) {
     echo "<table border='1'>
-            <thead>
-                <tr>
-                    <th>SID</th>
-                    <th>NIP</th>
-                    <th>Imię</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
-                         <th>Uwagi</th>
-                    <th>Opcje</th>
-               
-                    <th>Data kontakt</th>
-                    <th>zapisz</th>
-                </tr>
-            </thead>
+        
             <tbody>";
 
     while ($row = $result->fetch_assoc()) {
@@ -75,62 +65,92 @@ if ($result->num_rows > 0) {
         $combinedValue = $row['field_value_116'] . ' ' . $currentDate . ' ' . htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
 
         $selectedOption = htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
+        $selectedOptionCompanyOfTerminal = htmlspecialchars($row['field_value_112'], ENT_QUOTES, 'UTF-8');
 
         echo "<tr class='data-table js-data-table'>
-                <form class='form' accept-charset='UTF-8' action='https://mail.korneliuszrduch.pl/subscribe.php' method='POST'>
-                    <td>" . htmlspecialchars($row['sid'], ENT_QUOTES, 'UTF-8') . "</td>
-                    <td><input type='text' name='fields[120]' value='" . htmlspecialchars($row['field_value_120'], ENT_QUOTES, 'UTF-8') . "'></td>
-                    <td><input type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'></td>
-                    <td><input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'></td>
+                <form class='js-form-date-contact' accept-charset='UTF-8' action='https://mail.korneliuszrduch.pl/subscribe.php' method='POST'>
+                     
+                   
+                    <td class='table'>
 
-           
+                      <select name='fields[112]' id='field112'>
+                            <option value='$selectedOptionCompanyOfTerminal'>$selectedOptionCompanyOfTerminal</option>
+                                           <option value='Brak'" . ($selectedOptionCompanyOfTerminal === 'Brak' ? ' selected' : '') . ">Brak</option>
+                                                             <option value='Elavon'" . ($selectedOptionCompanyOfTerminal === 'Elavon' ? ' selected' : '') . ">Elavon</option>
+                                                                 <option value='Ecard'" . ($selectedOptionCompanyOfTerminal === 'Ecard' ? ' selected' : '') . ">Ecard</option>
+                                                                   <option value='eService'" . ($selectedOptionCompanyOfTerminal === 'eService' ? ' selected' : '') . ">eService</option>
+                                          <option value='Hiltech'" . ($selectedOptionCompanyOfTerminal === 'Hiltech' ? ' selected' : '') . ">Hiltech</option>
+             
+                         <option value='IT Cart'" . ($selectedOptionCompanyOfTerminal === 'IT Cart' ? ' selected' : '') . ">IT Cart</option>
+                                     <option value='ING'" . ($selectedOptionCompanyOfTerminal === 'ING' ? ' selected' : '') . ">ING</option>
+                                          <option value='Kartel'" . ($selectedOptionCompanyOfTerminal === 'Kartel' ? ' selected' : '') . ">Kartel</option>
+           <option value='Kolporter'" . ($selectedOptionCompanyOfTerminal === 'Kolporter' ? ' selected' : '') . ">Kolporter</option>
+                     
+                                <option value='Paymento'" . ($selectedOptionCompanyOfTerminal === 'Paymento' ? ' selected' : '') . ">Paymento</option>
+                                    <option value='Paysquare'" . ($selectedOptionCompanyOfTerminal === 'Paysquare' ? ' selected' : '') . ">Paysquare</option>
+                                                 <option value='Paytel'" . ($selectedOptionCompanyOfTerminal === 'Paytel' ? ' selected' : '') . ">Paytel</option>
+                                                                   <option value='Pekao SA'" . ($selectedOptionCompanyOfTerminal === 'Pekao SA' ? ' selected' : '') . ">Pekao SA</option>
+                                                                     <option value='Pep'" . ($selectedOptionCompanyOfTerminal === 'Pep' ? ' selected' : '') . ">Pep</option>
+                                                                         <option value='Planet Pay'" . ($selectedOptionCompanyOfTerminal === 'Planet Pay' ? ' selected' : '') . ">Planet Pay</option>
+                                                                                <option value='Polcard'" . ($selectedOptionCompanyOfTerminal === 'Polcard' ? ' selected' : '') . ">Polcard</option>
+                                                                                         <option value='SumUp'" . ($selectedOptionCompanyOfTerminal === 'SumUp' ? ' selected' : '') . ">SumUp</option>
 
-                  <td><a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
-                            <input type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'></a>  </td>
-                            
-                    <td><textarea class='textarea' name='fields[116]' rows='10' cols='30'>" . htmlspecialchars($combinedValue, ENT_QUOTES, 'UTF-8') . "</textarea></td>
-                         <td>
-                        <select name='fields[115]' id='field115'>
+     <option value='Six payment'" . ($selectedOptionCompanyOfTerminal === 'Six payment' ? ' selected' : '') . ">Six payment</option>
+             
+     <option value='Topcard'" . ($selectedOptionCompanyOfTerminal === 'Topcard' ? ' selected' : '') . ">Topcard</option>
+                 <option value='Wordline'" . ($selectedOptionCompanyOfTerminal === 'Wordline' ? ' selected' : '') . ">Wordline</option>
+                   <option value='Brak informacji o operatorze'" . ($selectedOptionCompanyOfTerminal === 'Brak informacji o operatorze' ? ' selected' : '') . ">Brak informacji o operatorze</option>
+                        <option value='Inny'" . ($selectedOptionCompanyOfTerminal === 'Inny' ? ' selected' : '') . ">Inny</option>
+                        </select>
+           <input type='text' name='fields[183]' value='" . htmlspecialchars($row['field_value_183'], ENT_QUOTES, 'UTF-8') . "' placeholder='Obroty miesieczne'>
+            <input type='text' name='fields[184]' value='" . htmlspecialchars($row['field_value_184'], ENT_QUOTES, 'UTF-8') . "' placeholder='Średnia wartość transakcji'>
+                    <input type='text' name='fields[120]' value='" . htmlspecialchars($row['field_value_120'], ENT_QUOTES, 'UTF-8') . "' placeholder='NIP'>
+
+                    <input type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'placeholder='Imię'>
+                    <input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'placeholder='Email'>
+                  <a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
+                            <input type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'placeholder='telefon'></a> 
+                             <select name='fields[115]' id='field115'>
                             <option value='$selectedOption'>$selectedOption</option>
                                            <option value='0% Pomyłka'" . ($selectedOption === '0% Pomyłka' ? ' selected' : '') . ">0% Pomyłka</option>
                               <option value='0% 1 Brak kontaktu'" . ($selectedOption === '0% 1 Brak kontaktu' ? ' selected' : '') . ">0% 1 Brak kontaktu</option>
                             <option value='0% 2 Brak kontaktu'" . ($selectedOption === '0% 2 Brak kontaktu' ? ' selected' : '') . ">0% 2 Brak kontaktu</option>
                             <option value='0% 3 Brak kontaktu'" . ($selectedOption === '0% 3 Brak kontaktu' ? ' selected' : '') . ">0% 3 Brak kontaktu</option>
+                                                     <option value='0% Wysłał SMS'" . ($selectedOption === '0% Wysłał SMS' ? ' selected' : '') . ">0% Wysłał SMS</option>
                             <option value='0% Wysłalem SMS'" . ($selectedOption === '0% Wysłalem SMS' ? ' selected' : '') . ">0% Wysłalem SMS</option>
                              <option value='0% Wysłalem MAIL z Prośbą o Kontakt'" . ($selectedOption === '0% Wysłalem MAIL z Prośbą o Kontakt' ? ' selected' : '') . ">0% Wysłalem MAIL z Prośbą o Kontakt</option>
-
                               <option value='0%08 Obecny klient eservice'" . ($selectedOption === '0%08 Obecny klient eservice' ? ' selected' : '') . ">0%08 Obecny klient eservice</option>
                                <option value='0% Branża nieobsługiwana'" . ($selectedOption === '0% Branża nieobsługiwana' ? ' selected' : '') . ">0% Branża nieobsługiwana</option>
                               <option value='0% 1 Niezainteresowany'" . ($selectedOption === '0% 1 Niezainteresowany' ? ' selected' : '') . ">0% 1 Niezainteresowany</option>
                               <option value='0% 2 Niezainteresowany'" . ($selectedOption === '0% 2 Niezainteresowany' ? ' selected' : '') . ">0% 2 Niezainteresowany</option>
                               <option value='0% 3 Niezainteresowany'" . ($selectedOption === '0% 3 Niezainteresowany' ? ' selected' : '') . ">0% 3 Niezainteresowany</option>
-                          
                             <option value='2% odbiera i się rozłącza'" . ($selectedOption === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
                                 <option value='5% Ustalono inny termin'" . ($selectedOption === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectedOption === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
                             <option value='10% Omówić potrzeby'" . ($selectedOption === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
-                         
-                      
+
                             <option value='14% Przygotować kalkulator'" . ($selectedOption === '14% Przygotować kalkulator' ? ' selected' : '') . ">14% Przygotować kalkulator</option>
                             <option value='18% Przedstawić ofertę'" . ($selectedOption === '18% Przedstawić ofertę' ? ' selected' : '') . ">18% Przedstawić ofertę</option>
                             <option value='41% Kliknął w ofertę'" . ($selectedOption === '41% Kliknął w ofertę' ? ' selected' : '') . ">41% Kliknął w ofertę</option>
                               <option value='42% Umówione spotkanie'" . ($selectedOption === '42% Umówione spotkanie' ? ' selected' : '') . ">42% Umówione spotkanie</option>
                                 <option value='43% Poprosił o kontakt'" . ($selectedOption === '43% Poprosił o kontakt' ? ' selected' : '') . ">43% Poprosił o kontakt</option>
                          
-                          
                         </select>
-                    </td>
+                          <input class='js-date-time-local' type='datetime-local' name='fields[171]' value='" . htmlspecialchars($row['field_value_171'], ENT_QUOTES, 'UTF-8') . "'placeholder='Data kontaktu'>
+                   <textarea class='textarea' name='fields[116]' rows='10' cols='30'>" . htmlspecialchars($combinedValue, ENT_QUOTES, 'UTF-8') . "</textarea>
+                    <button class='js-save-button' type='button'>Zapisz</button>
+                        <button class='js-delete-button' type='button'  data-sid='" . htmlspecialchars($row['sid'], ENT_QUOTES, 'UTF-8') . "'>Delete</button>
+                
+                      
+                       
                           
-                    <td><input class='js-date-time-local' type='datetime-local' name='fields[171]' value='" . htmlspecialchars($row['field_value_171'], ENT_QUOTES, 'UTF-8') . "'></td>
-                    <td>
+                  
                         <input name='mlid' type='hidden' value='231' />
                         <input name='req' type='hidden' value='email' />
                         <input name='token' type='hidden' value='da945ba7449d1e092316ba46f044f0b134483b6b' />
                         <input name='coregister' type='hidden' value='' />
-                        <button type='submit'>Zapisz</button>
-                        <button type='button' class='js-delete-button' data-sid='" . htmlspecialchars($row['sid'], ENT_QUOTES, 'UTF-8') . "'>Delete</button>
+                       
 
-                    </td>
                 </form>
             </tr>";
     }
