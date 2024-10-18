@@ -51,7 +51,7 @@ session_start();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
-    <script defer src="https://terminal.terminaleservice.pl/js/crm.js?B97"></script>
+    <script defer src="https://terminal.terminaleservice.pl/js/crm.js?<?php echo rand(); ?>"></script>
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
@@ -120,7 +120,7 @@ session_start();
 
         <button type="button" class="js-button-register-update-contact">Register / Update</button>
     </form>
-    <button class="js-read-phone-url">zaczytaj telefon & imię z url</button>
+
 
     <?php
     if (isset($_SESSION['message'])) {
