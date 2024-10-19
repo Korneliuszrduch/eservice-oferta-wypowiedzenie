@@ -13,33 +13,35 @@ $sort_by_date = isset($_POST['sort_by_date']) ? $_POST['sort_by_date'] : null;
 // Walidacja kierunku sortowania, aby uniknąć SQL Injection
 $valid_sort_orders = ['ASC', 'DESC'];
 if ($sort_by_sid && !in_array($sort_by_sid, $valid_sort_orders)) {
-    $sort_by_sid = null;
+  $sort_by_sid = null;
 }
 if ($sort_by_date && !in_array($sort_by_date, $valid_sort_orders)) {
-    $sort_by_date = null;
+  $sort_by_date = null;
 }
 
 // Określanie, które kryterium sortowania będzie użyte
 if ($sort_by_sid) {
-    $order_by = "u.sid $sort_by_sid";
+  $order_by = "u.sid $sort_by_sid";
 } elseif ($sort_by_date) {
-    $order_by = "field_value_171 $sort_by_date";
+  $order_by = "field_value_171 $sort_by_date";
 } else {
-    // Domyślne sortowanie, jeśli żadne kryterium nie zostało wybrane
-    $order_by = "field_value_171 DESC";
+  // Domyślne sortowanie, jeśli żadne kryterium nie zostało wybrane
+  $order_by = "field_value_171 DESC";
 }
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
 $sql = "SELECT u.sid, u.name_first, u.email, u.phone, 
-     MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
-       MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
-    MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
+              MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
+              MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
+               MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
                MAX(CASE WHEN f.fid = 183 THEN f.value END) AS field_value_183,
                MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
                MAX(CASE WHEN f.fid = 116 THEN f.value END) AS field_value_116,
+               MAX(CASE WHEN f.fid = 114 THEN f.value END) AS field_value_114,
                MAX(CASE WHEN f.fid = 115 THEN f.value END) AS field_value_115,
-                   MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
-               MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120
+               MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
+               MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120,
+                MAX(CASE WHEN f.fid = 234 THEN f.value END) AS field_value_234
         FROM nm_krduch2subscribers u
         LEFT JOIN nm_krduch2subscribers_fields f ON u.sid = f.sid
         WHERE u.status = 'active'
@@ -58,18 +60,20 @@ $result = $stmt->get_result();
 
 // Sprawdzenie, czy zapytanie zwróciło wyniki
 if ($result->num_rows > 0) {
-    echo "<table border='1'>
+  echo "<table border='1'>
         
-            <tbody>";
+            <tbody class='js-tbody'>";
 
-    while ($row = $result->fetch_assoc()) {
-        $currentDate = date('Y-m-d'); // Format: RRRR-MM-DD
-        $combinedValue = $row['field_value_116'] . ' ' . $currentDate . ' ' . htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
+  while ($row = $result->fetch_assoc()) {
+    $currentDate = date('Y-m-d'); // Format: RRRR-MM-DD
+    $combinedValue = $row['field_value_116'] . ' ' . $currentDate . ' ' . htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
 
-        $selectedOption = htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
-        $selectedOptionCompanyOfTerminal = htmlspecialchars($row['field_value_112'], ENT_QUOTES, 'UTF-8');
+    $selectedOption = htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
+    $selectedOptionCompanyOfTerminal = htmlspecialchars($row['field_value_112'], ENT_QUOTES, 'UTF-8');
+    $selectedOptionStatusOpenOffer = htmlspecialchars($row['field_value_114'], ENT_QUOTES, 'UTF-8');
+    $selectedOptionStatusSentOffer = htmlspecialchars($row['field_value_234'], ENT_QUOTES, 'UTF-8');
 
-        echo "<tr class='data-table js-data-table'>
+    echo "<tr class='data-table js-data-table'>
                 <form class='js-form-date-contact' accept-charset='UTF-8' action='https://mail.korneliuszrduch.pl/subscribe.php' method='POST'>
                      
                    
@@ -112,12 +116,30 @@ if ($result->num_rows > 0) {
 
                       <input type='text' name='fields[329]' value='" . htmlspecialchars($row['field_value_329'], ENT_QUOTES, 'UTF-8') . "' placeholder='Opłaty stałe konkurencja'>
                     <input type='text' name='fields[120]' value='" . htmlspecialchars($row['field_value_120'], ENT_QUOTES, 'UTF-8') . "' placeholder='NIP'>
+                    
+  <select class='js-offer-sent-status' name='fields[234]' id='field234'>
+                            <option value='$selectedOptionStatusSentOffer'>$selectedOptionStatusSentOffer</option>
+                            <option value='Ofertę wysłano'" . ($selectedOptionStatusSentOffer === 'Ofertę wysłano' ? ' selected' : '') . ">Ofertę wysłano</option>
+                                 <option value='Nie wysyłaj oferty'" . ($selectedOptionStatusSentOffer === 'Nie wysyłaj oferty' ? ' selected' : '') . ">Nie wysyłaj oferty</option>
+                            <option value=''" . ($selectedOptionStatusSentOffer === '' ? ' selected' : '') . "></option>
+                         
+                        </select>
+
+
+
+
+              <select class='js-offer-opening-status' name='fields[114]' id='field114'>
+                            <option value='$selectedOptionStatusOpenOffer'>$selectedOptionStatusOpenOffer</option>
+                            <option value='Kliknął w ofertę lub dokument'" . ($selectedOptionStatusOpenOffer === 'Kliknął w ofertę lub dokument' ? ' selected' : '') . ">Kliknął w ofertę lub dokument</option>
+                            <option value=''" . ($selectedOptionStatusOpenOffer === '' ? ' selected' : '') . "></option>
+                         
+                        </select>
 
                     <input type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'placeholder='Imię'>
                     <input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'placeholder='Email'>
                   <a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
                             <input type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'placeholder='telefon'></a> 
-                             <select name='fields[115]' id='field115'>
+                             <select class= 'js-latest-custumer-status' name='fields[115]' id='field115'>
                             <option value='$selectedOption'>$selectedOption</option>
                                            <option value='0% Pomyłka'" . ($selectedOption === '0% Pomyłka' ? ' selected' : '') . ">0% Pomyłka</option>
                               <option value='0% 1 Brak kontaktu'" . ($selectedOption === '0% 1 Brak kontaktu' ? ' selected' : '') . ">0% 1 Brak kontaktu</option>
@@ -131,17 +153,31 @@ if ($result->num_rows > 0) {
                               <option value='0% 1 Niezainteresowany'" . ($selectedOption === '0% 1 Niezainteresowany' ? ' selected' : '') . ">0% 1 Niezainteresowany</option>
                               <option value='0% 2 Niezainteresowany'" . ($selectedOption === '0% 2 Niezainteresowany' ? ' selected' : '') . ">0% 2 Niezainteresowany</option>
                               <option value='0% 3 Niezainteresowany'" . ($selectedOption === '0% 3 Niezainteresowany' ? ' selected' : '') . ">0% 3 Niezainteresowany</option>
+
+
+                                 <option value='0% błędny mail. Utworzono z poprawionym'" . ($selectedOption === '0% błędny mail. Utworzono z poprawionym' ? ' selected' : '') . ">0% błędny mail. Utworzono z poprawionym</option>
                             <option value='2% odbiera i się rozłącza'" . ($selectedOption === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
                                 <option value='5% Ustalono inny termin'" . ($selectedOption === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectedOption === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
                             <option value='10% Omówić potrzeby'" . ($selectedOption === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
+                                 <option value='11% Omówić aktualne koszty'" . ($selectedOption === '11% Omówić aktualne koszty' ? ' selected' : '') . ">11% Omówić aktualne koszty</option>
 
                             <option value='14% Przygotować kalkulator'" . ($selectedOption === '14% Przygotować kalkulator' ? ' selected' : '') . ">14% Przygotować kalkulator</option>
                             <option value='18% Przedstawić ofertę'" . ($selectedOption === '18% Przedstawić ofertę' ? ' selected' : '') . ">18% Przedstawić ofertę</option>
                             <option value='41% Kliknął w ofertę'" . ($selectedOption === '41% Kliknął w ofertę' ? ' selected' : '') . ">41% Kliknął w ofertę</option>
                               <option value='42% Umówione spotkanie'" . ($selectedOption === '42% Umówione spotkanie' ? ' selected' : '') . ">42% Umówione spotkanie</option>
                                 <option value='43% Poprosił o kontakt'" . ($selectedOption === '43% Poprosił o kontakt' ? ' selected' : '') . ">43% Poprosił o kontakt</option>
-                         
+                                   <option value='70% Czas na decyzję'" . ($selectedOption === '70% Czas na decyzję' ? ' selected' : '') . ">70% Czas na decyzję</option>
+                                       <option value='80% Chce podpisać umowę'" . ($selectedOption === '80% Chce podpisać umowę' ? ' selected' : '') . ">80% Chce podpisać umowę</option>
+                                         <option value='100% Wysłać dokumenty do klienta'" . ($selectedOption === '100% Wysłać dokumenty do klienta' ? ' selected' : '') . ">100% Wysłać dokumenty do klienta</option>
+                                            <option value='100% Przygotować aneksy na zmianę warunków'" . ($selectedOption === '100% Przygotować aneksy na zmianę warunków' ? ' selected' : '') . ">100% Przygotować aneksy na zmianę warunków</option>
+                                          <option value='100% Wysłano dokumenty do podpisu'" . ($selectedOption === '100% Wysłano dokumenty do podpisu' ? ' selected' : '') . ">100% Wysłano dokumenty do podpisu</option>
+                                            <option value='100% Dokumenty Podpisane przez klienta'" . ($selectedOption === '100% Dokumenty Podpisane przez klienta' ? ' selected' : '') . ">100% Dokumenty Podpisane przez klienta</option>
+                                        
+  <option value='100% Wysłano dokumenty do weryfikacji'" . ($selectedOption === '100% Wysłano dokumenty do weryfikacji' ? ' selected' : '') . ">100% Wysłano dokumenty do weryfikacji</option>
+    <option value='100% Dokumenty wprowadzone'" . ($selectedOption === '100% Dokumenty wprowadzone' ? ' selected' : '') . ">100% Dokumenty wprowadzone</option>
+      <option value='100% Wysłano do eservice do przekazania opiekunowi'" . ($selectedOption === '100% Wysłano do eservice do przekazania opiekunowi' ? ' selected' : '') . ">100% Wysłano do eservice do przekazania opiekunowi</option>
+          
                         </select>
                           <input class='js-date-time-local' type='datetime-local' name='fields[171]' value='" . htmlspecialchars($row['field_value_171'], ENT_QUOTES, 'UTF-8') . "'placeholder='Data kontaktu'>
                    <textarea class='textarea' name='fields[116]' rows='10' cols='30'>" . htmlspecialchars($combinedValue, ENT_QUOTES, 'UTF-8') . "</textarea>
@@ -160,10 +196,10 @@ if ($result->num_rows > 0) {
 
                 </form>
             </tr>";
-    }
-    echo "</tbody></table>";
+  }
+  echo "</tbody></table>";
 } else {
-    echo "<tr><td colspan='9'>Brak użytkowników w bazie danych.</td></tr>";
+  echo "<tr><td colspan='9'>Brak użytkowników w bazie danych.</td></tr>";
 }
 
 // Zamknięcie zapytania i połączenia
