@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fnameElement = document.querySelector(".js-fname");
     const phoneElement = document.querySelector(".js-phone");
     const emailElement = document.querySelector(".js-email");
+    const latestCustomerStatusElement = document.querySelector(".js-latest-custumer-status");
 
     // Jeśli którykolwiek z elementów nie istnieje, przerywamy działanie funkcji
     if (!dateInputElement || !fnameElement || !phoneElement || !emailElement) {
@@ -66,10 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const fname = fnameElement.value.trim();
     const phone = phoneElement.value.trim();
     const email = emailElement.value.trim();
+    const latestCustomerStatus = latestCustomerStatusElement.value.trim();
 
-    console.log("datainput", dateInput);
-    console.log("fname", fname);
-    console.log("email", email);
+   // console.log("datainput", dateInput);
+   // console.log("fname", fname);
+    //console.log("email", email);
 
     // Sprawdzamy, czy wszystkie pola są uzupełnione
     if (!dateInput || !fname || !phone || !email) {
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const endDateStr = formatDate(endDate);
 
     // Generowanie linku do kalendarza Google
-    const calendarLink = encodeURI(`https://calendar.google.com/calendar/r/eventedit?text=${fname} ${phone} Rozmowa telefoniczna &details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}&color=%23B1365F`);
+    const calendarLink = encodeURI(`https://calendar.google.com/calendar/r/eventedit?text=${fname} ${phone} ${latestCustomerStatus} &details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}&color=%23B1365F`);
 
     // const calendarLink = `https://calendar.google.com/calendar/r/eventedit?text=Rozmowa telefoniczna z ${fname} ${phone} &details=https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}&dates=${startDateStr}/${endDateStr}`;
 
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fnameElement = document.querySelector(".js-fname");
     const phoneElement = document.querySelector(".js-phone");
     const emailElement = document.querySelector(".js-email");
+    const latestCustomerStatusElement = document.querySelector(".js-latest-custumer-status");
 
     if (!dateInputElement || !fnameElement || !phoneElement || !emailElement) {
       console.error('Brakuje jednego z inputów');
@@ -129,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fname = fnameElement.value.trim();
     const phone = phoneElement.value.trim();
     const email = emailElement.value.trim();
+    const latestCustomerStatus = latestCustomerStatusElement.value.trim();
 
     if (!dateInput || !fname || !phone || !email) {
       console.error('Brakuje niezbędnych danych');
@@ -160,7 +164,7 @@ UID:${Date.now()}@yourdomain.com
 DTSTAMP:${startDateStr}
 DTSTART:${startDateStr}
 DTEND:${endDateStr}
-SUMMARY:${fname} ${phone} Rozmowa telefoniczna
+SUMMARY:${fname} ${phone} ${latestCustomerStatus}
 DESCRIPTION:Wydarzenie utworzone dla https://terminal.terminaleservice.pl/crm.php?mail=${email}
 CATEGORIES:Zielone wydarzenie
 END:VEVENT
@@ -189,53 +193,48 @@ END:VCALENDAR
     buttonAddEventToCalendar.addEventListener('click', generateCalendarLink);
   }
 
-
-
-
-
-
-
-
   const buttonPreparationOffer = document.querySelector(".js-preparation-of-the-offer");
   buttonPreparationOffer.addEventListener("click", (event) => {
     event.preventDefault();
+    const statusValue = "39% Przygotowano ofertę do wysłania";
+    loadlatestCustomerStatusAll(statusValue);
     const formOffer = document.querySelector(".js-offer");
     const mlid = document.querySelector(".js-mlid1");
     const token = document.querySelector(".js-token1");
     const nameList = document.querySelector(".js-name-list1");
-
     token.value = "da945ba7449d1e092316ba46f044f0b134483b6b";
-    mlid.value = "231";
+    mlid.value = "303";
     nameList.value = "";
     console.log("mlid", mlid.value);
     console.log("token", token.value);
     formOffer.submit();
-
   });
 
 
   const buttonSentOfferToClient = document.querySelector(".js-send-of-the-offer-to-client");
   buttonSentOfferToClient.addEventListener("click", (event) => {
-      event.preventDefault();
-      const confirmation = confirm("Czy na pewno chcesz wysłać ofertę?");
-      if (confirmation) {
-          const formOffer = document.querySelector(".js-offer");
-          const mlid = document.querySelector(".js-mlid1");
-          const token = document.querySelector(".js-token1");
-          const nameList = document.querySelector(".js-name-list1");
-          token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
-          mlid.value = "285";
-          nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
-          console.log("mlid", mlid.value);
-          console.log("token", token.value);
-          console.log("formOffer", formOffer);
-          formOffer.submit();
-      } else {
-   
-          console.log("Oferta nie została wysłana.");
-      }
+    event.preventDefault();
+    const confirmation = confirm("Czy na pewno chcesz wysłać ofertę?");
+    if (confirmation) {
+      const statusValue = "40% Wysłano maila z ofertą";
+      loadlatestCustomerStatusAll(statusValue);
+      const formOffer = document.querySelector(".js-offer");
+      const mlid = document.querySelector(".js-mlid1");
+      const token = document.querySelector(".js-token1");
+      const nameList = document.querySelector(".js-name-list1");
+      token.value = "cb29a9d46aa5307cfef544fea7dbf8ab8f14b10b";
+      mlid.value = "285";
+      nameList.value = "PROPOZYCJA WSPÓŁPRACY- WYSŁANIE OFERTY";
+      console.log("mlid", mlid.value);
+      console.log("token", token.value);
+      console.log("formOffer", formOffer);
+      formOffer.submit();
+    } else {
+
+      console.log("Oferta nie została wysłana.");
+    }
   });
-  
+
 
 
   const buttonUpdateContact = document.querySelector(".js-button-update-contact");
@@ -256,21 +255,46 @@ END:VCALENDAR
 
 
 
+  const loadlatestCustomerStatusAll = (statusValue) => {
+    const latestCustomerStatusAll = document.querySelectorAll(".js-latest-custumer-status");
+    latestCustomerStatusAll.forEach((latestCustomerStatus) => {
+      latestCustomerStatus.value = statusValue;
+    });
+  };
 
   const buttonRegardingInvoice = document.querySelector(".js-button-regarding-the-invoice");
   buttonRegardingInvoice.addEventListener("click", (event) => {
     event.preventDefault();
-    const formUpdateContact = document.querySelector(".js-form-update-contact");
-    const mlid = document.querySelector(".js-mlid");
-    const token = document.querySelector(".js-token");
-    const nameList = document.querySelector(".js-name-list");
 
-    token.value = "da945ba7449d1e092316ba46f044f0b134483b6b";
-    mlid.value = "304";
-    nameList.value = "";
-    console.log("mlid", mlid.value);
-    console.log("token", token.value);
-    formUpdateContact.submit();
+    const confirmation = confirm("Czy na pewno chcesz wysłać prośbę o fakturę?");
+    if (confirmation) {
+
+      const formUpdateContact = document.querySelector(".js-form-update-contact");
+
+      const statusValue = "7% Wysłany mail ws. faktury z terminali";
+
+      loadlatestCustomerStatusAll(statusValue);
+
+
+      const mlid = document.querySelector(".js-mlid");
+      const token = document.querySelector(".js-token");
+      const nameList = document.querySelector(".js-name-list");
+      token.value = "da945ba7449d1e092316ba46f044f0b134483b6b";
+      mlid.value = "304";
+      nameList.value = "PROŚBA O FAKTURĘ TERMINALE";
+      console.log("mlid", mlid.value);
+      console.log("token", token.value);
+      formUpdateContact.submit();
+    } else {
+
+      console.log("Mail z prośbą o fakturę nie został wysłany.");
+    }
+
+
+
+
+
+
 
   });
 
