@@ -26,6 +26,29 @@
       
       
       */
+
+
+        loadRandomLinkJs = () => {
+            const randomNum = Math.floor(Math.random() * 10000); // Generuje losową liczbę między 0 a 9999
+
+            // Tworzenie nowego elementu <script> z klasą
+            const newScript = document.createElement('script');
+            newScript.src = `https://terminal.terminaleservice.pl/js/script_offer.js?${randomNum}`;
+            newScript.defer = true;
+            newScript.className = 'js-script-offer'; // Dodanie klasy do nowego skryptu
+        
+            // Dodanie nowego skryptu do dokumentu
+            document.body.appendChild(newScript);
+        
+            // Usunięcie obecnego skryptu, aby zapobiec duplikatom
+            const currentScript = document.querySelector('script[src*="script_offer.js"]');
+            if (currentScript) {
+                currentScript.remove();
+            }
+        }
+
+
+
         const ShowPhoneTopups = () => {
 
             const commissionRateOrange = document.querySelector(".js-commission-rate-orange");
@@ -330,7 +353,7 @@
             const bestPrice = Math.min(
                 ...[aplicationCost, terminalCostSmartPos, terminalCostStacjonarny, terminalCostPrzenosny, pinPadCost].filter(cost => cost > 0)
             );
-            const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost + rkas);
+            const fixedMonthlyCosts = (bestPrice + gprsCost + serviceCost + logoCost + rkas).toFixed(2);
             document.getElementById("fixed-monthly-costs").value = fixedMonthlyCosts;
             //console.log("Najlepsza cena:", bestPrice);
 
@@ -670,43 +693,68 @@
 
 
 
+        const loadStatusOpenOffer = () => {
+            const emailElement = document.querySelector(".js-email");
+            if (!emailElement) {
+                console.error("Element z klasą .js-email nie został znaleziony.");
+                return;
+            }
+        
+            const email = emailElement.value;
+        
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('offer-opening-status', 'kliknął w ofertę lub dokument');
+        
+            fetch('https://terminal.terminaleservice.pl/php/update_fields.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(result => {
+                console.log('Status updated:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Wystąpił błąd podczas aktualizacji statusu. Spróbuj ponownie później.');
+            });
+        };
+        
+      
+
+        
 
 
         const showAlertCalculate = () => {
-
-
-
-
             const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
+
             if (savingMoney === 0) {
-
-
                 setTimeout(function () {
-                    alert("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.");
-                }, 45000); // 5000 milisekund = 5 sekund
-
-
-
+                    if (confirm("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.")) {
+                        // After confirming, send the email to update the database
+                           loadStatusOpenOffer();
+                    }
+                }, 18000); // Show alert after 18 seconds
             } else {
-
                 setTimeout(function () {
                     alert(`${savingMoney} zł zaoszczędzisz`);
-                }, 2000); // 2000 milisekund = 5 sekund
-
-
+                    loadStatusOpenOffer();
+                }, 2000); // Show alert after 2 seconds
             }
 
             const conversionSection = document.querySelector(".container--conversion");
             conversionSection.scrollIntoView({ behavior: "smooth" });
-            // console.log("Wartość savingMoney:", savingMoney);
         };
 
 
 
 
-
-
-        //console.log("zaoszczedzone pieniadze", savingMoney);
+       // loadRandomLinkJs();
         fixedMonthlyCostsTerminal();
         doOption1();
         doOption1();
