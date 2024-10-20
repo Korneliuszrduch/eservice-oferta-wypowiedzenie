@@ -1,39 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Usuwanie subskrybenta
-
 
     const rows = Array.from(document.querySelectorAll(".js-data-table"));
     const emailForUrl = new URLSearchParams(window.location.search).get('mail'); // Get email from URL
     const currentDate = new Date();
 
-    document.querySelectorAll('.js-delete-button').forEach(button => {
-        button.addEventListener('click', event => {
-            event.preventDefault();
-            const sid = button.dataset.sid;
-            if (confirm("Czy na pewno chcesz usunąć tego subskrybenta?")) {
-                fetch('php/delete_subscriber.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ sid: sid })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert("Subskrybent został usunięty.");
-                            button.closest('tr').remove();
-                        } else {
-                            alert("Wystąpił błąd: " + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert("Wystąpił problem z usunięciem subskrybenta.");
-                    });
-            }
-        });
-    });
 
 
     const hideContactBecauseDone = () => {
@@ -54,41 +24,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sortRows = (rows) => {
         return rows.sort((a, b) => {
-            // Priorytet 1: Sortowanie po klasie highlight (najwyższy priorytet)
+
             const aHighlight = a.classList.contains('highlight');
             const bHighlight = b.classList.contains('highlight');
-            if (aHighlight && !bHighlight) return -1; // a ma highlight, b nie
-            if (!aHighlight && bHighlight) return 1;  // b ma highlight, a nie
-    
-            // Priorytet 2: Sortowanie po klasie highlight-red (drugi priorytet)
+            if (aHighlight && !bHighlight) return -1;
+            if (!aHighlight && bHighlight) return 1;
+
+
             const aHighlightRed = a.classList.contains('highlight-red');
             const bHighlightRed = b.classList.contains('highlight-red');
-            if (aHighlightRed && !bHighlightRed) return -1; // a ma highlight-red, b nie
-            if (!aHighlightRed && bHighlightRed) return 1;  // b ma highlight-red, a nie
-    
-            // Priorytet 3: Sortowanie po dacie (jeśli highlight i highlight-red są takie same)
+            if (aHighlightRed && !bHighlightRed) return -1;
+            if (!aHighlightRed && bHighlightRed) return 1;
+
+
             const aDate = new Date(a.querySelector('.js-date-time-local')?.value);
             const bDate = new Date(b.querySelector('.js-date-time-local')?.value);
-    
-            // Obsłuż przypadek, gdy jedna z dat może być pusta
+
+
             if (!isNaN(aDate) && !isNaN(bDate)) {
-                return bDate - aDate; // Sortuj malejąco po dacie
+                return bDate - aDate;
             } else if (!isNaN(aDate)) {
-                return -1; // Jeśli aDate istnieje, a bDate nie, a powinno być wyżej
+                return -1;
             } else if (!isNaN(bDate)) {
-                return 1;  // Jeśli bDate istnieje, a aDate nie, b powinno być wyżej
+                return 1;
             } else {
-                return 0;  // Jeśli żadna z dat nie istnieje, są równe
+                return 0;
             }
         });
     };
-    
-    
+
+
 
 
     const highlightContact = () => {
         if (!emailForUrl) return;
-    
+
         rows.forEach(dataTable => {
             const emailInTable = dataTable.querySelector(".js-email-contact")?.value.trim();
             if (emailInTable === emailForUrl) {
@@ -96,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 dataTable.classList.add("highlight");
             }
         });
-    
+
         const tableBody = document.querySelector('.js-tbody');
         const sortedRows = sortRows(rows);
-        
+
 
         sortedRows.forEach(row => tableBody.appendChild(row));
     };
@@ -139,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Obsługa przycisku "Pokaż kontakty"
+
     const buttonShowContacts = document.querySelector(".js-button-show-contacs");
-    buttonShowContacts.addEventListener("click", showContacts); // Wywołanie funkcji po kliknięciu przycisku
+    buttonShowContacts.addEventListener("click", showContacts);
 
     const buttonSaveDateContact = document.querySelectorAll(".js-save-button");
     buttonSaveDateContact.forEach(button => {
@@ -149,14 +119,113 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const formDateContact = button.closest('tr').querySelector(".js-form-date-contact");
             if (formDateContact) {
-                formDateContact.submit(); // Wysłanie odpowiedniego formularza
+                formDateContact.submit();
             } else {
                 console.error('Formularz nie został znaleziony dla tego przycisku.');
             }
         });
     });
 
-    // Funkcja odczytująca dane z URL i ustawiająca w odpowiednich polach
+    const dataTableAll = document.querySelectorAll(".js-data-table");
+
+    dataTableAll.forEach(dataTable => {
+        const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
+
+        if (!buttonSaveDatabase) return; // Jeśli przycisk nie istnieje, przerywamy
+
+        buttonSaveDatabase.addEventListener("click", event => {
+            event.preventDefault();
+            const sid = buttonSaveDatabase.dataset.sid;
+
+            const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
+            const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+            const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
+            const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
+
+            const monthlyCardTurnover = dataTable.querySelector(".js-monthly-card-turnover")?.value.trim() || '';
+            const companyTaxNumber = dataTable.querySelector(".js-company-tax-number")?.value.trim() || '';
+            const monthlyCommissionCompetition = dataTable.querySelector(".js-monthly-comission-competition")?.value.trim() || '';
+            const averageTransaction = dataTable.querySelector(".js-average-transaction")?.value.trim() || '';
+            const fixedMonthlyCostsCompetition = dataTable.querySelector(".js-fixed-monthly-cost-competition")?.value.trim() || '';
+            const selectedStatusSentOffer = dataTable.querySelector(".js-offer-sent-status")?.value.trim() || '';
+            const selectedStatusOpenOffer = dataTable.querySelector(".js-offer-opening-status")?.value.trim() || '';
+            const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
+            const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
+            const comments = dataTable.querySelector(".textarea")?.value.trim() || '';  // Upewnij się, że textarea ma klasę .textarea
+
+            if (email) {
+                const formData = new FormData();
+                formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
+                //  formData.append("sid", sid); // Dodajemy SID do danych
+                formData.append("nameFirst", nameFirst);
+                formData.append("email", email);
+                formData.append("phone", phone);
+
+                formData.append("monthlyCardTurnover", monthlyCardTurnover);
+                formData.append("companyTaxNumber", companyTaxNumber);
+                formData.append("monthlyCommissionCompetition", monthlyCommissionCompetition);
+                formData.append("averageTransaction", averageTransaction);
+                formData.append("fixedMonthlyCostsCompetition", fixedMonthlyCostsCompetition);
+                formData.append("selectedStatusSentOffer", selectedStatusSentOffer);
+                formData.append("selectedStatusOpenOffer", selectedStatusOpenOffer);
+                formData.append("customerStatus", customerStatus);
+                formData.append("dateContactCustomer", dateContactCustomer);
+                formData.append("comments", comments);
+
+                // Wyświetlanie wszystkich danych z formData w konsoli
+                console.log("FormData zawiera:");
+                formData.forEach((value, key) => {
+                    console.log(`${key}: ${value}`);
+                });
+
+                // Opóźnienie o 2 sekundy przed wysyłką danych
+                setTimeout(() => {
+                    fetch("/php/update_contact.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                        .then(response => response.text())
+                        .then(result => {
+                            console.log("Server response:", result); // Logowanie odpowiedzi serwera dla debugowania
+                            window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
+                        })
+                        .catch(error => console.error("Error:", error));
+                }, 2000);
+            } else {
+                alert("Proszę wypełnić wymagane pola");
+            }
+        });
+    });
+
+    document.querySelectorAll('.js-delete-button').forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            const sid = button.dataset.sid;
+            if (confirm("Czy na pewno chcesz usunąć tego subskrybenta?")) {
+                fetch('php/delete_subscriber.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ sid: sid })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Subskrybent został usunięty.");
+                            button.closest('tr').remove();
+                        } else {
+                            alert("Wystąpił błąd: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Wystąpił problem z usunięciem subskrybenta.");
+                    });
+            }
+        });
+    });
+
     const readParametersForUrl = () => {
         const params = new URLSearchParams(window.location.search);
         const inputPhone = document.querySelector('.js-input-phone');
@@ -223,11 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const highlightTheCustomerDidNotOpenOffers = () => {
         const dataTableAll = document.querySelectorAll(".js-data-table");
-    
+
         dataTableAll.forEach(dataTable => {
             const offerSentStatus = dataTable.querySelector(".js-offer-sent-status").value;
             const offerOpeningStatus = dataTable.querySelector(".js-offer-opening-status").value; // Używamy querySelector
-    
+
             // Sprawdzamy, czy oferta została wysłana i czy oferta nie została otwarta
             if (offerSentStatus === "Ofertę wysłano" && offerOpeningStatus === "") {
                 dataTable.classList.add("highlight-red");
@@ -237,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-    
+
 
     // Inicjalizacja
     readParametersForUrl();
