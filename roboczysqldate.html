@@ -61,6 +61,97 @@ $conn->close();
 
         <a class="button button--call" href="tel:[[phone]]">Zadzwoń</a>
 
+
+       
+
+
+
+        console.log("średnia wartośc transakcji", averageTransaction);
+        console.log("opłata instalacyjna ", priceInstalationTerminal);
+        console.log("Czas współpracy liczba miesieczy ", timeOfCooperation);
+        console.log("Suma Miesięczne opłaty stałe:", fixedMonthlyCosts);
+        console.log("Prowizja eservice miesieczna  :", monthlyCommission);
+        console.log("Całkowity 12 miesięczny koszt:", totalCost);
+
+        console.log("liczba zwolnienia z opłat konkurencja", monthsOfRentExemptionCompetition);
+        console.log("Miesięczne płaty stałe konkurencja", fixedMonthlyCostsCompetition);
+        console.log("prowizja konkurencja:", calculatedCommissionRateCompetition);
+        console.log("zwolniona prowizja konkurencja:", exemptRevenueCompetition);
+        console.log("opłata autoryzacyjna konkurencja:", authorizationFeeCompetition);
+        console.log("opłata instalacyjna konkurencja:", priceInstalationTerminalCompetition);
+        console.log("Miesięczne opłaty stałe: konkurencja", fixedMonthlyCostsCompetition);
+
+        console.log("Obrót kartowy :", monthlyCardTurnover);
+        console.log("prowizja z faktury  :", invoiceCommissionAmount);
+        console.log("wyliczona Całe prowizja  konkurencja :", monthlyCommissionCompetition);
+        //console.log("kwota prowizji zwolnionej", amountOfCommissionFromExemptTurnoverCompetition);
+        console.log("Całkowity 12 miesięczny koszt konkurencja :", totalCostCompetition);
+
+
         [[nazwasystemukasowego]] 337
 
         [[statusofertaterminale]] [114]
+
+
+        <?php
+        header("Access-Control-Allow-Origin: https://mail.korneliuszrduch.pl");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+        include '../php/config.php';
+        header('Content-Type: application/json'); // Ustawienie nagłówka na JSON
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Odbieranie danych z formularza
+            $selectedOptionCompanyOfTerminal = isset($_POST['selectedOptionCompanyOfTerminal']) ? trim($_POST['selectedOptionCompanyOfTerminal']) : '';
+            $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+        
+            // Sprawdzenie, czy e-mail jest podany
+            if (!empty($email)) {
+                // Wyszukiwanie subskrybenta na podstawie e-maila
+                $stmt = $conn->prepare("SELECT sid FROM nm_krduch2subscribers WHERE email = ? AND status = 'active'");
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->bind_result($sid);
+                $stmt->fetch();
+                $stmt->close();
+        
+                // Sprawdzenie, czy znaleziono subskrybenta
+                if (!empty($sid)) {
+                    // Sprawdzenie, czy istnieje już rekord dla fid = 112
+                    $stmt_check = $conn->prepare("SELECT COUNT(*) FROM nm_krduch2subscribers_fields WHERE sid = ? AND fid = 112");
+                    $stmt_check->bind_param("i", $sid);
+                    $stmt_check->execute();
+                    $stmt_check->bind_result($count);
+                    $stmt_check->fetch();
+                    $stmt_check->close();
+        
+                    if ($count > 0) {
+                        // Aktualizacja istniejącego rekordu
+                        $stmt_update_field = $conn->prepare("UPDATE nm_krduch2subscribers_fields SET value = ? WHERE sid = ? AND fid = 112");
+                        $stmt_update_field->bind_param("si", $selectedOptionCompanyOfTerminal, $sid);
+        
+                        if (!$stmt_update_field->execute()) {
+                            echo json_encode(["error" => "Error executing update query: " . $stmt_update_field->error]);
+                        } else {
+                            echo json_encode([
+                                "message" => "Zaktualizowano dane w bazie dla e-maila: $email i subskrybenta o sid: $sid",
+                                "fid" => 112,
+                                "value" => $selectedOptionCompanyOfTerminal
+                            ]);
+                        }
+                        $stmt_update_field->close();
+                    } else {
+                        echo json_encode(["message" => "Nie znaleziono rekordu do aktualizacji dla sid: $sid i fid: 112."]);
+                    }
+                } else {
+                    error_log("Nie znaleziono subskrybenta o podanym adresie email: $email");
+                    echo json_encode(["error" => "Nie znaleziono aktywnego subskrybenta dla podanego e-maila."]);
+                }
+            } else {
+                echo json_encode(["error" => "Nieprawidłowy e-mail."]);
+            }
+        }
+        
+        $conn->close(); // Zamknięcie połączenia z bazą danych
+        ?>
+        
