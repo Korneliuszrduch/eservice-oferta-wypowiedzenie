@@ -173,11 +173,17 @@ if ($result->num_rows > 0) {
                                             <option value='100% Przygotować aneksy na zmianę warunków'" . ($selectedOption === '100% Przygotować aneksy na zmianę warunków' ? ' selected' : '') . ">100% Przygotować aneksy na zmianę warunków</option>
                                           <option value='100% Wysłano dokumenty do podpisu'" . ($selectedOption === '100% Wysłano dokumenty do podpisu' ? ' selected' : '') . ">100% Wysłano dokumenty do podpisu</option>
                                             <option value='100% Dokumenty Podpisane przez klienta'" . ($selectedOption === '100% Dokumenty Podpisane przez klienta' ? ' selected' : '') . ">100% Dokumenty Podpisane przez klienta</option>
-                                        
+                                           <option value='100% Czekanie na dokumenty od klienta'" . ($selectedOption === '100% Czekanie na dokumenty od klienta' ? ' selected' : '') . ">100% Czekanie na dokumenty od klienta</option>
   <option value='100% Wysłano dokumenty do weryfikacji'" . ($selectedOption === '100% Wysłano dokumenty do weryfikacji' ? ' selected' : '') . ">100% Wysłano dokumenty do weryfikacji</option>
     <option value='100% Dokumenty wprowadzone'" . ($selectedOption === '100% Dokumenty wprowadzone' ? ' selected' : '') . ">100% Dokumenty wprowadzone</option>
+     <option value='100% Lista VIP faktura eservice rekomendacje'" . ($selectedOption === '100% Lista VIP faktura eservice rekomendacje' ? ' selected' : '') . ">100% Lista VIP faktura eservice rekomendacje</option>
+    
+  <option value='100% Pobrać rekomendacje'" . ($selectedOption === '100% Pobrać rekomendacje' ? ' selected' : '') . ">100% Pobrać rekomendacje</option>
+    <option value='100% Lista VIP Pobrać rekomendacje'" . ($selectedOption === '100% Lista VIP Pobrać rekomendacje' ? ' selected' : '') . ">100% Lista VIP Pobrać rekomendacje</option>
+        <option value='100% Lista VIP'" . ($selectedOption === '100% Lista VIP' ? ' selected' : '') . ">100% Lista VIP</option>
+
       <option value='100% Wysłano do eservice do przekazania opiekunowi'" . ($selectedOption === '100% Wysłano do eservice do przekazania opiekunowi' ? ' selected' : '') . ">100% Wysłano do eservice do przekazania opiekunowi</option>
-          
+           <option value='100% Przejęcie nowych punktów'" . ($selectedOption === '100% Przejęcie nowych punktów' ? ' selected' : '') . ">100% Przejęcie nowych punktów</option>
                         </select>
                           <input class='js-date-time-local' type='datetime-local' name='fields[171]' value='" . htmlspecialchars($row['field_value_171'], ENT_QUOTES, 'UTF-8') . "'placeholder='Data kontaktu'>
                    <textarea class='textarea' name='fields[116]' rows='10' cols='30'>" . htmlspecialchars($combinedValue, ENT_QUOTES, 'UTF-8') . "</textarea>

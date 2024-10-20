@@ -30,5 +30,7 @@
 
 .printContent {
     border: 1px solid #000;
+    display: grid;
+    grid-template-columns: 1fr;
 
 }

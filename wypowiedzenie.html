@@ -14,7 +14,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
- <!--
+   <!--
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/headers.css">
@@ -29,24 +29,23 @@
     <link rel="stylesheet" href="css/print.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
     <script defer src="js/script.js"></script>
--->
-   
-<script defer src="https://terminal.terminaleservice.pl/js/script.js?"></script>
+ -->
 
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?">
-<link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?">
-
+    <script defer src="https://terminal.terminaleservice.pl/js/monitoringsite.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/js/script.js?"></script>
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?1">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?">
 
     <title> Wypowiedzenie</title>
 </head>
@@ -63,39 +62,51 @@
             operatora terminali płatniczych jeśli nie korzystasz z usług eService.
         </h1>
         <div class="printContent" id="printContent">
+         
+                <input class="paragraf paragraf--date" id="currentDateParagraph" type="text">
+          
+                <section class="section section--terminationCompany">
+                    <section class="section section--companyName">
+                        <p class="section__paragraf">Nip: [[nip]]</p>
+                        <p class="section__paragraf">Nazwa firmy: [[nazwafirmy]]</p>
+                        <p class="section__paragraf">Adres firmy: [[nazwaulicyfirma]] [[numerulicafirma]]
+                            [[numerlokalufirma]] </p>
+                        <p class="section__paragraf"> [[kodmiastafirma]] [[miastofirmy]] </p>
+                    </section>
 
-            <input class="paragraf paragraf--date" id="currentDateParagraph" type="text">
-            <section class="section section--terminationCompany">
-                <section class="section section--companyName">
-                    <p class="section__paragraf">Nip: [[nip]]</p>
-                    <p class="section__paragraf">Nazwa firmy: [[nazwafirmy]]</p>
-                    <p class="section__paragraf">Adres firmy: [[nazwaulicyfirma]] [[numerulicafirma]]
-                        [[numerlokalufirma]] </p>
-                    <p class="section__paragraf"> [[kodmiastafirma]] [[miastofirmy]] </p>
-
-                </section>
-
-                <section class="section section--companyNameTerminal">
-                    <div class="dropdown">
-            
-                        
-                
+                    <section class="section section--companyNameTerminal">
+                        <div class="dropdown">
                             <select class="dropdownoption">
-                                <option value=>Operator terminali płatniczych -></option>
-                                <option value="Fiserv Polska - Dawniej Polcard">Fiserv Polska S.A. Al. Jerozolimskie 100, 00-807 Warszawa </option>
-                                <option value="Elavon ul. Puławska 17, 02-515 Warszawa">Elavon ul. Puławska 17, 02-515 Warszawa</option>
-                                <option value="PayTel SA">PayTel SA ul. Żwirki i Wigury 14, 02-092 Warszawa </option>
-                                <option value=>Planet Pay Sp. z o.o. ul. Jutrzenki 139, 02-231 Warszawa</option>
-                                <option value=>PEP Sp. Z O.O. al. Tadeusza Rejtana 20B 35-310 Rzeszów</option>
-            
-                                <option value=>Worldline ul. Prosta 68, 00-838 Warszawa</option>
+                                <option value="">Operator terminali płatniczych -></option>
+                                <option value="Fiserv Polska - Dawniej Polcard">
+                                    Fiserv Polska S.A. <br> Al. Jerozolimskie 100, 00-807 Warszawa
+                                </option>
+                                <option value="Elavon ul. Puławska 17, 02-515 Warszawa">
+                                    Elavon <br> ul. Puławska 17, 02-515 Warszawa
+                                </option>
+                                <option value="ING Bank Śląski S.A. ul. Sokolska 34, 40-086 Katowice">
+                                    ING Bank Śląski S.A. <br> ul. Sokolska 34, 40-086 Katowice
+                                </option>
+                                <option value="PayTel SA">
+                                    PayTel SA <br> ul. Żwirki i Wigury 14, 02-092 Warszawa
+                                </option>
+                                <option value="Planet Pay Sp. z o.o.">
+                                    Planet Pay Sp. z o.o. <br> ul. Jutrzenki 139, 02-231 Warszawa
+                                </option>
+                                <option value="PEP Sp. Z O.O.">
+                                    PEP Sp. Z O.O. <br> al. Tadeusza Rejtana 20B 35-310 Rzeszów
+                                </option>
+                                <option value="Worldline">
+                                    Worldline <br> ul. Prosta 68, 00-838 Warszawa
+                                </option>
                                 <option value="Inny. Uzupełnię ręcznie po wydrukowaniu"></option>
-            
                             </select>
-                      
-                    </div>
+                        </div>
+                    </section>
+                    
                 </section>
-            </section>
+            
+        
 
             <p class="paragraf paragraf--termination">W dniu dzisiejszym wypowiadamy umowę na terminale płatnicze.
                 Jednocześnie informujemy o zachowaniu okresu wypowiedzenia zawartego w umowie.</p>

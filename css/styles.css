@@ -77,5 +77,9 @@
 }
 .highlight{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: #f9f4e9;
+  background-color: #fcb10e;
+}
+.highlight-red{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #dc1111;
 }

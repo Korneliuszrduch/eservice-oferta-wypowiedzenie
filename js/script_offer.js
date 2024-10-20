@@ -739,7 +739,7 @@
                         // After confirming, send the email to update the database
                            loadStatusOpenOffer();
                     }
-                }, 18000); // Show alert after 18 seconds
+                }, 8000); // Show alert after 18 seconds
             } else {
                 setTimeout(function () {
                     alert(`${savingMoney} zł zaoszczędzisz`);
