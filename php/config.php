@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: https://mail.korneliuszrduch.pl");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 $servername = "localhost";
 $username = "kornelird_nowenetsendo";
 $password = "mnMhfmenu4";
