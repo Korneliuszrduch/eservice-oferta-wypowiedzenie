@@ -1,7 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: https://mail.korneliuszrduch.pl"); // Podaj konkretna domenę
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
 include '../php/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
