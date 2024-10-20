@@ -730,28 +730,26 @@
         
 
 
-        const showAlertCalculate = () => {
+        const showAlertCalculate = () => { 
             const savingMoney = parseFloat(document.getElementById("sqm-f328").value) || 0;
-
+        
             if (savingMoney === 0) {
                 setTimeout(function () {
-                    if (confirm("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.")) {
-                        // After confirming, send the email to update the database
-                           loadStatusOpenOffer();
-                    }
-                }, 8000); // Show alert after 18 seconds
+                    alert("Przelicz naszą ofertę z twoją obecną używając naszego kalkulatora.");
+                    // Execute the function after the alert is dismissed
+                    loadStatusOpenOffer();
+                }, 8000); // Show alert after 8 seconds
             } else {
                 setTimeout(function () {
                     alert(`${savingMoney} zł zaoszczędzisz`);
                     loadStatusOpenOffer();
                 }, 2000); // Show alert after 2 seconds
             }
-
+        
             const conversionSection = document.querySelector(".container--conversion");
             conversionSection.scrollIntoView({ behavior: "smooth" });
         };
-
-
+        
 
 
        // loadRandomLinkJs();
