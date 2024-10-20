@@ -1,24 +1,89 @@
 <?php
-include 'php/config.php';
+include '../php/config.php';
+header('Content-Type: application/json'); // Ustawienie nagłówka na JSON
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
+    // Odbieranie danych z formularza
+    $selectedOptionCompanyOfTerminal = isset($_POST['selectedOptionCompanyOfTerminal']) ? trim($_POST['selectedOptionCompanyOfTerminal']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 
-    $stmt = $conn->prepare("UPDATE users SET email=?, phone=? WHERE id=?");
-    $stmt->bind_param("ssi", $email, $phone, $id);
+    $nameFirst = isset($_POST['nameFirst']) ? trim($_POST['nameFirst']) : '';
+    $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+    $monthlyCardTurnover = isset($_POST['monthlyCardTurnover']) ? trim($_POST['monthlyCardTurnover']) : '';
+    $companyTaxNumber = isset($_POST['companyTaxNumber']) ? trim($_POST['companyTaxNumber']) : '';
+    $monthlyCommissionCompetition = isset($_POST['monthlyCommissionCompetition']) ? trim($_POST['monthlyCommissionCompetition']) : '';
+    $averageTransaction = isset($_POST['averageTransaction']) ? trim($_POST['averageTransaction']) : '';
+    $fixedMonthlyCostsCompetition = isset($_POST['fixedMonthlyCostsCompetition']) ? trim($_POST['fixedMonthlyCostsCompetition']) : '';
+    $selectedStatusSentOffer = isset($_POST['selectedStatusSentOffer']) ? trim($_POST['selectedStatusSentOffer']) : '';
+    $selectedStatusOpenOffer = isset($_POST['selectedStatusOpenOffer']) ? trim($_POST['selectedStatusOpenOffer']) : '';
+    $customerStatus = isset($_POST['customerStatus']) ? trim($_POST['customerStatus']) : '';
+    $dateContactCustomer = isset($_POST['dateContactCustomer']) ? trim($_POST['dateContactCustomer']) : '';
+    $comments = isset($_POST['comments']) ? trim($_POST['comments']) : '';
 
-    if ($stmt->execute()) {
-        echo "Rekord został zaktualizowany!";
+    // Sprawdzenie, czy e-mail jest podany
+    if (!empty($email)) {
+        // Wyszukiwanie subskrybenta na podstawie e-maila
+        $stmt = $conn->prepare("SELECT sid FROM nm_krduch2subscribers WHERE email = ? AND status = 'active'");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($sid);
+        $stmt->fetch();
+        $stmt->close();
+
+
+        $stmt_update_name_phone = $conn->prepare("UPDATE nm_krduch2subscribers SET name_first = ?, phone = ? WHERE sid = ?");
+        $stmt_update_name_phone->bind_param("ssi", $nameFirst, $phone, $sid);
+        $stmt_update_name_phone->execute();
+        $stmt_update_name_phone->close();
+
+        if (!empty($sid)) {
+            // Tworzenie tablicy z polami do aktualizacji
+            $fieldsToUpdate = [
+                112 => $selectedOptionCompanyOfTerminal,
+                114 => $selectedStatusOpenOffer,
+                183 => $monthlyCardTurnover,
+                330 => $monthlyCommissionCompetition,
+                184 => $averageTransaction,
+                329 => $fixedMonthlyCostsCompetition,
+                120 => $companyTaxNumber,
+                115 => $customerStatus,
+                171 => $dateContactCustomer,
+                116 => $comments,
+                234 => $selectedStatusSentOffer,
+            ];
+
+            $updateSuccess = true; // Flaga sukcesu aktualizacji
+
+            foreach ($fieldsToUpdate as $fid => $value) {
+
+                // Użycie zapytania UPDATE do aktualizacji rekordu
+                $stmt_update_field = $conn->prepare("UPDATE nm_krduch2subscribers_fields SET value = ? WHERE sid = ? AND fid = ?");
+                $stmt_update_field->bind_param("sii", $value, $sid, $fid);
+
+                if (!$stmt_update_field->execute()) {
+                    $updateSuccess = false; // Ustawienie flagi na false, jeśli wystąpił błąd
+                    echo json_encode(["error" => "Błąd podczas aktualizacji rekordu dla fid $fid: " . $stmt_update_field->error]);
+                }
+
+                $stmt_update_field->close();
+
+            }
+
+            if ($updateSuccess) {
+                echo json_encode([
+                    "message" => "Zaktualizowano dane w bazie dla e-maila: $email i subskrybenta o sid: $sid",
+                    "fid" => 112,
+                    "value" => $selectedOptionCompanyOfTerminal
+                ]);
+            }
+        } else {
+            error_log("Nie znaleziono subskrybenta o podanym adresie email: $email");
+            echo json_encode(["error" => "Nie znaleziono aktywnego subskrybenta dla podanego e-maila."]);
+        }
     } else {
-        echo "Błąd: " . $stmt->error;
+        echo json_encode(["error" => "Nieprawidłowy e-mail."]);
     }
-
-    $stmt->close();
-    $conn->close();
 }
+
+$conn->close(); // Zamknięcie połączenia z bazą danych
 ?>
-
-
-
