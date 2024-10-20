@@ -54,22 +54,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sortRows = (rows) => {
         return rows.sort((a, b) => {
+            // Priorytet 1: Sortowanie po klasie highlight (najwyższy priorytet)
             const aHighlight = a.classList.contains('highlight');
             const bHighlight = b.classList.contains('highlight');
             if (aHighlight && !bHighlight) return -1; // a ma highlight, b nie
             if (!aHighlight && bHighlight) return 1;  // b ma highlight, a nie
+    
+            // Priorytet 2: Sortowanie po klasie highlight-red (drugi priorytet)
+            const aHighlightRed = a.classList.contains('highlight-red');
+            const bHighlightRed = b.classList.contains('highlight-red');
+            if (aHighlightRed && !bHighlightRed) return -1; // a ma highlight-red, b nie
+            if (!aHighlightRed && bHighlightRed) return 1;  // b ma highlight-red, a nie
+    
+            // Priorytet 3: Sortowanie po dacie (jeśli highlight i highlight-red są takie same)
             const aDate = new Date(a.querySelector('.js-date-time-local')?.value);
             const bDate = new Date(b.querySelector('.js-date-time-local')?.value);
-            return bDate - aDate;
+    
+            // Obsłuż przypadek, gdy jedna z dat może być pusta
+            if (!isNaN(aDate) && !isNaN(bDate)) {
+                return bDate - aDate; // Sortuj malejąco po dacie
+            } else if (!isNaN(aDate)) {
+                return -1; // Jeśli aDate istnieje, a bDate nie, a powinno być wyżej
+            } else if (!isNaN(bDate)) {
+                return 1;  // Jeśli bDate istnieje, a aDate nie, b powinno być wyżej
+            } else {
+                return 0;  // Jeśli żadna z dat nie istnieje, są równe
+            }
         });
     };
+    
+    
 
 
     const highlightContact = () => {
-
         if (!emailForUrl) return;
-
-
+    
         rows.forEach(dataTable => {
             const emailInTable = dataTable.querySelector(".js-email-contact")?.value.trim();
             if (emailInTable === emailForUrl) {
@@ -77,12 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 dataTable.classList.add("highlight");
             }
         });
-
-
+    
         const tableBody = document.querySelector('.js-tbody');
         const sortedRows = sortRows(rows);
+        
+
         sortedRows.forEach(row => tableBody.appendChild(row));
     };
+
 
 
     const showContacts = () => {
@@ -224,8 +245,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hideRowsByTimeContact(rows, currentDate, emailForUrl);
     hideContactBecauseDone();
-    highlightContact();
     highlightTheCustomerDidNotOpenOffers();
+    highlightContact();
+
     //showContacts();
 
 });
