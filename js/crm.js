@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
                         })
                         .catch(error => console.error("Error:", error));
-                }, 2000);
+                }, 200);
             } else {
                 alert("Proszę wypełnić wymagane pola");
             }
