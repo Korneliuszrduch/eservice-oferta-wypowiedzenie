@@ -148,6 +148,7 @@ if ($result->num_rows > 0) {
                             <option value='0% 2 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 2 Brak kontaktu' ? ' selected' : '') . ">0% 2 Brak kontaktu</option>
                             <option value='0% 3 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 3 Brak kontaktu' ? ' selected' : '') . ">0% 3 Brak kontaktu</option>
                                                      <option value='0% Wysłał SMS'" . ($selectOptionCustumerStatus === '0% Wysłał SMS' ? ' selected' : '') . ">0% Wysłał SMS</option>
+                                                                           
                             <option value='0% Wysłalem SMS'" . ($selectOptionCustumerStatus === '0% Wysłalem SMS' ? ' selected' : '') . ">0% Wysłalem SMS</option>
                              <option value='0% Wysłalem MAIL z Prośbą o Kontakt'" . ($selectOptionCustumerStatus === '0% Wysłalem MAIL z Prośbą o Kontakt' ? ' selected' : '') . ">0% Wysłalem MAIL z Prośbą o Kontakt</option>
                               <option value='0%08 Obecny klient eservice'" . ($selectOptionCustumerStatus === '0%08 Obecny klient eservice' ? ' selected' : '') . ">0%08 Obecny klient eservice</option>
@@ -155,9 +156,12 @@ if ($result->num_rows > 0) {
                               <option value='0% 1 Niezainteresowany'" . ($selectOptionCustumerStatus === '0% 1 Niezainteresowany' ? ' selected' : '') . ">0% 1 Niezainteresowany</option>
                               <option value='0% 2 Niezainteresowany'" . ($selectOptionCustumerStatus === '0% 2 Niezainteresowany' ? ' selected' : '') . ">0% 2 Niezainteresowany</option>
                               <option value='0% 3 Niezainteresowany'" . ($selectOptionCustumerStatus === '0% 3 Niezainteresowany' ? ' selected' : '') . ">0% 3 Niezainteresowany</option>
+                                 <option value='0% 1 Podpisałał z konkurencją'" . ($selectOptionCustumerStatus === '0% 1 Podpisałał z konkurencją' ? ' selected' : '') . ">0% 1 Podpisałał z konkurencją</option>
 
 
+                               
                                  <option value='0% błędny mail. Utworzono z poprawionym'" . ($selectOptionCustumerStatus === '0% błędny mail. Utworzono z poprawionym' ? ' selected' : '') . ">0% błędny mail. Utworzono z poprawionym</option>
+                                   <option value='1% Odebrał i miał oddzwonić'" . ($selectOptionCustumerStatus === '1% Odebrał i miał oddzwonić' ? ' selected' : '') . ">1% Odebrał i miał oddzwonić</option>
                             <option value='2% odbiera i się rozłącza'" . ($selectOptionCustumerStatus === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
                                 <option value='5% Ustalono inny termin'" . ($selectOptionCustumerStatus === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectOptionCustumerStatus === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
