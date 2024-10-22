@@ -164,6 +164,7 @@ if ($result->num_rows > 0) {
                                    <option value='1% Odebrał i miał oddzwonić'" . ($selectOptionCustumerStatus === '1% Odebrał i miał oddzwonić' ? ' selected' : '') . ">1% Odebrał i miał oddzwonić</option>
                             <option value='2% odbiera i się rozłącza'" . ($selectOptionCustumerStatus === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
                                 <option value='5% Ustalono inny termin'" . ($selectOptionCustumerStatus === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
+                                  <option value='6% Przypomnieć o fakturze + wysłać mail o fakturze'" . ($selectOptionCustumerStatus === '6% Przypomnieć o fakturze + wysłać mail o fakturze' ? ' selected' : '') . ">6% Przypomnieć o fakturze + wysłać mail o fakturze</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectOptionCustumerStatus === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
                             <option value='10% Omówić potrzeby'" . ($selectOptionCustumerStatus === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
                                  <option value='11% Omówić aktualne koszty'" . ($selectOptionCustumerStatus === '11% Omówić aktualne koszty' ? ' selected' : '') . ">11% Omówić aktualne koszty</option>
