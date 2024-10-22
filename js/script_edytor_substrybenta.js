@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = emailElement.value.trim();
     const latestCustomerStatus = latestCustomerStatusElement.value.trim();
 
-   // console.log("datainput", dateInput);
-   // console.log("fname", fname);
+    // console.log("datainput", dateInput);
+    // console.log("fname", fname);
     //console.log("email", email);
 
     // Sprawdzamy, czy wszystkie pola są uzupełnione
@@ -113,6 +113,24 @@ document.addEventListener('DOMContentLoaded', () => {
       linkElement.textContent = "Dodaj do kalendarza Google";
       linkElement.style.display = "block"; // Upewniamy się, że link jest widoczny
     }
+  };
+
+
+
+
+  const loadlatestCustomerStatusAll = (statusValue) => {
+    const latestCustomerStatusAll = document.querySelectorAll(".js-latest-custumer-status");
+    latestCustomerStatusAll.forEach((latestCustomerStatus) => {
+      latestCustomerStatus.value = statusValue;
+      
+    });
+  };
+
+  const loadElementsStatusSentOffer = (statusSendOffer) => {
+    const selectedStatusSentOfferAll = document.querySelectorAll(".js-offer-sent-status");
+    selectedStatusSentOfferAll.forEach((selectedStatusSentOffer) => {
+      selectedStatusSentOffer.value = statusSendOffer;
+    });
   };
 
 
@@ -216,8 +234,10 @@ END:VCALENDAR
     event.preventDefault();
     const confirmation = confirm("Czy na pewno chcesz wysłać ofertę?");
     if (confirmation) {
-      const statusValue = "40% Wysłano maila z ofertą";
+      const statusValue = "40% Wysłano maila z ofertą"
+      const statusSendOffer = "Ofertę wysłano";
       loadlatestCustomerStatusAll(statusValue);
+      loadElementsStatusSentOffer(statusSendOffer);
       const formOffer = document.querySelector(".js-offer");
       const mlid = document.querySelector(".js-mlid1");
       const token = document.querySelector(".js-token1");
@@ -232,6 +252,34 @@ END:VCALENDAR
     } else {
 
       console.log("Oferta nie została wysłana.");
+    }
+  });
+
+
+  const buttonsendRequestForContractData = document.querySelector(".js-send-of-the-dateCompany");
+  buttonsendRequestForContractData.addEventListener("click", (event) => {
+    event.preventDefault();
+    const confirmation = confirm("Czy na pewno chcesz wysłać prośbę o dane?");
+    if (confirmation) {
+      const statusValue = "90% Wysłano prośbę o dane";
+      const statusSendOffer = "Ofertę wysłano";
+      loadlatestCustomerStatusAll(statusValue);
+      loadElementsStatusSentOffer(statusSendOffer);
+
+      const formOffer = document.querySelector(".js-offer");
+      const mlid = document.querySelector(".js-mlid1");
+      const token = document.querySelector(".js-token1");
+      const nameList = document.querySelector(".js-name-list1");
+      token.value = "da945ba7449d1e092316ba46f044f0b134483b6b";
+      mlid.value = "246";
+      nameList.value = "[[nazwalistyadresowej]] & CHCE TERMINAL ZAMAWIANIE TERMINALA KROK 0 ";
+      console.log("mlid", mlid.value);
+      console.log("token", token.value);
+      console.log("formOffer", formOffer);
+      formOffer.submit();
+    } else {
+
+      console.log("Prośba o dane nie została wysłana.");
     }
   });
 
@@ -255,13 +303,7 @@ END:VCALENDAR
 
 
 
-  const loadlatestCustomerStatusAll = (statusValue) => {
-    const latestCustomerStatusAll = document.querySelectorAll(".js-latest-custumer-status");
-    latestCustomerStatusAll.forEach((latestCustomerStatus) => {
-      latestCustomerStatus.value = statusValue;
-    });
-  };
-
+ 
   const buttonRegardingInvoice = document.querySelector(".js-button-regarding-the-invoice");
   buttonRegardingInvoice.addEventListener("click", (event) => {
     event.preventDefault();
@@ -272,8 +314,9 @@ END:VCALENDAR
       const formUpdateContact = document.querySelector(".js-form-update-contact");
 
       const statusValue = "7% Wysłany mail ws. faktury z terminali";
-
+      const statusSendOffer = "Ofertę wysłano";
       loadlatestCustomerStatusAll(statusValue);
+      loadElementsStatusSentOffer(statusSendOffer);
 
 
       const mlid = document.querySelector(".js-mlid");
@@ -284,7 +327,7 @@ END:VCALENDAR
       nameList.value = "PROŚBA O FAKTURĘ TERMINALE";
       console.log("mlid", mlid.value);
       console.log("token", token.value);
-      formUpdateContact.submit();
+     formUpdateContact.submit();
     } else {
 
       console.log("Mail z prośbą o fakturę nie został wysłany.");
