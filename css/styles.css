@@ -83,3 +83,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: #dc1111;
 }
+
+.highlight-green{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #58aa25;
+}
