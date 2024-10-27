@@ -130,18 +130,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dataTableAll.forEach(dataTable => {
         const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
-
-        if (!buttonSaveDatabase) return; // Jeśli przycisk nie istnieje, przerywamy
-
+    
+        if (!buttonSaveDatabase) return;
+    
         buttonSaveDatabase.addEventListener("click", event => {
             event.preventDefault();
             const sid = buttonSaveDatabase.dataset.sid;
-
+    
             const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
             const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
             const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
             const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
-
             const monthlyCardTurnover = dataTable.querySelector(".js-monthly-card-turnover")?.value.trim() || '';
             const companyTaxNumber = dataTable.querySelector(".js-company-tax-number")?.value.trim() || '';
             const monthlyCommissionCompetition = dataTable.querySelector(".js-monthly-comission-competition")?.value.trim() || '';
@@ -151,16 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedStatusOpenOffer = dataTable.querySelector(".js-offer-opening-status")?.value.trim() || '';
             const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
             const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
-            const comments = dataTable.querySelector(".textarea")?.value.trim() || '';  // Upewnij się, że textarea ma klasę .textarea
-
+            const comments = dataTable.querySelector(".textarea")?.value.trim() || '';
+    
             if (email) {
                 const formData = new FormData();
                 formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
-                //  formData.append("sid", sid); // Dodajemy SID do danych
                 formData.append("nameFirst", nameFirst);
                 formData.append("email", email);
                 formData.append("phone", phone);
-
                 formData.append("monthlyCardTurnover", monthlyCardTurnover);
                 formData.append("companyTaxNumber", companyTaxNumber);
                 formData.append("monthlyCommissionCompetition", monthlyCommissionCompetition);
@@ -171,32 +168,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append("customerStatus", customerStatus);
                 formData.append("dateContactCustomer", dateContactCustomer);
                 formData.append("comments", comments);
-
-                // Wyświetlanie wszystkich danych z formData w konsoli
-                console.log("FormData zawiera:");
-                formData.forEach((value, key) => {
-                    console.log(`${key}: ${value}`);
-                });
-
-                // Opóźnienie o 2 sekundy przed wysyłką danych
+    
                 setTimeout(() => {
                     fetch("/php/update_contact.php", {
                         method: "POST",
                         body: formData
                     })
-                        .then(response => response.text())
-                        .then(result => {
-                            console.log("Server response:", result); // Logowanie odpowiedzi serwera dla debugowania
-                            window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
-                        })
-                        .catch(error => console.error("Error:", error));
+                    .then(response => response.json())
+                    .then(result => {
+
+                        //window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
+                        console.log("Server response:", result);
+    
+                        // Sprawdzanie klucza message w odpowiedzi JSON
+                        if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
+                            dataTable.classList.add("highlight-green");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
                 }, 200);
             } else {
                 alert("Proszę wypełnić wymagane pola");
             }
         });
     });
-
+    
+    
     document.querySelectorAll('.js-delete-button').forEach(button => {
         button.addEventListener('click', event => {
             event.preventDefault();
@@ -231,11 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputPhone = document.querySelector('.js-input-phone');
         const inputFname = document.querySelector('.js-input-name-first');
         const inputEmails = document.querySelectorAll('.js-input-email');
-        const inputPlaceOfAcquiringTheCustomer = document.querySelector('.js-input-place-of-acquiring-the-customer');
+        const placeOfAcquiringTheCustomer = document.querySelector('.js-input-place-of-acquiring-the-customer');
 
         if (inputPhone) inputPhone.value = params.get("phone") || '';
         if (inputFname) inputFname.value = params.get("fname") || '';
-        if (inputPlaceOfAcquiringTheCustomer) inputPlaceOfAcquiringTheCustomer.value = params.get("a") || '';
+        if (placeOfAcquiringTheCustomer) placeOfAcquiringTheCustomer.value = params.get("a") || '';
         inputEmails.forEach(input => input.value = params.get("mail") || '');
     };
 
@@ -265,6 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const nameFirst = document.querySelector('.js-input-name-first').value.trim();
         const email = document.querySelector('.js-input-email').value.trim();
         const phone = document.querySelector('.js-input-phone').value.trim();
+        const placeOfAcquiringTheCustomer = document.querySelector(".js-input-place-of-acquiring-the-customer").value.trim();
+     
         const isUpdate = registerUpdateButton.dataset.update === 'true';
 
         if (email) {
@@ -272,17 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('name_first', nameFirst);
             formData.append('email', email);
             formData.append('phone', phone);
+            formData.append('placeOfAcquiringTheCustomer', placeOfAcquiringTheCustomer);
             formData.append('update', isUpdate ? 'true' : 'false');
-
-            fetch('/php/register_mail.php', {
+//console.log("miejsce pozysku" , placeOfAcquiringTheCustomer);
+           fetch('/php/register_mail.php', {
                 method: 'POST',
-                body: formData
-            })
+               body: formData
+         })
                 .then(response => response.text())
-                .then(result => {
-                    console.log('Server response:', result); // Logowanie odpowiedzi serwera dla debugowania
-                    window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
-                })
+              .then(result => {
+                  console.log('Server response:', result); // Logowanie odpowiedzi serwera dla debugowania
+                  window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
+               })
                 .catch(error => console.error('Error:', error));
         } else {
 
