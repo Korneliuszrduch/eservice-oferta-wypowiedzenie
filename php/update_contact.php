@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($updateSuccess) {
                 echo json_encode([
-                    "message" => "Dane zostały zaktualizowane lub dodane w bazie dla e-maila: $email",
+                    "message" => "Dane zostaly zaktualizowane lub dodane w bazie dla e-maila: $email",
                     "sid" => $sid
                 ]);
             }
