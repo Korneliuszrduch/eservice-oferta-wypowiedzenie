@@ -177,6 +177,9 @@ if ($result->num_rows > 0) {
                                    <option value='70% Czas na decyzję'" . ($selectOptionCustumerStatus === '70% Czas na decyzję' ? ' selected' : '') . ">70% Czas na decyzję</option>
                                        <option value='80% Chce podpisać umowę'" . ($selectOptionCustumerStatus === '80% Chce podpisać umowę' ? ' selected' : '') . ">80% Chce podpisać umowę</option>
                                          <option value='100% Wysłać dokumenty do klienta'" . ($selectOptionCustumerStatus === '100% Wysłać dokumenty do klienta' ? ' selected' : '') . ">100% Wysłać dokumenty do klienta</option>
+
+                                            <option value='100% Wysłano sms lub maila ws. aktualizacji danych z dowodu'" . ($selectOptionCustumerStatus === '100% Wysłano sms lub maila ws. aktualizacji danych z dowodu' ? ' selected' : '') . ">100% Wysłano sms lub maila ws. aktualizacji danych z dowodu</option>
+                                            
                                             <option value='100% Przygotować aneksy na zmianę warunków'" . ($selectOptionCustumerStatus === '100% Przygotować aneksy na zmianę warunków' ? ' selected' : '') . ">100% Przygotować aneksy na zmianę warunków</option>
                                           <option value='100% Wysłano dokumenty do podpisu'" . ($selectOptionCustumerStatus === '100% Wysłano dokumenty do podpisu' ? ' selected' : '') . ">100% Wysłano dokumenty do podpisu</option>
                                             <option value='100% Dokumenty Podpisane przez klienta'" . ($selectOptionCustumerStatus === '100% Dokumenty Podpisane przez klienta' ? ' selected' : '') . ">100% Dokumenty Podpisane przez klienta</option>
