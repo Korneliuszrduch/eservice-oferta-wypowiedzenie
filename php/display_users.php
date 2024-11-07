@@ -147,6 +147,8 @@ if ($result->num_rows > 0) {
                               <option value='0% 1 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 1 Brak kontaktu' ? ' selected' : '') . ">0% 1 Brak kontaktu</option>
                             <option value='0% 2 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 2 Brak kontaktu' ? ' selected' : '') . ">0% 2 Brak kontaktu</option>
                             <option value='0% 3 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 3 Brak kontaktu' ? ' selected' : '') . ">0% 3 Brak kontaktu</option>
+                                 <option value='0% 4 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% 4 Brak kontaktu' ? ' selected' : '') . ">0% 4 Brak kontaktu</option>
+                                        <option value='0% Ukryj contact - 5 Brak kontaktu'" . ($selectOptionCustumerStatus === '0% Ukryj contact - 5 Brak kontaktu' ? ' selected' : '') . ">0% Ukryj contact - 5 Brak kontaktu</option>
                                                      <option value='0% Wysłał SMS'" . ($selectOptionCustumerStatus === '0% Wysłał SMS' ? ' selected' : '') . ">0% Wysłał SMS</option>
                                                                            
                             <option value='0% Wysłalem SMS'" . ($selectOptionCustumerStatus === '0% Wysłalem SMS' ? ' selected' : '') . ">0% Wysłalem SMS</option>
@@ -171,6 +173,7 @@ if ($result->num_rows > 0) {
 
                             <option value='14% Przygotować kalkulator'" . ($selectOptionCustumerStatus === '14% Przygotować kalkulator' ? ' selected' : '') . ">14% Przygotować kalkulator</option>
                             <option value='18% Przedstawić ofertę'" . ($selectOptionCustumerStatus === '18% Przedstawić ofertę' ? ' selected' : '') . ">18% Przedstawić ofertę</option>
+                                                       <option value='18% Przedstawić ofertę esTom na IPhone'" . ($selectOptionCustumerStatus === '18% Przedstawić ofertę esTom na IPhone' ? ' selected' : '') . ">18% Przedstawić ofertę esTom na IPhone</option>
                             <option value='41% Kliknął w ofertę'" . ($selectOptionCustumerStatus === '41% Kliknął w ofertę' ? ' selected' : '') . ">41% Kliknął w ofertę</option>
                               <option value='42% Umówione spotkanie'" . ($selectOptionCustumerStatus === '42% Umówione spotkanie' ? ' selected' : '') . ">42% Umówione spotkanie</option>
                                 <option value='43% Poprosił o kontakt'" . ($selectOptionCustumerStatus === '43% Poprosił o kontakt' ? ' selected' : '') . ">43% Poprosił o kontakt</option>
@@ -179,7 +182,7 @@ if ($result->num_rows > 0) {
                                          <option value='100% Wysłać dokumenty do klienta'" . ($selectOptionCustumerStatus === '100% Wysłać dokumenty do klienta' ? ' selected' : '') . ">100% Wysłać dokumenty do klienta</option>
 
                                             <option value='100% Wysłano sms lub maila ws. aktualizacji danych z dowodu'" . ($selectOptionCustumerStatus === '100% Wysłano sms lub maila ws. aktualizacji danych z dowodu' ? ' selected' : '') . ">100% Wysłano sms lub maila ws. aktualizacji danych z dowodu</option>
-                                            
+                                               <option value='100% Przygotować kalkulator - negocjacje warunków'" . ($selectOptionCustumerStatus === '100% Przygotować kalkulator - negocjacje warunków' ? ' selected' : '') . ">100% Przygotować kalkulator - negocjacje warunków</option>
                                             <option value='100% Przygotować aneksy na zmianę warunków'" . ($selectOptionCustumerStatus === '100% Przygotować aneksy na zmianę warunków' ? ' selected' : '') . ">100% Przygotować aneksy na zmianę warunków</option>
                                           <option value='100% Wysłano dokumenty do podpisu'" . ($selectOptionCustumerStatus === '100% Wysłano dokumenty do podpisu' ? ' selected' : '') . ">100% Wysłano dokumenty do podpisu</option>
                                             <option value='100% Dokumenty Podpisane przez klienta'" . ($selectOptionCustumerStatus === '100% Dokumenty Podpisane przez klienta' ? ' selected' : '') . ">100% Dokumenty Podpisane przez klienta</option>
@@ -189,6 +192,7 @@ if ($result->num_rows > 0) {
      <option value='100% Lista VIP faktura eservice rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP faktura eservice rekomendacje' ? ' selected' : '') . ">100% Lista VIP faktura eservice rekomendacje</option>
     
   <option value='100% Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Pobrać rekomendacje' ? ' selected' : '') . ">100% Pobrać rekomendacje</option>
+    <option value='100% Wysłać gadżet'" . ($selectOptionCustumerStatus === '100% Wysłać gadżet' ? ' selected' : '') . ">100% Wysłać gadżet</option>
     <option value='100% Lista VIP Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP Pobrać rekomendacje' ? ' selected' : '') . ">100% Lista VIP Pobrać rekomendacje</option>
         <option value='100% Lista VIP'" . ($selectOptionCustumerStatus === '100% Lista VIP' ? ' selected' : '') . ">100% Lista VIP</option>
 
@@ -212,6 +216,9 @@ if ($result->num_rows > 0) {
 
                 </form>
                  <button class='js-save-button-date-to-database' type='button'>Zapisz tylko do bazy</button>
+
+                    <button class='js-create-ics' type='button'>Utwórz wydarzenie ICS</button> 
+                 
             </tr>";
   }
   echo "</tbody></table>";
