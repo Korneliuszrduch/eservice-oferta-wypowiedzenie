@@ -22,6 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const hideContactBecauseNoContact = () => {
+        const dataTableAll = document.querySelectorAll(".js-data-table");
+        dataTableAll.forEach(dataTable => {
+            const latestCustomerStatus = dataTable.querySelector(".js-latest-custumer-status");
+            const inputDate = dataTable.querySelector('.js-date-time-local');
+            if (latestCustomerStatus && latestCustomerStatus.value.trim() === "0% Ukryj contact - 5 Brak kontaktu") {
+
+                if (inputDate && new Date(inputDate.value) < currentDate) {
+                    dataTable.classList.add("hidden");
+                } else {
+                    dataTable.classList.add("hidden");
+                }
+            }
+        });
+    };
+
+
     const sortRows = (rows) => {
         return rows.sort((a, b) => {
 
@@ -126,17 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const dataTableAll = document.querySelectorAll(".js-data-table");
 
+
+    const dataTableAll = document.querySelectorAll(".js-data-table");
     dataTableAll.forEach(dataTable => {
         const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
-    
         if (!buttonSaveDatabase) return;
-    
+
         buttonSaveDatabase.addEventListener("click", event => {
             event.preventDefault();
+            dataTable.classList.remove("highlight-green");
             const sid = buttonSaveDatabase.dataset.sid;
-    
+
             const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
             const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
             const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
@@ -151,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
             const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
             const comments = dataTable.querySelector(".textarea")?.value.trim() || '';
-    
+
             if (email) {
                 const formData = new FormData();
                 formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
@@ -168,32 +186,113 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append("customerStatus", customerStatus);
                 formData.append("dateContactCustomer", dateContactCustomer);
                 formData.append("comments", comments);
-    
+
                 setTimeout(() => {
                     fetch("/php/update_contact.php", {
                         method: "POST",
                         body: formData
                     })
-                    .then(response => response.json())
-                    .then(result => {
+                        .then(response => response.json())
+                        .then(result => {
 
-                        //window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
-                        console.log("Server response:", result);
-    
-                        // Sprawdzanie klucza message w odpowiedzi JSON
-                        if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
-                            dataTable.classList.add("highlight-green");
-                        }
-                    })
-                    .catch(error => console.error("Error:", error));
+                            //window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
+                            console.log("Server response:", result);
+
+                            // Sprawdzanie klucza message w odpowiedzi JSON
+                            if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
+                                dataTable.classList.add("highlight-green");
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
                 }, 200);
             } else {
                 alert("Proszę wypełnić wymagane pola");
             }
         });
     });
-    
-    
+
+
+
+
+    // const dataTableAll = document.querySelectorAll(".js-data-table");
+
+    dataTableAll.forEach(dataTable => {
+        const buttonCreateIcs = dataTable.querySelector(".js-create-ics");
+        if (!buttonCreateIcs) return;
+
+        buttonCreateIcs.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Pobieranie danych z elementów tabeli
+            const sid = buttonCreateIcs.dataset.sid;
+            const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
+            const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+            const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
+            const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
+            const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
+
+            // Walidacja - sprawdzenie, czy wszystkie wymagane pola są uzupełnione
+            if (!dateContactCustomer || !nameFirst || !phone || !email) {
+                console.error('Brakuje jednego z inputów');
+                return;
+            }
+
+            // Ustawienie daty rozpoczęcia i zakończenia (dodanie 15 minut)
+            const startDate = new Date(dateContactCustomer);
+            const endDate = new Date(startDate.getTime() + 15 * 60 * 1000);
+
+            // Funkcja do formatowania daty w formacie ICS
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hour = String(date.getHours()).padStart(2, '0');
+                const minute = String(date.getMinutes()).padStart(2, '0');
+                return `${year}${month}${day}T${hour}${minute}00`;
+            };
+
+            const startDateStr = formatDate(startDate);
+            const endDateStr = formatDate(endDate);
+
+            // Zawartość pliku .ics
+            const icsContent = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Your Company//NONSGML v1.0//EN",
+                "BEGIN:VEVENT",
+                `UID:${Date.now()}@yourdomain.com`,
+                `DTSTAMP:${startDateStr}`,
+                `DTSTART:${startDateStr}`,
+                `DTEND:${endDateStr}`,
+                `SUMMARY:${nameFirst} ${phone} ${customerStatus}`,
+                `DESCRIPTION:Wydarzenie utworzone dla https://terminal.terminaleservice.pl/crm.php?mail=${email}`,
+                `ATTENDEE;CN=Korneliusz Rduch:mailto:korneliusz.rduch@gmail.com`,
+                "CATEGORIES:Zielone wydarzenie",
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\r\n");
+            
+            // Utworzenie pliku do pobrania
+            const blob = new Blob([icsContent], { type: 'text/calendar' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `wydarzenie-${nameFirst}.ics`;
+            link.click();
+
+            // Dodanie timeoutu przed czyszczeniem URL, co może poprawić otwarcie na telefonie
+            setTimeout(() => {
+                URL.revokeObjectURL(link.href);
+            }, 100);
+        });
+    });
+
+
+
+
+
+
+
+
     document.querySelectorAll('.js-delete-button').forEach(button => {
         button.addEventListener('click', event => {
             event.preventDefault();
@@ -263,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.querySelector('.js-input-email').value.trim();
         const phone = document.querySelector('.js-input-phone').value.trim();
         const placeOfAcquiringTheCustomer = document.querySelector(".js-input-place-of-acquiring-the-customer").value.trim();
-     
+
         const isUpdate = registerUpdateButton.dataset.update === 'true';
 
         if (email) {
@@ -273,16 +372,16 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('phone', phone);
             formData.append('placeOfAcquiringTheCustomer', placeOfAcquiringTheCustomer);
             formData.append('update', isUpdate ? 'true' : 'false');
-//console.log("miejsce pozysku" , placeOfAcquiringTheCustomer);
-           fetch('/php/register_mail.php', {
+            //console.log("miejsce pozysku" , placeOfAcquiringTheCustomer);
+            fetch('/php/register_mail.php', {
                 method: 'POST',
-               body: formData
-         })
+                body: formData
+            })
                 .then(response => response.text())
-              .then(result => {
-                  console.log('Server response:', result); // Logowanie odpowiedzi serwera dla debugowania
-                  window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
-               })
+                .then(result => {
+                    console.log('Server response:', result); // Logowanie odpowiedzi serwera dla debugowania
+                    window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
+                })
                 .catch(error => console.error('Error:', error));
         } else {
 
@@ -307,13 +406,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-
-    // Inicjalizacja
     readParametersForUrl();
-
-
     hideRowsByTimeContact(rows, currentDate, emailForUrl);
     hideContactBecauseDone();
+    hideContactBecauseNoContact();
     highlightTheCustomerDidNotOpenOffers();
     highlightContact();
 
