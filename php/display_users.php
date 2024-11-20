@@ -159,15 +159,18 @@ if ($result->num_rows > 0) {
                               <option value='0% 2 Niezainteresowany'" . ($selectOptionCustumerStatus === '0% 2 Niezainteresowany' ? ' selected' : '') . ">0% 2 Niezainteresowany</option>
                               <option value='0% 3 Niezainteresowany'" . ($selectOptionCustumerStatus === '0% 3 Niezainteresowany' ? ' selected' : '') . ">0% 3 Niezainteresowany</option>
                                  <option value='0% 1 Podpisałał z konkurencją'" . ($selectOptionCustumerStatus === '0% 1 Podpisałał z konkurencją' ? ' selected' : '') . ">0% 1 Podpisałał z konkurencją</option>
+                                    <option value='0% Umowa wypowiedziana - zamknięcie działalności'" . ($selectOptionCustumerStatus === '0% Umowa wypowiedziana - zamknięcie działalności' ? ' selected' : '') . ">0% Umowa wypowiedziana - zamknięcie działalności</option>
 
 
                                
                                  <option value='0% błędny mail. Utworzono z poprawionym'" . ($selectOptionCustumerStatus === '0% błędny mail. Utworzono z poprawionym' ? ' selected' : '') . ">0% błędny mail. Utworzono z poprawionym</option>
                                    <option value='1% Odebrał i miał oddzwonić'" . ($selectOptionCustumerStatus === '1% Odebrał i miał oddzwonić' ? ' selected' : '') . ">1% Odebrał i miał oddzwonić</option>
                             <option value='2% odbiera i się rozłącza'" . ($selectOptionCustumerStatus === '2% odbiera i się rozłącza' ? ' selected' : '') . ">2% odbiera i się rozłącza0</option>
+                                 <option value='3% Sam ma zadzwonić'" . ($selectOptionCustumerStatus === '3% Sam ma zadzwonić' ? ' selected' : '') . ">3% Sam ma zadzwonić</option>
                                 <option value='5% Ustalono inny termin'" . ($selectOptionCustumerStatus === '5% Ustalono inny termin' ? ' selected' : '') . ">5% Ustalono inny termin</option>
                                   <option value='6% Przypomnieć o fakturze + wysłać mail o fakturze'" . ($selectOptionCustumerStatus === '6% Przypomnieć o fakturze + wysłać mail o fakturze' ? ' selected' : '') . ">6% Przypomnieć o fakturze + wysłać mail o fakturze</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectOptionCustumerStatus === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
+                                          <option value='8% Obiecał, że wyśle fakturę z terminali'" . ($selectOptionCustumerStatus === '8% Obiecał, że wyśle fakturę z terminali' ? ' selected' : '') . ">8% Obiecał, że wyśle fakturę z terminali</option>
                             <option value='10% Omówić potrzeby'" . ($selectOptionCustumerStatus === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
                                  <option value='11% Omówić aktualne koszty'" . ($selectOptionCustumerStatus === '11% Omówić aktualne koszty' ? ' selected' : '') . ">11% Omówić aktualne koszty</option>
 
@@ -182,8 +185,15 @@ if ($result->num_rows > 0) {
                                          <option value='100% Wysłać dokumenty do klienta'" . ($selectOptionCustumerStatus === '100% Wysłać dokumenty do klienta' ? ' selected' : '') . ">100% Wysłać dokumenty do klienta</option>
 
                                             <option value='100% Wysłano sms lub maila ws. aktualizacji danych z dowodu'" . ($selectOptionCustumerStatus === '100% Wysłano sms lub maila ws. aktualizacji danych z dowodu' ? ' selected' : '') . ">100% Wysłano sms lub maila ws. aktualizacji danych z dowodu</option>
-                                               <option value='100% Przygotować kalkulator - negocjacje warunków'" . ($selectOptionCustumerStatus === '100% Przygotować kalkulator - negocjacje warunków' ? ' selected' : '') . ">100% Przygotować kalkulator - negocjacje warunków</option>
+                                              
+                                            
+                                            <option value='100% Przygotować kalkulator - negocjacje warunków'" . ($selectOptionCustumerStatus === '100% Przygotować kalkulator - negocjacje warunków' ? ' selected' : '') . ">100% Przygotować kalkulator - negocjacje warunków</option>
+
+ <option value='100% Przygotować kalkulator - negocjacje - za polecenia'" . ($selectOptionCustumerStatus === '100% Przygotować kalkulator - negocjacje - za polecenia' ? ' selected' : '') . ">100% Przygotować kalkulator - negocjacje - za polecenia</option>
+                                          
                                             <option value='100% Przygotować aneksy na zmianę warunków'" . ($selectOptionCustumerStatus === '100% Przygotować aneksy na zmianę warunków' ? ' selected' : '') . ">100% Przygotować aneksy na zmianę warunków</option>
+
+                                              <option value='100% Przygotować aneksy za polecenia'" . ($selectOptionCustumerStatus === '100% Przygotować aneksy za polecenia' ? ' selected' : '') . ">100% Przygotować aneksy za polecenia</option>
                                           <option value='100% Wysłano dokumenty do podpisu'" . ($selectOptionCustumerStatus === '100% Wysłano dokumenty do podpisu' ? ' selected' : '') . ">100% Wysłano dokumenty do podpisu</option>
                                             <option value='100% Dokumenty Podpisane przez klienta'" . ($selectOptionCustumerStatus === '100% Dokumenty Podpisane przez klienta' ? ' selected' : '') . ">100% Dokumenty Podpisane przez klienta</option>
                                            <option value='100% Czekanie na dokumenty od klienta'" . ($selectOptionCustumerStatus === '100% Czekanie na dokumenty od klienta' ? ' selected' : '') . ">100% Czekanie na dokumenty od klienta</option>
@@ -191,9 +201,13 @@ if ($result->num_rows > 0) {
     <option value='100% Dokumenty wprowadzone'" . ($selectOptionCustumerStatus === '100% Dokumenty wprowadzone' ? ' selected' : '') . ">100% Dokumenty wprowadzone</option>
      <option value='100% Lista VIP faktura eservice rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP faktura eservice rekomendacje' ? ' selected' : '') . ">100% Lista VIP faktura eservice rekomendacje</option>
     
-  <option value='100% Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Pobrać rekomendacje' ? ' selected' : '') . ">100% Pobrać rekomendacje</option>
+
     <option value='100% Wysłać gadżet'" . ($selectOptionCustumerStatus === '100% Wysłać gadżet' ? ' selected' : '') . ">100% Wysłać gadżet</option>
+      <option value='100% Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Pobrać rekomendacje' ? ' selected' : '') . ">100% Pobrać rekomendacje</option>
+      
     <option value='100% Lista VIP Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP Pobrać rekomendacje' ? ' selected' : '') . ">100% Lista VIP Pobrać rekomendacje</option>
+     <option value='100% Pobrano rekomendacje 1'" . ($selectOptionCustumerStatus === '100% Pobrano rekomendacje 1' ? ' selected' : '') . ">100% Pobrano rekomendacje 1</option>
+        <option value='100% Pobrano rekomendacje 2'" . ($selectOptionCustumerStatus === '100% Pobrano rekomendacje 2' ? ' selected' : '') . ">100% Pobrano rekomendacje 2</option>
         <option value='100% Lista VIP'" . ($selectOptionCustumerStatus === '100% Lista VIP' ? ' selected' : '') . ">100% Lista VIP</option>
 
       <option value='100% Wysłano do eservice do przekazania opiekunowi'" . ($selectOptionCustumerStatus === '100% Wysłano do eservice do przekazania opiekunowi' ? ' selected' : '') . ">100% Wysłano do eservice do przekazania opiekunowi</option>
