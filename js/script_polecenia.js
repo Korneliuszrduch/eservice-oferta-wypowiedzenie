@@ -1,49 +1,49 @@
-
-
-
-
-
-{
-
-
+document.addEventListener('DOMContentLoaded', () => {
     const formDataRecommended = document.querySelector(".js-form-recommended-terminal");
     const buttonNextStep = document.querySelector(".js-button--nextStep");
-    const sectionsPlace = document.querySelectorAll(".section--place");
+    const sectionCommands = document.querySelectorAll(".js-section-commands");
     const forms = document.querySelectorAll("form");
-    document.addEventListener('DOMContentLoaded', () => {
 
-        forms.forEach(form => {
-            form.addEventListener("submit", event => {
-                event.preventDefault();
-            });
+    // Zapobiegaj domyślnemu przesyłaniu formularzy
+    forms.forEach(form => {
+        form.addEventListener("submit", event => {
+            event.preventDefault();
         });
-
     });
 
-    buttonNextStep.addEventListener("click", () =>{
-        saveToDataBase();
-        sendFormDataCompany();
+    // Obsługa kliknięcia przycisku "Dalej"
+    buttonNextStep.addEventListener("click", () => {
+       // saveToDataBase();
+ 
+ 
+         sendFormDataCompany();
 
+         setTimeout(() => {
+            sendFormDataCompany();
+        }, 300);
 
-    })
+         checkAndAddEmptyClass();
+    });
 
+    // Funkcja wysyłająca dane formularza
     const sendFormDataCompany = () => {
+        formDataRecommended.submit();
         checkAndAddEmptyClass();
         const invalidInputs = document.querySelectorAll(".input.visible.incorrect");
+
         if (invalidInputs.length > 0) {
-            alert("Proszę wypełnij wszystkie formularze :)", invalidInputs.length);
-            // console.log("liczba wierszy niewypelnionych ", invalidInputs.length);
+            alert(`Proszę wypełnić wszystkie formularze (niewypełnione: ${invalidInputs.length}).`);
         } else {
             formDataRecommended.submit();
         }
     };
 
+    // Sprawdzanie pól i dodawanie odpowiednich klas
     const checkAndAddEmptyClass = () => {
-        sectionsPlace.forEach(section => {
+        sectionCommands.forEach(section => {
             const inputs = section.querySelectorAll(".input.visible");
-            //  console.log(inputs);
+
             inputs.forEach(input => {
-                //console.log(input);
                 if (input.value.trim() !== "") {
                     input.classList.remove("incorrect");
                     input.classList.add("correct");
@@ -55,25 +55,17 @@
         });
     };
 
-
-
-    const saveToDataBase = (event, dataTable, buttonSaveDatabase) => {
-        event.preventDefault();
+    // Zapis danych do bazy
+    const saveToDataBase = () => {
         formDataRecommended.classList.remove("highlight-green");
 
-       // const sid = buttonSaveDatabase.dataset.sid;
         const nameOfTheFirstRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-first-recommended-terminal")?.value.trim() || '';
         const nameOfTheSecondRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-second-recommended-terminal")?.value.trim() || '';
         const nameOfTheThirdRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-third-recommended-terminal")?.value.trim() || '';
-        const phoneOfTheFirstdRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-first-recommended-terminal")?.value.trim() || '';
+        const phoneOfTheFirstRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-first-recommended-terminal")?.value.trim() || '';
         const phoneOfTheSecondRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-second-recommended-terminal")?.value.trim() || '';
         const phoneOfTheThirdRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-third-recommended-terminal")?.value.trim() || '';
         const email = formDataRecommended.querySelector(".js-email")?.value.trim() || '';
-       // const customerStatus = formDataRecommended.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-       // const selectedStatusSentOffer = dataTable.querySelector(".js-offer-sent-status")?.value.trim() || '';
-       // const selectedStatusOpenOffer = dataTable.querySelector(".js-offer-opening-status")?.value.trim() || '';
-        //const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
-       
 
         if (email) {
             const formData = new FormData();
@@ -81,16 +73,11 @@
             formData.append("nameOfTheFirstRecommendedTerminal", nameOfTheFirstRecommendedTerminal);
             formData.append("nameOfTheSecondRecommendedTerminal", nameOfTheSecondRecommendedTerminal);
             formData.append("nameOfTheThirdRecommendedTerminal", nameOfTheThirdRecommendedTerminal);
-
-            formData.append("phoneOfTheFirstdRecommendedTerminal", phoneOfTheFirstdRecommendedTerminal);
+            formData.append("phoneOfTheFirstRecommendedTerminal", phoneOfTheFirstRecommendedTerminal);
             formData.append("phoneOfTheSecondRecommendedTerminal", phoneOfTheSecondRecommendedTerminal);
             formData.append("phoneOfTheThirdRecommendedTerminal", phoneOfTheThirdRecommendedTerminal);
 
-           // formData.append("customerStatus", customerStatus);
-          
-         
-
-            fetch("/php/update_contact_recommended.php", {
+            fetch("/update_contact_recommended.php", {
                 method: "POST",
                 body: formData
             })
@@ -103,20 +90,8 @@
                 })
                 .catch(error => console.error("Error:", error));
         } else {
-            alert("Proszę wypełnić wymagane pola");
+            alert("Proszę wypełnić wymagane pola.");
         }
     };
-
-
-
-
-
-
-
-
-
-
-};
-
-
-
+    checkAndAddEmptyClass();
+});
