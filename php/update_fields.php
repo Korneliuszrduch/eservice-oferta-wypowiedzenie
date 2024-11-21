@@ -15,24 +15,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         if (!empty($sid)) {
-            $stmt_place = $conn->prepare("INSERT INTO nm_krduch2subscribers_fields (sid, fid, value) VALUES (?, 114, ?) ON DUPLICATE KEY UPDATE value = ?");
-            $stmt_place->bind_param("iss", $sid, $offerOpeningStatus, $offerOpeningStatus);
-            if ($stmt_place) {
-                $stmt_place->bind_param("is", $sid, $offerOpeningStatus);
-                if ($stmt_place->execute()) {
-                    echo "Status and field 114 updated successfully with value: " . $offerOpeningStatus . " and sid: " . $sid . "email" .$email;
+            // Aktualizacja name_first i phone
+            // $stmt_update_name_phone = $conn->prepare("UPDATE nm_krduch2subscribers SET name_first = ?, phone = ? WHERE sid = ?");
+            // $stmt_update_name_phone->bind_param("ssi", $nameFirst, $phone, $sid);
+            // $stmt_update_name_phone->execute();
+            // $stmt_update_name_phone->close();
+
+            // Tworzenie tablicy z polami do aktualizacji
+            $fieldsToUpdate = [
+                114 => $offerOpeningStatus,
+                // 112 => $selectedOptionCompanyOfTerminal,
+
+                // 183 => $monthlyCardTurnover,
+                //  330 => $monthlyCommissionCompetition,
+                //  184 => $averageTransaction,
+                // 329 => $fixedMonthlyCostsCompetition,
+                // 120 => $companyTaxNumber,
+                // 115 => $customerStatus,
+                // 171 => $dateContactCustomer,
+                // 116 => $comments,
+                // 234 => $selectedStatusSentOffer,
+            ];
+
+            $updateSuccess = true; // Flaga sukcesu aktualizacji
+
+            foreach ($fieldsToUpdate as $fid => $value) {
+                // Sprawdzenie, czy istnieje już wiersz dla danej kombinacji sid i fid
+                $stmt_check_field = $conn->prepare("SELECT COUNT(*) FROM nm_krduch2subscribers_fields WHERE sid = ? AND fid = ?");
+                $stmt_check_field->bind_param("ii", $sid, $fid);
+                $stmt_check_field->execute();
+                $stmt_check_field->bind_result($rowCount);
+                $stmt_check_field->fetch();
+                $stmt_check_field->close();
+
+                if ($rowCount > 0) {
+                    // Jeśli istnieje wiersz, wykonaj UPDATE
+                    $stmt_update_field = $conn->prepare("UPDATE nm_krduch2subscribers_fields SET value = ? WHERE sid = ? AND fid = ?");
+                    $stmt_update_field->bind_param("sii", $value, $sid, $fid);
+                    if (!$stmt_update_field->execute()) {
+                        $updateSuccess = false; // Jeśli wystąpi błąd, ustaw flagę na false
+                        echo json_encode(["error" => "Błąd podczas aktualizacji rekordu dla fid $fid: " . $stmt_update_field->error]);
+                    }
+                    $stmt_update_field->close();
                 } else {
-                    echo "Error executing query for inserting field: " . $stmt_place->error;
+                    // Jeśli nie istnieje wiersz, wykonaj INSERT
+                    $stmt_insert_field = $conn->prepare("INSERT INTO nm_krduch2subscribers_fields (sid, fid, value) VALUES (?, ?, ?)");
+                    $stmt_insert_field->bind_param("iis", $sid, $fid, $value);
+                    if (!$stmt_insert_field->execute()) {
+                        $updateSuccess = false; // Jeśli wystąpi błąd, ustaw flagę na false
+                        echo json_encode(["error" => "Błąd podczas dodawania rekordu dla fid $fid: " . $stmt_insert_field->error]);
+                    }
+                    $stmt_insert_field->close();
                 }
-                $stmt_place->close();
-            } else {
-                echo "Error preparing insert statement: " . $conn->error;
+            }
+
+            if ($updateSuccess) {
+                echo json_encode([
+                    "message" => "Dane zostaly zaktualizowane lub dodane w bazie dla e-maila: $email",
+                    "sid" => $sid
+                ]);
             }
         } else {
-            echo "Active subscriber not found for the provided email";
+            error_log("Nie znaleziono subskrybenta o podanym adresie email: $email");
+            echo json_encode(["error" => "Nie znaleziono aktywnego subskrybenta dla podanego e-maila."]);
         }
     } else {
-        echo "Invalid email";
+        echo json_encode(["error" => "Nieprawidłowy e-mail."]);
     }
 }
 
