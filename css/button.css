@@ -63,4 +63,8 @@
     border: none;
     overflow: hidden; 
   }
+  .button--next-step:hover {
+   
+    background-color: rgb(42, 208, 42);
+  }
 
