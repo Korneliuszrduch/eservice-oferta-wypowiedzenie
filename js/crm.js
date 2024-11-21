@@ -146,150 +146,143 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const dataTableAll = document.querySelectorAll(".js-data-table");
+
     dataTableAll.forEach(dataTable => {
+        // Handle save to database button
         const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
-        if (!buttonSaveDatabase) return;
-
-        buttonSaveDatabase.addEventListener("click", event => {
-            event.preventDefault();
-            dataTable.classList.remove("highlight-green");
-            const sid = buttonSaveDatabase.dataset.sid;
-
-            const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
-            const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
-            const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
-            const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
-            const monthlyCardTurnover = dataTable.querySelector(".js-monthly-card-turnover")?.value.trim() || '';
-            const companyTaxNumber = dataTable.querySelector(".js-company-tax-number")?.value.trim() || '';
-            const monthlyCommissionCompetition = dataTable.querySelector(".js-monthly-comission-competition")?.value.trim() || '';
-            const averageTransaction = dataTable.querySelector(".js-average-transaction")?.value.trim() || '';
-            const fixedMonthlyCostsCompetition = dataTable.querySelector(".js-fixed-monthly-cost-competition")?.value.trim() || '';
-            const selectedStatusSentOffer = dataTable.querySelector(".js-offer-sent-status")?.value.trim() || '';
-            const selectedStatusOpenOffer = dataTable.querySelector(".js-offer-opening-status")?.value.trim() || '';
-            const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-            const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
-            const comments = dataTable.querySelector(".textarea")?.value.trim() || '';
-
-            if (email) {
-                const formData = new FormData();
-                formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
-                formData.append("nameFirst", nameFirst);
-                formData.append("email", email);
-                formData.append("phone", phone);
-                formData.append("monthlyCardTurnover", monthlyCardTurnover);
-                formData.append("companyTaxNumber", companyTaxNumber);
-                formData.append("monthlyCommissionCompetition", monthlyCommissionCompetition);
-                formData.append("averageTransaction", averageTransaction);
-                formData.append("fixedMonthlyCostsCompetition", fixedMonthlyCostsCompetition);
-                formData.append("selectedStatusSentOffer", selectedStatusSentOffer);
-                formData.append("selectedStatusOpenOffer", selectedStatusOpenOffer);
-                formData.append("customerStatus", customerStatus);
-                formData.append("dateContactCustomer", dateContactCustomer);
-                formData.append("comments", comments);
-
-                setTimeout(() => {
-                    fetch("/php/update_contact.php", {
-                        method: "POST",
-                        body: formData
-                    })
-                        .then(response => response.json())
-                        .then(result => {
-
-                            //window.location.href = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}`;
-                            console.log("Server response:", result);
-
-                            // Sprawdzanie klucza message w odpowiedzi JSON
-                            if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
-                                dataTable.classList.add("highlight-green");
-                            }
-                        })
-                        .catch(error => console.error("Error:", error));
-                }, 200);
-            } else {
-                alert("Proszę wypełnić wymagane pola");
-            }
-        });
-    });
-
-
-
-
-    // const dataTableAll = document.querySelectorAll(".js-data-table");
-
-    dataTableAll.forEach(dataTable => {
+        if (buttonSaveDatabase) {
+            buttonSaveDatabase.addEventListener("click", (event) => saveToDataBase(event, dataTable, buttonSaveDatabase));
+        }
+    
+        // Handle ICS creation button
         const buttonCreateIcs = dataTable.querySelector(".js-create-ics");
-        if (!buttonCreateIcs) return;
-
-        buttonCreateIcs.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            // Pobieranie danych z elementów tabeli
-            const sid = buttonCreateIcs.dataset.sid;
-            const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
-            const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
-            const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
-            const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
-            const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-
-            // Walidacja - sprawdzenie, czy wszystkie wymagane pola są uzupełnione
-            if (!dateContactCustomer || !nameFirst || !phone || !email) {
-                console.error('Brakuje jednego z inputów');
-                return;
-            }
-
-            // Ustawienie daty rozpoczęcia i zakończenia (dodanie 15 minut)
-            const startDate = new Date(dateContactCustomer);
-            const endDate = new Date(startDate.getTime() + 15 * 60 * 1000);
-
-            // Funkcja do formatowania daty w formacie ICS
-            const formatDate = (date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const hour = String(date.getHours()).padStart(2, '0');
-                const minute = String(date.getMinutes()).padStart(2, '0');
-                return `${year}${month}${day}T${hour}${minute}00`;
-            };
-
-            const startDateStr = formatDate(startDate);
-            const endDateStr = formatDate(endDate);
-
-            // Zawartość pliku .ics
-            const icsContent = [
-                "BEGIN:VCALENDAR",
-                "VERSION:2.0",
-                "PRODID:-//Your Company//NONSGML v1.0//EN",
-                "BEGIN:VEVENT",
-                `UID:${Date.now()}@yourdomain.com`,
-                `DTSTAMP:${startDateStr}`,
-                `DTSTART:${startDateStr}`,
-                `DTEND:${endDateStr}`,
-                `SUMMARY:${nameFirst} ${phone} ${customerStatus}`,
-                `DESCRIPTION:Wydarzenie utworzone dla https://terminal.terminaleservice.pl/crm.php?mail=${email}`,
-                `ATTENDEE;CN=Korneliusz Rduch:mailto:korneliusz.rduch@gmail.com`,
-                "CATEGORIES:Zielone wydarzenie",
-                "END:VEVENT",
-                "END:VCALENDAR"
-            ].join("\r\n");
-            
-            // Utworzenie pliku do pobrania
-            const blob = new Blob([icsContent], { type: 'text/calendar' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `wydarzenie-${nameFirst}.ics`;
-            link.click();
-
-            // Dodanie timeoutu przed czyszczeniem URL, co może poprawić otwarcie na telefonie
-            setTimeout(() => {
-                URL.revokeObjectURL(link.href);
-            }, 100);
-        });
+        if (buttonCreateIcs) {
+            buttonCreateIcs.addEventListener("click", (event) => createIcsAndSave(event, dataTable, buttonSaveDatabase));
+        }
     });
-
-
-
-
-
+    
+    // Function to save data to database
+    const saveToDataBase = (event, dataTable, buttonSaveDatabase) => {
+        event.preventDefault();
+        dataTable.classList.remove("highlight-green");
+    
+        const sid = buttonSaveDatabase.dataset.sid;
+        const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
+        const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+        const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
+        const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
+        const monthlyCardTurnover = dataTable.querySelector(".js-monthly-card-turnover")?.value.trim() || '';
+        const companyTaxNumber = dataTable.querySelector(".js-company-tax-number")?.value.trim() || '';
+        const monthlyCommissionCompetition = dataTable.querySelector(".js-monthly-comission-competition")?.value.trim() || '';
+        const averageTransaction = dataTable.querySelector(".js-average-transaction")?.value.trim() || '';
+        const fixedMonthlyCostsCompetition = dataTable.querySelector(".js-fixed-monthly-cost-competition")?.value.trim() || '';
+        const selectedStatusSentOffer = dataTable.querySelector(".js-offer-sent-status")?.value.trim() || '';
+        const selectedStatusOpenOffer = dataTable.querySelector(".js-offer-opening-status")?.value.trim() || '';
+        const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
+        const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
+        const comments = dataTable.querySelector(".textarea")?.value.trim() || '';
+    
+        if (email) {
+            const formData = new FormData();
+            formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
+            formData.append("nameFirst", nameFirst);
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("monthlyCardTurnover", monthlyCardTurnover);
+            formData.append("companyTaxNumber", companyTaxNumber);
+            formData.append("monthlyCommissionCompetition", monthlyCommissionCompetition);
+            formData.append("averageTransaction", averageTransaction);
+            formData.append("fixedMonthlyCostsCompetition", fixedMonthlyCostsCompetition);
+            formData.append("selectedStatusSentOffer", selectedStatusSentOffer);
+            formData.append("selectedStatusOpenOffer", selectedStatusOpenOffer);
+            formData.append("customerStatus", customerStatus);
+            formData.append("dateContactCustomer", dateContactCustomer);
+            formData.append("comments", comments);
+    
+            fetch("/php/update_contact.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Server response:", result);
+                if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
+                    dataTable.classList.add("highlight-green");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        } else {
+            alert("Proszę wypełnić wymagane pola");
+        }
+    };
+    
+    // Function to create ICS and save to database
+    const createIcsAndSave = (event, dataTable, buttonSaveDatabase) => {
+        event.preventDefault();
+        // Call saveToDataBase to update the information first
+        saveToDataBase(event, dataTable, buttonSaveDatabase);
+    
+        // Gather data for ICS
+        const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
+        const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+        const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
+        const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
+        const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
+    
+        // Validate the required fields
+        if (!dateContactCustomer || !nameFirst || !phone || !email) {
+            console.error('Brakuje jednego z inputów');
+            return;
+        }
+    
+        // Set the start and end date for ICS (adding 15 minutes)
+        const startDate = new Date(dateContactCustomer);
+        const endDate = new Date(startDate.getTime() + 15 * 60 * 1000);
+    
+        // Format the date in ICS format
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hour = String(date.getHours()).padStart(2, '0');
+            const minute = String(date.getMinutes()).padStart(2, '0');
+            return `${year}${month}${day}T${hour}${minute}00`;
+        };
+    
+        const startDateStr = formatDate(startDate);
+        const endDateStr = formatDate(endDate);
+    
+        // ICS file content
+        const icsContent = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "PRODID:-//Your Company//NONSGML v1.0//EN",
+            "BEGIN:VEVENT",
+            `UID:${Date.now()}@yourdomain.com`,
+            `DTSTAMP:${startDateStr}`,
+            `DTSTART:${startDateStr}`,
+            `DTEND:${endDateStr}`,
+            `SUMMARY:${nameFirst} ${phone} ${customerStatus}`,
+            `DESCRIPTION:Wydarzenie utworzone dla https://terminal.terminaleservice.pl/crm.php?mail=${email}`,
+            `ATTENDEE;CN=Korneliusz Rduch:mailto:korneliusz.rduch@gmail.com`,
+            "CATEGORIES:Zielone wydarzenie",
+            "END:VEVENT",
+            "END:VCALENDAR"
+        ].join("\r\n");
+    
+        // Create ICS file
+        const blob = new Blob([icsContent], { type: 'text/calendar' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `wydarzenie-${nameFirst}.ics`;
+        link.click();
+    
+        // Timeout before revoking object URL
+        setTimeout(() => {
+            URL.revokeObjectURL(link.href);
+        }, 100);
+    };
+    
 
 
 
