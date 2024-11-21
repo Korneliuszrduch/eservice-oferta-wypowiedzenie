@@ -156,52 +156,53 @@
             console.error("Element z klasą .js-email nie został znaleziony.");
             return;
         }
- 
+
         const email = emailElement.value;
-    
+
         const formData = new FormData();
         formData.append('email', email);
         formData.append('offer-opening-status', 'kliknął w ofertę lub dokument');
-    
+
         fetch('https://terminal.terminaleservice.pl/php/update_fields.php', {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(result => {
-            console.log('Status updated:', result);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Wystąpił błąd podczas aktualizacji statusu. Spróbuj ponownie później.');
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(result => {
+                console.log('Status updated:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Wystąpił błąd podczas aktualizacji statusu. Spróbuj ponownie później.');
+            });
     };
-    
 
 
 
-    const showAlert = () => {
-        const elementStatusOfferOpen = document.querySelector(".js-offer-opening-status").value.trim();
-    
-        if (elementStatusOfferOpen === "") {
-            setTimeout(function () {
-                alert("Uzupełnij wymagane pola.");
-                // Po kliknięciu "OK" wywołaj funkcje
-                console.log("wysłano funkcie");
-                loadStatusOpenOffer();
-            
-            }, 2000); 
-        }
-    };
-    
+
+    // const showAlert = () => {
+    //   const elementStatusOfferOpen = document.querySelector(".js-offer-opening-status").value.trim();
+
+    //  if (elementStatusOfferOpen === "") {
+    //   setTimeout(function () {
+    //    alert("Uzupełnij wymagane pola.");
+    // Po kliknięciu "OK" wywołaj funkcje
+    //   console.log("wysłano funkcie");
+    ///   loadStatusOpenOffer();
+
+    // }, 2000); 
+    // }
+    //  };
 
 
-showAlert();
+
+    //showAlert();
+    loadStatusOpenOffer();
     legalFormField.addEventListener('change', updateVisibility);
 
 };
