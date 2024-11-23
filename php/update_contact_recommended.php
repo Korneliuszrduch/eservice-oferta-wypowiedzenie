@@ -1,29 +1,17 @@
 <?php
 include '../php/config.php';
 header('Content-Type: application/json'); // Ustawienie nagłówka na JSON
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Odbieranie danych z formularza
     $selectedOptionCompanyOfTerminal = isset($_POST['selectedOptionCompanyOfTerminal']) ? trim($_POST['selectedOptionCompanyOfTerminal']) : '';
  
 
-    $nameFirst = isset($_POST['nameFirst']) ? trim($_POST['nameFirst']) : '';
-    $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
-    $monthlyCardTurnover = isset($_POST['monthlyCardTurnover']) ? trim($_POST['monthlyCardTurnover']) : '';
-    $companyTaxNumber = isset($_POST['companyTaxNumber']) ? trim($_POST['companyTaxNumber']) : '';
-    $monthlyCommissionCompetition = isset($_POST['monthlyCommissionCompetition']) ? trim($_POST['monthlyCommissionCompetition']) : '';
-    $averageTransaction = isset($_POST['averageTransaction']) ? trim($_POST['averageTransaction']) : '';
-    $fixedMonthlyCostsCompetition = isset($_POST['fixedMonthlyCostsCompetition']) ? trim($_POST['fixedMonthlyCostsCompetition']) : '';
-    $selectedStatusSentOffer = isset($_POST['selectedStatusSentOffer']) ? trim($_POST['selectedStatusSentOffer']) : '';
-    $selectedStatusOpenOffer = isset($_POST['selectedStatusOpenOffer']) ? trim($_POST['selectedStatusOpenOffer']) : '';
-
-    $dateContactCustomer = isset($_POST['dateContactCustomer']) ? trim($_POST['dateContactCustomer']) : '';
-    $comments = isset($_POST['comments']) ? trim($_POST['comments']) : '';
+   
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $nameOfTheFirstRecommendedTerminal = isset($_POST['nameOfTheFirstRecommendedTerminal']) ? trim($_POST['nameOfTheFirstRecommendedTerminal']) : '';
     $nameOfTheSecondRecommendedTerminal = isset($_POST['nameOfTheSecondRecommendedTerminal']) ? trim($_POST['nameOfTheSecondRecommendedTerminal']) : '';
     $nameOfTheThirdRecommendedTerminal = isset($_POST['nameOfTheThirdRecommendedTerminal']) ? trim($_POST['nameOfTheThirdRecommendedTerminal']) : '';
-    $phoneOfTheFirstdRecommendedTerminal = isset($_POST['phoneOfTheFirstdRecommendedTerminal']) ? trim($_POST['phoneOfTheFirstdRecommendedTerminal']) : '';
+    $phoneOfTheFirstRecommendedTerminal = isset($_POST['phoneOfTheFirstRecommendedTerminal']) ? trim($_POST['phoneOfTheFirstRecommendedTerminal']) : '';
     $phoneOfTheSecondRecommendedTerminal = isset($_POST['phoneOfTheSecondRecommendedTerminal']) ? trim($_POST['phoneOfTheSecondRecommendedTerminal']) : '';
     $phoneOfTheThirdRecommendedTerminal = isset($_POST['phoneOfTheThirdRecommendedTerminal']) ? trim($_POST['phoneOfTheThirdRecommendedTerminal']) : '';
     $customerStatus = isset($_POST['customerStatus']) ? trim($_POST['customerStatus']) : '';
@@ -31,9 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
-
-    // Sprawdzenie, czy e-mail jest podany
     if (!empty($email)) {
         // Wyszukiwanie subskrybenta na podstawie e-maila
         $stmt = $conn->prepare("SELECT sid FROM nm_krduch2subscribers WHERE email = ? AND status = 'active'");
@@ -45,31 +30,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($sid)) {
             // Aktualizacja name_first i phone
-          //  $stmt_update_name_phone = $conn->prepare("UPDATE nm_krduch2subscribers SET name_first = ?, phone = ? WHERE sid = ?");
-           // $stmt_update_name_phone->bind_param("ssi", $nameFirst, $phone, $sid);
-           // $stmt_update_name_phone->execute();
-           // $stmt_update_name_phone->close();
+            // $stmt_update_name_phone = $conn->prepare("UPDATE nm_krduch2subscribers SET name_first = ?, phone = ? WHERE sid = ?");
+            // $stmt_update_name_phone->bind_param("ssi", $nameFirst, $phone, $sid);
+            // $stmt_update_name_phone->execute();
+            // $stmt_update_name_phone->close();
 
             // Tworzenie tablicy z polami do aktualizacji
             $fieldsToUpdate = [
-                112 => $selectedOptionCompanyOfTerminal,
-                114 => $selectedStatusOpenOffer,
-                183 => $monthlyCardTurnover,
-                330 => $monthlyCommissionCompetition,
-                184 => $averageTransaction,
-                329 => $fixedMonthlyCostsCompetition,
-                120 => $companyTaxNumber,
+             
                 115 => $customerStatus,
-                171 => $dateContactCustomer,
-                116 => $comments,
-                234 => $selectedStatusSentOffer,
                 269=> $nameOfTheFirstRecommendedTerminal,
                 270=> $phoneOfTheFirstRecommendedTerminal,
                 271=> $nameOfTheSecondRecommendedTerminal,
                 272=> $phoneOfTheSecondRecommendedTerminal,
                 273=> $nameOfTheThirdRecommendedTerminal,
                 274=> $phoneOfTheThirdRecommendedTerminal,
-
 
             ];
 
@@ -122,3 +97,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close(); // Zamknięcie połączenia z bazą danych
 ?>
+
+
+
+
+
+
+
+
+
+  
