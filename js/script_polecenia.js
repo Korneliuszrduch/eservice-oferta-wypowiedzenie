@@ -3,31 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonNextStep = document.querySelector(".js-button--nextStep");
     const sectionCommands = document.querySelectorAll(".js-section-commands");
     const forms = document.querySelectorAll("form");
-
-    // Zapobiegaj domyślnemu przesyłaniu formularzy
     forms.forEach(form => {
         form.addEventListener("submit", event => {
             event.preventDefault();
         });
     });
 
-    // Obsługa kliknięcia przycisku "Dalej"
     buttonNextStep.addEventListener("click", () => {
-       // saveToDataBase();
- 
- 
-         sendFormDataCompany();
-
-         setTimeout(() => {
+        saveToDataBase();
+        setTimeout(() => {
             sendFormDataCompany();
         }, 300);
 
-         checkAndAddEmptyClass();
     });
 
-    // Funkcja wysyłająca dane formularza
     const sendFormDataCompany = () => {
-        formDataRecommended.submit();
+
         checkAndAddEmptyClass();
         const invalidInputs = document.querySelectorAll(".input.visible.incorrect");
 
@@ -35,10 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Proszę wypełnić wszystkie formularze (niewypełnione: ${invalidInputs.length}).`);
         } else {
             formDataRecommended.submit();
+            setTimeout(() => {
+                formDataRecommended.submit();
+            }, 300);
         }
     };
 
-    // Sprawdzanie pól i dodawanie odpowiednich klas
     const checkAndAddEmptyClass = () => {
         sectionCommands.forEach(section => {
             const inputs = section.querySelectorAll(".input.visible");
@@ -55,10 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Zapis danych do bazy
+  
     const saveToDataBase = () => {
-        formDataRecommended.classList.remove("highlight-green");
-
         const nameOfTheFirstRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-first-recommended-terminal")?.value.trim() || '';
         const nameOfTheSecondRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-second-recommended-terminal")?.value.trim() || '';
         const nameOfTheThirdRecommendedTerminal = formDataRecommended.querySelector(".js-name-of-the-third-recommended-terminal")?.value.trim() || '';
@@ -66,6 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const phoneOfTheSecondRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-second-recommended-terminal")?.value.trim() || '';
         const phoneOfTheThirdRecommendedTerminal = formDataRecommended.querySelector(".js-phone-of-the-third-recommended-terminal")?.value.trim() || '';
         const email = formDataRecommended.querySelector(".js-email")?.value.trim() || '';
+        let customerStatus = '';
+
+        if (nameOfTheThirdRecommendedTerminal && phoneOfTheThirdRecommendedTerminal) {
+            customerStatus = "100% polecił 3 osoby terminal";
+        } else if (nameOfTheSecondRecommendedTerminal && phoneOfTheSecondRecommendedTerminal) {
+            customerStatus = "100% polecił 2 osoby terminal";
+        } else if (nameOfTheFirstRecommendedTerminal && phoneOfTheFirstRecommendedTerminal) {
+            customerStatus = "100% polecił 1 osobę terminal";
+        }
 
         if (email) {
             const formData = new FormData();
@@ -76,8 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("phoneOfTheFirstRecommendedTerminal", phoneOfTheFirstRecommendedTerminal);
             formData.append("phoneOfTheSecondRecommendedTerminal", phoneOfTheSecondRecommendedTerminal);
             formData.append("phoneOfTheThirdRecommendedTerminal", phoneOfTheThirdRecommendedTerminal);
+            formData.append("customerStatus", customerStatus);
 
-            fetch("/update_contact_recommended.php", {
+            fetch('https://terminal.terminaleservice.pl/php/update_contact_recommended.php', {
                 method: "POST",
                 body: formData
             })
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(result => {
                     console.log("Server response:", result);
                     if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
-                        formDataRecommended.classList.add("highlight-green");
+                        // formDataRecommended.classList.add("highlight-green");
                     }
                 })
                 .catch(error => console.error("Error:", error));
