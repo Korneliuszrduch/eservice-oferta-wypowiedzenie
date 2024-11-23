@@ -256,6 +256,38 @@ END:VCALENDAR
   });
 
 
+
+
+  const buttonSentNegotiationOfferToClient = document.querySelector(".js-send-of-the-offer-negotiation-to-client");
+  buttonSentNegotiationOfferToClient.addEventListener("click", (event) => {
+    event.preventDefault();
+    const confirmation = confirm("Czy na pewno chcesz wysłać ofertę do negocjacyjną do obecnego klienta?");
+    if (confirmation) {
+      const statusValue = "40% Wysłano maila z ofertą"
+      const statusSendOffer = "Ofertę wysłano";
+      loadlatestCustomerStatusAll(statusValue);
+      loadElementsStatusSentOffer(statusSendOffer);
+      const formOffer = document.querySelector(".js-offer");
+      const mlid = document.querySelector(".js-mlid1");
+      const token = document.querySelector(".js-token1");
+      const nameList = document.querySelector(".js-name-list1");
+      token.value = "7699d433d9d0f043a957b6824e0a2e3e42ba189e";
+      mlid.value = "305";
+      nameList.value = "NEGOCJACJE OFERTA DLA OBECNYCH KLIENTÓW";
+      console.log("mlid", mlid.value);
+      console.log("token", token.value);
+      console.log("formOffer", formOffer);
+      formOffer.submit();
+    } else {
+
+      console.log("Oferta nie została wysłana.");
+    }
+  });
+
+
+
+
+
   const buttonsendRequestForContractData = document.querySelector(".js-send-of-the-dateCompany");
   buttonsendRequestForContractData.addEventListener("click", (event) => {
     event.preventDefault();
