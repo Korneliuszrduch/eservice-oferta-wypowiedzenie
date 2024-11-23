@@ -199,6 +199,7 @@ if ($result->num_rows > 0) {
                                            <option value='100% Czekanie na dokumenty od klienta'" . ($selectOptionCustumerStatus === '100% Czekanie na dokumenty od klienta' ? ' selected' : '') . ">100% Czekanie na dokumenty od klienta</option>
   <option value='100% Wysłano dokumenty do weryfikacji'" . ($selectOptionCustumerStatus === '100% Wysłano dokumenty do weryfikacji' ? ' selected' : '') . ">100% Wysłano dokumenty do weryfikacji</option>
     <option value='100% Dokumenty wprowadzone'" . ($selectOptionCustumerStatus === '100% Dokumenty wprowadzone' ? ' selected' : '') . ">100% Dokumenty wprowadzone</option>
+        <option value='100% Wymiana modelowa'" . ($selectOptionCustumerStatus === '100% Wymiana modelowa' ? ' selected' : '') . ">100% Wymiana modelowa</option>
      <option value='100% Lista VIP faktura eservice rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP faktura eservice rekomendacje' ? ' selected' : '') . ">100% Lista VIP faktura eservice rekomendacje</option>
     
 
