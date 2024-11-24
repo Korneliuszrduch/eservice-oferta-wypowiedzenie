@@ -52,21 +52,21 @@ session_start();
 
     <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?<?php echo rand(); ?>"></script>
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B58">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B58">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B56">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/table.css?B57">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?B60">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/table.css?B60">
 
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B56">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?B59">
 
 
 
