@@ -52,7 +52,7 @@ session_start();
 
     <!--  <script defer src="https://terminal.terminaleservice.pl/js/crm_js.php"></script>-->
     <script defer src="https://terminal.terminaleservice.pl/js/crm.js?<?php echo rand(); ?>"></script>
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B57">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?B58">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?B56">
     <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?B56">

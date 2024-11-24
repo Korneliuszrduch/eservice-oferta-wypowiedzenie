@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
+    const dataTableAll = document.querySelectorAll(".js-data-table");
     const rows = Array.from(document.querySelectorAll(".js-data-table"));
     const emailForUrl = new URLSearchParams(window.location.search).get('mail'); // Get email from URL
     const currentDate = new Date();
@@ -145,27 +148,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const dataTableAll = document.querySelectorAll(".js-data-table");
+
 
     dataTableAll.forEach(dataTable => {
-        // Handle save to database button
+
         const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
         if (buttonSaveDatabase) {
             buttonSaveDatabase.addEventListener("click", (event) => saveToDataBase(event, dataTable, buttonSaveDatabase));
         }
-    
+
         // Handle ICS creation button
         const buttonCreateIcs = dataTable.querySelector(".js-create-ics");
         if (buttonCreateIcs) {
             buttonCreateIcs.addEventListener("click", (event) => createIcsAndSave(event, dataTable, buttonSaveDatabase));
         }
     });
-    
+
     // Function to save data to database
     const saveToDataBase = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
         dataTable.classList.remove("highlight-green");
-    
+
         const sid = buttonSaveDatabase.dataset.sid;
         const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
@@ -181,7 +184,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
         const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
         const comments = dataTable.querySelector(".textarea")?.value.trim() || '';
-    
+
+        const nameOfTheFirstRecommendedTerminal = dataTable.querySelector(".js-name-of-the-first-recommended-terminal")?.value.trim() || '';
+        const nameOfTheSecondRecommendedTerminal = dataTable.querySelector(".js-name-of-the-second-recommended-terminal")?.value.trim() || '';
+        const nameOfTheThirdRecommendedTerminal = dataTable.querySelector(".js-name-of-the-third-recommended-terminal")?.value.trim() || '';
+        const phoneOfTheFirstRecommendedTerminal = dataTable.querySelector(".js-phone-of-the-first-recommended-terminal")?.value.trim() || '';
+        const phoneOfTheSecondRecommendedTerminal = dataTable.querySelector(".js-phone-of-the-second-recommended-terminal")?.value.trim() || '';
+        const phoneOfTheThirdRecommendedTerminal = dataTable.querySelector(".js-phone-of-the-third-recommended-terminal")?.value.trim() || '';
+
+
+
         if (email) {
             const formData = new FormData();
             formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
@@ -198,47 +210,53 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("customerStatus", customerStatus);
             formData.append("dateContactCustomer", dateContactCustomer);
             formData.append("comments", comments);
-    
+            formData.append("nameOfTheFirstRecommendedTerminal", nameOfTheFirstRecommendedTerminal);
+            formData.append("nameOfTheSecondRecommendedTerminal", nameOfTheSecondRecommendedTerminal);
+            formData.append("nameOfTheThirdRecommendedTerminal", nameOfTheThirdRecommendedTerminal);
+            formData.append("phoneOfTheFirstRecommendedTerminal", phoneOfTheFirstRecommendedTerminal);
+            formData.append("phoneOfTheSecondRecommendedTerminal", phoneOfTheSecondRecommendedTerminal);
+            formData.append("phoneOfTheThirdRecommendedTerminal", phoneOfTheThirdRecommendedTerminal);
+
             fetch("/php/update_contact.php", {
                 method: "POST",
                 body: formData
             })
-            .then(response => response.json())
-            .then(result => {
-                console.log("Server response:", result);
-                if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
-                    dataTable.classList.add("highlight-green");
-                }
-            })
-            .catch(error => console.error("Error:", error));
+                .then(response => response.json())
+                .then(result => {
+                    console.log("Server response:", result);
+                    if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
+                        dataTable.classList.add("highlight-green");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
         } else {
             alert("Proszę wypełnić wymagane pola");
         }
     };
-    
+
     // Function to create ICS and save to database
     const createIcsAndSave = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
         // Call saveToDataBase to update the information first
         saveToDataBase(event, dataTable, buttonSaveDatabase);
-    
+
         // Gather data for ICS
         const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
         const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
         const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
         const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-    
+
         // Validate the required fields
         if (!dateContactCustomer || !nameFirst || !phone || !email) {
             console.error('Brakuje jednego z inputów');
             return;
         }
-    
+
         // Set the start and end date for ICS (adding 15 minutes)
         const startDate = new Date(dateContactCustomer);
         const endDate = new Date(startDate.getTime() + 15 * 60 * 1000);
-    
+
         // Format the date in ICS format
         const formatDate = (date) => {
             const year = date.getFullYear();
@@ -248,10 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const minute = String(date.getMinutes()).padStart(2, '0');
             return `${year}${month}${day}T${hour}${minute}00`;
         };
-    
+
         const startDateStr = formatDate(startDate);
         const endDateStr = formatDate(endDate);
-    
+
         // ICS file content
         const icsContent = [
             "BEGIN:VCALENDAR",
@@ -269,20 +287,20 @@ document.addEventListener('DOMContentLoaded', () => {
             "END:VEVENT",
             "END:VCALENDAR"
         ].join("\r\n");
-    
+
         // Create ICS file
         const blob = new Blob([icsContent], { type: 'text/calendar' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = `wydarzenie-${nameFirst}.ics`;
         link.click();
-    
+
         // Timeout before revoking object URL
         setTimeout(() => {
             URL.revokeObjectURL(link.href);
         }, 100);
     };
-    
+
 
 
 
@@ -399,6 +417,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+
+    dataTableAll.forEach(dataTable => {
+        const linkShowRecommended = dataTable.querySelector(".js-link-show-recommended");
+        linkShowRecommended.addEventListener("click", (event) => {
+            console.log("linkShow", linkShowRecommended);
+            event.preventDefault();
+            const sectionWithRecommended = dataTable.querySelector(".js-section-with-recommended");
+            sectionWithRecommended.classList.remove("hidden");
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
     readParametersForUrl();
     hideRowsByTimeContact(rows, currentDate, emailForUrl);
     hideContactBecauseDone();
@@ -409,3 +448,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //showContacts();
 
 });
+
