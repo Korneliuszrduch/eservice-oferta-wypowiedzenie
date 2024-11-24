@@ -130,9 +130,7 @@
 
   }
 
-  .hidden {
-    display: none;
-  }
+
 
   .paragraf {
     font-size: 85%;
@@ -149,5 +147,7 @@
   
   }
    
-
+  .hidden {
+    display: none;
+  }
 }
