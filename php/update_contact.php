@@ -20,6 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateContactCustomer = isset($_POST['dateContactCustomer']) ? trim($_POST['dateContactCustomer']) : '';
     $comments = isset($_POST['comments']) ? trim($_POST['comments']) : '';
 
+    $nameOfTheFirstRecommendedTerminal = isset($_POST['nameOfTheFirstRecommendedTerminal']) ? trim($_POST['nameOfTheFirstRecommendedTerminal']) : '';
+    $nameOfTheSecondRecommendedTerminal = isset($_POST['nameOfTheSecondRecommendedTerminal']) ? trim($_POST['nameOfTheSecondRecommendedTerminal']) : '';
+    $nameOfTheThirdRecommendedTerminal = isset($_POST['nameOfTheThirdRecommendedTerminal']) ? trim($_POST['nameOfTheThirdRecommendedTerminal']) : '';
+    $phoneOfTheFirstRecommendedTerminal = isset($_POST['phoneOfTheFirstRecommendedTerminal']) ? trim($_POST['phoneOfTheFirstRecommendedTerminal']) : '';
+    $phoneOfTheSecondRecommendedTerminal = isset($_POST['phoneOfTheSecondRecommendedTerminal']) ? trim($_POST['phoneOfTheSecondRecommendedTerminal']) : '';
+    $phoneOfTheThirdRecommendedTerminal = isset($_POST['phoneOfTheThirdRecommendedTerminal']) ? trim($_POST['phoneOfTheThirdRecommendedTerminal']) : '';
+
     // Sprawdzenie, czy e-mail jest podany
     if (!empty($email)) {
         // Wyszukiwanie subskrybenta na podstawie e-maila
@@ -50,6 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 171 => $dateContactCustomer,
                 116 => $comments,
                 234 => $selectedStatusSentOffer,
+                269=> $nameOfTheFirstRecommendedTerminal,
+                270=> $phoneOfTheFirstRecommendedTerminal,
+                271=> $nameOfTheSecondRecommendedTerminal,
+                272=> $phoneOfTheSecondRecommendedTerminal,
+                273=> $nameOfTheThirdRecommendedTerminal,
+                274=> $phoneOfTheThirdRecommendedTerminal,
             ];
 
             $updateSuccess = true; // Flaga sukcesu aktualizacji

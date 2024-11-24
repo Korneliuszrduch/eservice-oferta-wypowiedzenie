@@ -41,7 +41,13 @@ $sql = "SELECT u.sid, u.name_first, u.email, u.phone,
                MAX(CASE WHEN f.fid = 115 THEN f.value END) AS field_value_115,
                MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
                MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120,
-                MAX(CASE WHEN f.fid = 234 THEN f.value END) AS field_value_234
+               MAX(CASE WHEN f.fid = 234 THEN f.value END) AS field_value_234,
+              MAX(CASE WHEN f.fid = 269 THEN f.value END) AS field_value_269,
+              MAX(CASE WHEN f.fid = 270 THEN f.value END) AS field_value_270,
+              MAX(CASE WHEN f.fid = 271 THEN f.value END) AS field_value_271,
+               MAX(CASE WHEN f.fid = 272 THEN f.value END) AS field_value_272,
+              MAX(CASE WHEN f.fid = 273 THEN f.value END) AS field_value_273,
+             MAX(CASE WHEN f.fid = 274 THEN f.value END) AS field_value_274
         FROM nm_krduch2subscribers u
         LEFT JOIN nm_krduch2subscribers_fields f ON u.sid = f.sid
         WHERE u.status = 'active'
@@ -70,7 +76,7 @@ if ($result->num_rows > 0) {
 
     $selectOptionCustumerStatus = htmlspecialchars($row['field_value_115'], ENT_QUOTES, 'UTF-8');
     $selectedOptionCompanyOfTerminal = htmlspecialchars($row['field_value_112'], ENT_QUOTES, 'UTF-8');
-    
+
 
     $selectedOptionStatusOpenOffer = htmlspecialchars($row['field_value_114'], ENT_QUOTES, 'UTF-8');
     $selectedOptionStatusSentOffer = htmlspecialchars($row['field_value_234'], ENT_QUOTES, 'UTF-8');
@@ -104,14 +110,13 @@ if ($result->num_rows > 0) {
                                                                                          <option value='SumUp'" . ($selectedOptionCompanyOfTerminal === 'SumUp' ? ' selected' : '') . ">SumUp</option>
 
      <option value='Six payment'" . ($selectedOptionCompanyOfTerminal === 'Six payment' ? ' selected' : '') . ">Six payment</option>
-             
+      
      <option value='Topcard'" . ($selectedOptionCompanyOfTerminal === 'Topcard' ? ' selected' : '') . ">Topcard</option>
                  <option value='Wordline'" . ($selectedOptionCompanyOfTerminal === 'Wordline' ? ' selected' : '') . ">Wordline</option>
                    <option value='Brak informacji o operatorze'" . ($selectedOptionCompanyOfTerminal === 'Brak informacji o operatorze' ? ' selected' : '') . ">Brak informacji o operatorze</option>
                         <option value='Inny'" . ($selectedOptionCompanyOfTerminal === 'Inny' ? ' selected' : '') . ">Inny</option>
                         </select>
            <input class='js-monthly-card-turnover' type='text' name='fields[183]' value='" . htmlspecialchars($row['field_value_183'], ENT_QUOTES, 'UTF-8') . "' placeholder='Obroty miesięczne'>
-
               <input class='js-monthly-comission-competition' type='text' name='fields[330]' value='" . htmlspecialchars($row['field_value_330'], ENT_QUOTES, 'UTF-8') . "' placeholder='Prowizja z faktury konkurencja'>
 
             <input class ='js-average-transaction' type='text' name='fields[184]' value='" . htmlspecialchars($row['field_value_184'], ENT_QUOTES, 'UTF-8') . "' placeholder='Średnia wartość transakcji'>
@@ -141,6 +146,30 @@ if ($result->num_rows > 0) {
                     <input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'placeholder='Email'>
                   <a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
                             <input class='js-input-phone' type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon'></a> 
+<a href='#' class='js-link-show-recommended'>Pokaż polecenia</a>
+<section class = 'section section--recommendations js-section-with-recommended hidden'>
+
+                           <input class='input visible js-name-of-the-first-recommended-terminal' name='fields[269]'
+        type='text' value='" . htmlspecialchars($row['field_value_269'], ENT_QUOTES, 'UTF-8') . "' placeholder='Imię pierwszej osoby'/>
+
+    <input class='input visible js-phone-of-the-first-recommended-terminal'  name='fields[270]'
+        type='text' value='" . htmlspecialchars($row['field_value_270'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon' />
+   
+    <input class='input visible js-name-of-the-second-recommended-terminal' name='fields[271]'
+        type='text' value='" . htmlspecialchars($row['field_value_271'], ENT_QUOTES, 'UTF-8') . "' placeholder='Imię drugiej osoby' />
+   
+    <input class='input visible js-phone-of-the-second-recommended-terminal'  name='fields[272]'
+        type='text' value='" . htmlspecialchars($row['field_value_272'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon' />
+
+
+   
+    <input class='input visible js-name-of-the-third-recommended-terminal' id='sqm-f273' name='fields[273]'
+        type='text' value='" . htmlspecialchars($row['field_value_273'], ENT_QUOTES, 'UTF-8') . "' placeholder='Imię trzeciej osoby'/>
+   
+    <input class='input visible js-phone-of-the-third-recommended-terminal' id='sqm-f274' name='fields[274]'
+        type='text' value='" . htmlspecialchars($row['field_value_274'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon' />
+</section>
+                            
                              <select class= 'js-latest-custumer-status' name='fields[115]' id='field115'>
                             <option value='$selectOptionCustumerStatus'>$selectOptionCustumerStatus</option>
                                            <option value='0% Pomyłka'" . ($selectOptionCustumerStatus === '0% Pomyłka' ? ' selected' : '') . ">0% Pomyłka</option>
@@ -233,7 +262,7 @@ if ($result->num_rows > 0) {
                  <button class='js-save-button-date-to-database' type='button'>Zapisz tylko do bazy</button>
 
                     <button class='js-create-ics' type='button'>Utwórz wydarzenie ICS</button> 
-                 
+   
             </tr>";
   }
   echo "</tbody></table>";
