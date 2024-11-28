@@ -30,31 +30,30 @@ if ($sort_by_sid) {
 }
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
-$sql = "SELECT u.sid, u.name_first, u.email, u.phone, 
-              MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
-              MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
-               MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
-               MAX(CASE WHEN f.fid = 183 THEN f.value END) AS field_value_183,
-               MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
-               MAX(CASE WHEN f.fid = 116 THEN f.value END) AS field_value_116,
-               MAX(CASE WHEN f.fid = 114 THEN f.value END) AS field_value_114,
-               MAX(CASE WHEN f.fid = 115 THEN f.value END) AS field_value_115,
-               MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
-               MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120,
-               MAX(CASE WHEN f.fid = 234 THEN f.value END) AS field_value_234,
-              MAX(CASE WHEN f.fid = 269 THEN f.value END) AS field_value_269,
-              MAX(CASE WHEN f.fid = 270 THEN f.value END) AS field_value_270,
-              MAX(CASE WHEN f.fid = 271 THEN f.value END) AS field_value_271,
-               MAX(CASE WHEN f.fid = 272 THEN f.value END) AS field_value_272,
-              MAX(CASE WHEN f.fid = 273 THEN f.value END) AS field_value_273,
-             MAX(CASE WHEN f.fid = 274 THEN f.value END) AS field_value_274
+$sql = "SELECT u.sid, u.name_first, u.name_last, u.email, u.phone, 
+            MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
+            MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
+            MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
+            MAX(CASE WHEN f.fid = 183 THEN f.value END) AS field_value_183,
+            MAX(CASE WHEN f.fid = 171 THEN f.value END) AS field_value_171, 
+            MAX(CASE WHEN f.fid = 116 THEN f.value END) AS field_value_116,
+            MAX(CASE WHEN f.fid = 114 THEN f.value END) AS field_value_114,
+            MAX(CASE WHEN f.fid = 115 THEN f.value END) AS field_value_115,
+            MAX(CASE WHEN f.fid = 112 THEN f.value END) AS field_value_112,
+            MAX(CASE WHEN f.fid = 120 THEN f.value END) AS field_value_120,
+            MAX(CASE WHEN f.fid = 234 THEN f.value END) AS field_value_234,
+            MAX(CASE WHEN f.fid = 269 THEN f.value END) AS field_value_269,
+            MAX(CASE WHEN f.fid = 270 THEN f.value END) AS field_value_270,
+            MAX(CASE WHEN f.fid = 271 THEN f.value END) AS field_value_271,
+            MAX(CASE WHEN f.fid = 272 THEN f.value END) AS field_value_272,
+            MAX(CASE WHEN f.fid = 273 THEN f.value END) AS field_value_273,
+            MAX(CASE WHEN f.fid = 274 THEN f.value END) AS field_value_274
         FROM nm_krduch2subscribers u
         LEFT JOIN nm_krduch2subscribers_fields f ON u.sid = f.sid
         WHERE u.status = 'active'
-        GROUP BY u.sid, u.name_first, u.email, u.phone
+        GROUP BY u.sid, u.name_first, u.name_last, u.email, u.phone
         ORDER BY $order_by
         LIMIT ?";
-
 
 // Przygotowanie zapytania
 $stmt = $conn->prepare($sql);
@@ -143,6 +142,7 @@ if ($result->num_rows > 0) {
                         </select>
 
                     <input class='js-input-name-first' type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'placeholder='Imię'>
+                           <input class='js-input-name-last' type='text' name='fname' value='" . htmlspecialchars($row['name_last'], ENT_QUOTES, 'UTF-8') . "'placeholder='nazwisko'>
                     <input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'placeholder='Email'>
                   <a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
                             <input class='js-input-phone' type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon'></a> 
@@ -261,7 +261,8 @@ if ($result->num_rows > 0) {
                 </form>
                  <button class='js-save-button-date-to-database' type='button'>Zapisz tylko do bazy</button>
 
-                    <button class='js-create-ics' type='button'>Utwórz wydarzenie ICS</button> 
+                    <button class='js-create-ics' type='button'>Utwórz wydarzenie ICS i link callendary</button> 
+                                <button class='js-create-vcf' type='button'>Utwórz wizytówkę Vcf</button> 
    
             </tr>";
   }
