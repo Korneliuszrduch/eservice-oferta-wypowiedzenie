@@ -154,17 +154,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const buttonSaveDatabase = dataTable.querySelector(".js-save-button-date-to-database");
         if (buttonSaveDatabase) {
-            buttonSaveDatabase.addEventListener("click", (event) => saveToDataBase(event, dataTable, buttonSaveDatabase));
+            buttonSaveDatabase.addEventListener("click", (event) => {
+                saveToDataBase(event, dataTable, buttonSaveDatabase);
+            });
         }
-
-        // Handle ICS creation button
+    
+     
         const buttonCreateIcs = dataTable.querySelector(".js-create-ics");
         if (buttonCreateIcs) {
-            buttonCreateIcs.addEventListener("click", (event) => createIcsAndSave(event, dataTable, buttonSaveDatabase));
+            buttonCreateIcs.addEventListener("click", (event) => {
+                createIcsAndSave(event, dataTable, buttonCreateIcs);
+            });
+        }
+    
+       
+        const buttonCreateVcf = dataTable.querySelector(".js-create-vcf");
+        if (buttonCreateVcf) {
+            buttonCreateVcf.addEventListener("click", (event) => {
+                createVcfAndSave(event, dataTable, buttonCreateVcf);
+            });
         }
     });
+    
 
-    // Function to save data to database
     const saveToDataBase = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
         dataTable.classList.remove("highlight-green");
@@ -172,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sid = buttonSaveDatabase.dataset.sid;
         const selectedOptionCompanyOfTerminal = dataTable.querySelector(".js-select-option-company-of-terminal")?.value.trim() || '';
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+        const nameLast =  dataTable.querySelector(".js-input-name-last")?.value.trim() || '';
         const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
         const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
         const monthlyCardTurnover = dataTable.querySelector(".js-monthly-card-turnover")?.value.trim() || '';
@@ -198,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData();
             formData.append("selectedOptionCompanyOfTerminal", selectedOptionCompanyOfTerminal);
             formData.append("nameFirst", nameFirst);
+            formData.append("nameLast", nameLast);
             formData.append("email", email);
             formData.append("phone", phone);
             formData.append("monthlyCardTurnover", monthlyCardTurnover);
@@ -235,28 +249,30 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Function to create ICS and save to database
+
     const createIcsAndSave = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
+    
         // Call saveToDataBase to update the information first
         saveToDataBase(event, dataTable, buttonSaveDatabase);
-
+    
         // Gather data for ICS
         const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
         const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
         const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
         const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-
+    
         // Validate the required fields
         if (!dateContactCustomer || !nameFirst || !phone || !email) {
-            console.error('Brakuje jednego z inputów');
+            console.error('Brakuje jednego z wymaganych pól: data, imię, telefon lub email.');
             return;
         }
-
+    
         // Set the start and end date for ICS (adding 15 minutes)
         const startDate = new Date(dateContactCustomer);
         const endDate = new Date(startDate.getTime() + 15 * 60 * 1000);
-
+    
         // Format the date in ICS format
         const formatDate = (date) => {
             const year = date.getFullYear();
@@ -266,10 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const minute = String(date.getMinutes()).padStart(2, '0');
             return `${year}${month}${day}T${hour}${minute}00`;
         };
-
+    
         const startDateStr = formatDate(startDate);
         const endDateStr = formatDate(endDate);
-
+    
         // ICS file content
         const icsContent = [
             "BEGIN:VCALENDAR",
@@ -287,22 +303,82 @@ document.addEventListener('DOMContentLoaded', () => {
             "END:VEVENT",
             "END:VCALENDAR"
         ].join("\r\n");
-
+    
         // Create ICS file
         const blob = new Blob([icsContent], { type: 'text/calendar' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = `wydarzenie-${nameFirst}.ics`;
         link.click();
-
+    
         // Timeout before revoking object URL
         setTimeout(() => {
             URL.revokeObjectURL(link.href);
         }, 100);
+    
+        // Generate Google Calendar link
+        const formatDateISO = (date) => date.toISOString().replace(/-|:|\.\d+/g, '');
+        const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+            `&text=${encodeURIComponent(nameFirst)} ${encodeURIComponent(customerStatus)}` +
+            `&dates=${formatDateISO(startDate)}/${formatDateISO(endDate)}` +
+            `&details=Status klienta: ${encodeURIComponent(customerStatus)}%0ATelefon: ${encodeURIComponent(phone)}%0AE-mail: ${encodeURIComponent(email)}  link: https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}` +
+            `&location=Telefonicznie` +
+            `&sf=true&output=xml`;
+    
+        // Open Google Calendar link in a new tab
+        window.open(googleCalendarLink, "_blank");
     };
+    
 
 
-
+    const createVcfAndSave = (event, dataTable, buttonCreateVcf) => {
+        event.preventDefault();
+    
+        // Pobieranie danych z tabeli
+        const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+        const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
+        const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
+        const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
+        
+    
+        // Walidacja danych
+        if (!nameFirst || !phone || !email) {
+            console.error('Brakuje jednego z wymaganych pól: imię, telefon lub email.');
+            return;
+        }
+    
+        // Generowanie adresu URL
+        const websiteUrl = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
+        const uid = `tel:${phone}`;
+    
+        const vcfContent = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            `FN:${nameFirst}`, // Imię i nazwisko
+            `TEL;TYPE=WORK,VOICE:${phone}`, // Telefon
+            `EMAIL;TYPE=PREF,INTERNET:${email}`, // Adres email
+            `NOTE:Status klienta: ${customerStatus}`, // Status klienta
+            `URL:${websiteUrl}`, // Strona internetowa
+            `UID:${uid}`, // Unikalny identyfikator (numer telefonu)
+            `REV:${new Date().toISOString()}`, // Data ostatniej aktualizacji
+            "END:VCARD"
+        ].join("\r\n");
+    
+        // Tworzenie i pobieranie pliku VCF
+        const blob = new Blob([vcfContent], { type: 'text/vcard' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `kontakt-${nameFirst}.vcf`; // Nazwa pliku
+        link.click();
+    
+        // Usuwanie obiektu URL po czasie
+        setTimeout(() => {
+            URL.revokeObjectURL(link.href);
+        }, 100);
+    };
+    
+    
+    
 
     document.querySelectorAll('.js-delete-button').forEach(button => {
         button.addEventListener('click', event => {
@@ -419,16 +495,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     dataTableAll.forEach(dataTable => {
-        const linkShowRecommended = dataTable.querySelector(".js-link-show-recommended");
-        linkShowRecommended.addEventListener("click", (event) => {
-            console.log("linkShow", linkShowRecommended);
-            event.preventDefault();
-            const sectionWithRecommended = dataTable.querySelector(".js-section-with-recommended");
-            sectionWithRecommended.classList.remove("hidden");
-
-        });
+        const linkToggleRecommended = dataTable.querySelector(".js-link-show-recommended");
+    
+        if (linkToggleRecommended) {
+            linkToggleRecommended.addEventListener("click", (event) => {
+                event.preventDefault();
+    
+                const sectionWithRecommended = dataTable.querySelector(".js-section-with-recommended");
+    
+                if (sectionWithRecommended) {
+                    if (sectionWithRecommended.classList.contains("hidden")) {
+                        sectionWithRecommended.classList.remove("hidden");
+                        linkToggleRecommended.classList.remove("js-link-show-recommended");
+                        linkToggleRecommended.classList.add("js-link-hide-recommended");
+                        linkToggleRecommended.textContent = "Ukryj polecenia";
+                    } else {
+                        sectionWithRecommended.classList.add("hidden");
+                        linkToggleRecommended.classList.remove("js-link-hide-recommended");
+                        linkToggleRecommended.classList.add("js-link-show-recommended");
+                        linkToggleRecommended.textContent = "Pokaż polecenia";
+                    }
+                } else {
+                    console.error("Nie znaleziono sekcji z poleceniami w tym dataTable.");
+                }
+            });
+        }
     });
-
+    
 
 
 
