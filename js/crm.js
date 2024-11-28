@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("phoneOfTheSecondRecommendedTerminal", phoneOfTheSecondRecommendedTerminal);
             formData.append("phoneOfTheThirdRecommendedTerminal", phoneOfTheThirdRecommendedTerminal);
 
+        
+
             fetch("/php/update_contact.php", {
                 method: "POST",
                 body: formData
@@ -238,8 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(result => {
                     console.log("Server response:", result);
-                    if (result.message && result.message.includes("Dane zostaly zaktualizowane lub dodane")) {
+                    if (result.message && result.message.includes("Dane zostały zaktualizowane")) {
                         dataTable.classList.add("highlight-green");
+                  
                     }
                 })
                 .catch(error => console.error("Error:", error));
@@ -248,22 +251,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Function to create ICS and save to database
+
 
     const createIcsAndSave = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
     
-        // Call saveToDataBase to update the information first
+  
         saveToDataBase(event, dataTable, buttonSaveDatabase);
     
-        // Gather data for ICS
+   
         const dateContactCustomer = dataTable.querySelector(".js-date-time-local")?.value.trim() || '';
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
         const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
         const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
         const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
     
-        // Validate the required fields
+     
         if (!dateContactCustomer || !nameFirst || !phone || !email) {
             console.error('Brakuje jednego z wymaganych pól: data, imię, telefon lub email.');
             return;
@@ -336,10 +339,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Pobieranie danych z tabeli
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
+        const nameLast = dataTable.querySelector(".js-input-name-last")?.value.trim() || '';
         const phone = dataTable.querySelector(".js-input-phone")?.value.trim() || '';
         const email = dataTable.querySelector(".js-email-contact")?.value.trim() || '';
         const customerStatus = dataTable.querySelector(".js-latest-custumer-status")?.value.trim() || '';
-        
     
         // Walidacja danych
         if (!nameFirst || !phone || !email) {
@@ -347,14 +350,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
+        // Generowanie pełnego imienia i nazwiska
+        const fullName = nameLast ? `${nameFirst} ${nameLast}` : nameFirst;
+    
         // Generowanie adresu URL
         const websiteUrl = `https://terminal.terminaleservice.pl/crm.php?mail=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
         const uid = `tel:${phone}`;
     
+        // Tworzenie zawartości VCF
         const vcfContent = [
             "BEGIN:VCARD",
             "VERSION:3.0",
-            `FN:${nameFirst}`, // Imię i nazwisko
+            `FN:${fullName}`, // Pełne imię i nazwisko
             `TEL;TYPE=WORK,VOICE:${phone}`, // Telefon
             `EMAIL;TYPE=PREF,INTERNET:${email}`, // Adres email
             `NOTE:Status klienta: ${customerStatus}`, // Status klienta
@@ -368,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const blob = new Blob([vcfContent], { type: 'text/vcard' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `kontakt-${nameFirst}.vcf`; // Nazwa pliku
+        link.download = `kontakt-${nameFirst}-${nameLast || ''}.vcf`.trim(); // Nazwa pliku
         link.click();
     
         // Usuwanie obiektu URL po czasie
