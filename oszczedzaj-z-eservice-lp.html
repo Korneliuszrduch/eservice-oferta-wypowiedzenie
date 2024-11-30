@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV3NUtpYPbyQlAPWevgsE3TZJSv5siEhM&callback=initMap"></script>
 
-
-
+    <!--
     <link rel="stylesheet" href="css/offer.css">
     <link rel="stylesheet" href="css/section.css">
     <link rel="stylesheet" href="css/form.css">
@@ -26,38 +27,37 @@
     <link rel="stylesheet" href="css/paragraf.css">
     <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/map.css">
     <link rel="stylesheet" href="css/responsive-styles.css">
     <script defer src="js/script_oszczedzaj-z-eservice-lp.js"></script>
-    
-    <!--
-  <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
- 
-  <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
- 
-  <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
-  <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
-  <script src="https://pixel.fasttony.com/5c0739af338f4299a37887e7e56d9772" async defer></script>
+  -->
 
-    <script defer src="https://terminal.terminaleservice.pl/js/script_oszczedzaj-z-eservice-lp.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.min.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/jquery.cookie.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/obslugalinkowpartnerskich.js"></script>
+    <script defer src="https://terminal.terminaleservice.pl/skrypty/linkipartnerskie.js"></script>
+    <script src="https://pixel.fasttony.com/5c0739af338f4299a37887e7e56d9772" async defer></script>
+    <script defer src="https://terminal.terminaleservice.pl/js/script_oszczedzaj-z-eservice-lp.js?a15"></script>
     <script defer src="https://terminal.terminaleservice.pl/js/monitoringsite.js?a16"></script>
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/offer.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?a13">
-    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?a13">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/offer.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/section.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/form.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/headers.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/footer.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/button.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/body.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/container.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/styles.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/paragraf.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/list.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/print.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/map.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/img.css?a14">
+    <link rel="stylesheet" href="https://terminal.terminaleservice.pl/css/responsive-styles.css?a14">
 
 
 
-      -->
+
 
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -73,7 +73,7 @@
     <title>Oferta </title>
 </head>
 
-<body class="body">
+<body class=" body">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB5HRX4" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
@@ -85,21 +85,33 @@
             <img class="header__img" src="https://terminaleservice.pl/wp-content/uploads/2020/03/logo-300x113.webp"
                 alt="Logo Strony">
             <a class=header__anchor href="tel:+48696409829">Tel: 696 409 829</a>
-
-
-
         </Header>
+        <h1 class="h1 h1--lp">Obniż koszty płatności poprzez terminal nawet do 4200 zł rocznie</h1>
+        <img class="img"
+            src="https://terminal.terminaleservice.pl/img/przewidywane-oszczednosci-terminal 1200 x 628.png"
+            alt="zadowolenie z terminala">
+        <p class="paragraf">Rozmawiając z klientami o kosztach okazuje, że przedsiębiorcy pracują na wysokich stawkach
+            prowizyjnych. Natłok innych obowiązków
+            zagłusza weryfikację aktualnych stawek. Zostaw kontakt a bezpłatnie zweryfikuję Twoje koszty związane z
+            terminalami.
+        </p>
+        <button class="button js-button-scroll">Zostaw kontakt</button>
 
+        <h1 class="h1">Klienci, którzy nam ufają</h1>
+        <img class="img img--companies" src="https://terminal.terminaleservice.pl/img/lista-firm.webp">
+        <div class="div">
+            <h1 class="h1">Oferta</h1>
+            <section class="section">
+                <span class="section__span">Przygotuję dla Ciebie indywidualne rozwiązanie. Zostaw dane
+                        kontaktowe a bezpłatnie się skontaktuję.
+                </span>
+            </section>
 
-
-        <section class="offer__section offer__section--image-terminals js-offer-section-image-terminals">
-            <h1 class="h1">Obniż koszty płatności poprzez terminal nawet do 4200 zł rocznie
-            </h1>
-     
-               
-      
+            <section class="offer__section offer__section--image-terminals js-offer-section-image-terminals">
+                <h1 class="h1">Dostępne terminale
+                </h1>
                 <section class="section__img section__img--terminals">
-    
+
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/ingnico-iwl220.bmp"
                         alt="iwl 220">
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/MOVE_3500.png"
@@ -109,12 +121,11 @@
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Smiley-A920.bmp"
                         alt="920">
                 </section>
-
                 <section class="section__img section__img--terminals">
-    
+
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/iCT220-pinpadbialy.webp"
                         alt="iwl 220">
-    
+
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Verifone.webp"
                         alt="verifone">
                     <img class="img--terminals" src="https://terminal.terminaleservice.pl/img/Lane_300.jpg"
@@ -122,64 +133,17 @@
                     <img class="img--terminals"
                         src="https://terminal.terminaleservice.pl/img/verifone-pinpad-1000se-contactless.jpg"
                         alt="verifone pinpad">
-    
-    
                 </section>
             </section>
 
 
-
-
-       
-
-       
-      
-
-       
-       
-
-        <h1 class="h1">Koniec z przepłacaniem za prowizję.</h1>
-        <img class="img" src="https://terminal.terminaleservice.pl/img/zadowolenie z terminala.webp"
-            alt="zadowolenie z terminala">
-        <p class="paragraf">Rozmawiając z nowymi klientami o kosztach i obsłudze związanej z termninalami płatniczymi
-            często okazuje, że przedsiebiorcy pracują na wysokich stawkach prowizyjnych. Natłok innych obowiązków
-            zagłusza weryfikację aktualnych stawek. Współpracując ze mną będziesz {{miał|miała}} pewność, że masz koszty
-            pod kontrolą.
-        </p>
-
-        <h1 class="h1">Klienci, którzy nam ufają</h1>
-        <img class="img img--companies" src="https://terminal.terminaleservice.pl/img/lista-firm.webp">
-
-
-
-        <div class="div">
-
-
-            <h1 class="h1">Prowizje:</h1>
-            <section class="section">
-                <span class="section__span"><strong>Przygotuję dla Ciebie indywidualne rozwiązanie. Zostaw dane
-                        kontaktowe a bezpłatnie się skontaktuję.</strong>
-                </span>
-            </section>
-
-
-
-
-
-           
-
-         
-
-
-
-
-
-
-
-
-
-
         </div>
+        <main>
+            <h1 class="h1">Działamy w całej Polsce od 25 lat</h1>
+            <section>
+                <div class="map-container" id="map"></div>
+            </section>
+        </main>
 
         <h1 class=" h1">Podsumowanie</h1>
 
@@ -189,7 +153,6 @@
                 <li class="list__icon">✓ <p class="list__paragraf"><strong>Dedykowany opiekun</strong></p>
 
                     </i>
-
 
                 <li class="list__icon">✓
                     <p class="list__paragraf"><strong>Bezpieczeństwo pieniędzy</strong></p>
@@ -216,8 +179,6 @@
                             kartowego</strong></p>
                     </i>
         </section>
-
-
         <section class="offer__section offer__section--image js-offer-section-image-steps-for-aplication">
             <h1 class=" h1">Jak zacząć oszczędzać na płatnościach bezgotówkowych? </h1>
             <section class="section section--stepToFinalize">
@@ -233,74 +194,43 @@
             </section>
         </section>
 
-
-       
-
-       
-
-        
-
-
-
-
-       
-
-
-
-
-
-
         <h1 class=" h1">Wypełnij formularz kontaktowy a bezpłatnie się skontaktuję </h1>
 
-        <form class="form js-form" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php" method="POST">
+        <form class="form js-form" accept-charset="UTF-8" action="https://mail.korneliuszrduch.pl/subscribe.php"
+            method="POST">
             <label class="form__label">Imię</label>
-            <input class="form__input" name="fname" type="text" value="" placeholder="Imię" data-placeholder="Imię">
-            <label class="form__label" >Telefon</label>
-            <input class="form__input" name="phone" type="text" value="" placeholder="Telefon"
+            <input class="form__input js-input" name="fname" type="text" value="" placeholder="Imię" data-placeholder="Imię">
+            <label class="form__label">Telefon</label>
+            <input class="form__input js-input" name="phone" type="text" value="" placeholder="Telefon"
                 data-placeholder="Telefon" />
             <label class="form__label">Email</label>
-            <input class="form__input" id="sqm-femail" name="email" type="text" value=""placeholder="Adres e-mail"
+            <input class="form__input js-input" id="sqm-femail" name="email" type="text" value="" placeholder="Adres e-mail"
                 data-placeholder="Adres e-mail" />
-           
-            <label><input class="form__checkbox" name="fields[165]" type="checkbox" value="Akceptuję politykę prywatności">Zgadzam się na bezpłatny kontakt ws. przedstawienia oferty. </label>
 
-
+            <label><input class="form__checkbox js-checkbox" name="fields[165]" type="checkbox"
+                    value="Akceptuję politykę prywatności">Zgadzam się na bezpłatny kontakt ws. przedstawienia oferty.
+            </label>
 
             <input name="mlid" type="hidden" value="25" />
-            <input id="statusdecyzjiklienta" name="fields[115]" type="hidden"
-                value="10% Omówić potrzeby" />
-            <input id="nazwalistyadresowej" name="fields[122]" type="hidden" value="kontakt Terminale"/>
+            <input id="statusdecyzjiklienta" name="fields[115]" type="hidden" value="10% Omówić potrzeby" />
+            <input id="nazwalistyadresowej" name="fields[122]" type="hidden" value="kontakt Terminale" />
             <input id="lr_partnerterminal7" name="fields[86]" type="hidden" value="">
             <input name="req" type="hidden" value="email" />
             <input name="token" type="hidden" value="685441e7f7a0f4e235652caa59ed42371cf60e7f" />
-            <button class="form__button js-button-send-form" type="button">
-                Wyślij</button>
+
         </form>
 
-
-
-
-
-
-
-
-
+        <button class="button js-button-send-form" type="button">
+            Wyślij</button>
 
         <h1 class="h1">Dane kontaktowe: </h1>
         <p class="paragraf">Korneliusz Rduch</p>
 
-        <p class="paragraf"><strong>Tel :  <a
-                    href="tel:696409829">696 409 829</a></strong></p>
+        <p class="paragraf"><strong>Tel :  <a href="tel:696409829">696 409 829</a></strong></p>
 
         <p class="paragraf"> </p>
 
-
     </div>
-
-
-
-
-
 
 </body>
 
