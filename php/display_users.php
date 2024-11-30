@@ -200,6 +200,7 @@ if ($result->num_rows > 0) {
                                   <option value='6% Przypomnieć o fakturze + wysłać mail o fakturze'" . ($selectOptionCustumerStatus === '6% Przypomnieć o fakturze + wysłać mail o fakturze' ? ' selected' : '') . ">6% Przypomnieć o fakturze + wysłać mail o fakturze</option>
                                         <option value='7% Wysłany mail ws. faktury z terminali'" . ($selectOptionCustumerStatus === '7% Wysłany mail ws. faktury z terminali' ? ' selected' : '') . ">7% Wysłany mail ws. faktury z terminali</option>
                                           <option value='8% Obiecał, że wyśle fakturę z terminali'" . ($selectOptionCustumerStatus === '8% Obiecał, że wyśle fakturę z terminali' ? ' selected' : '') . ">8% Obiecał, że wyśle fakturę z terminali</option>
+                                              <option value='9% Klient podesłał fakturę z terminali'" . ($selectOptionCustumerStatus === '9% Klient podesłał fakturę z terminali' ? ' selected' : '') . ">9% Klient podesłał fakturę z terminali</option>
                             <option value='10% Omówić potrzeby'" . ($selectOptionCustumerStatus === '10% Omówić potrzeby' ? ' selected' : '') . ">10% Omówić potrzeby</option>
                                  <option value='11% Omówić aktualne koszty'" . ($selectOptionCustumerStatus === '11% Omówić aktualne koszty' ? ' selected' : '') . ">11% Omówić aktualne koszty</option>
 
