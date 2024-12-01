@@ -52,19 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonSendForm.addEventListener("click", sendForm);
 
 
-    const initMap = () => {
-        const olbrachta94 = { lat: 52.227960, lng: 20.973150 }; // Współrzędne dla ul. Olbrachta 94 w Warszawie
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 6, // Zwiększenie zoomu, aby lepiej zobaczyć lokalizację
-            center: olbrachta94, // Ustawienie centrum mapy na ul. Olbrachta 94
-        });
-
-        new google.maps.Marker({
-            position: olbrachta94,
-            map: map,
-            title: "Ul. Olbrachta 94, Warszawa", // Tytuł markera
-        });
-    };
+   
 
     const sectionForm = document.querySelector(".js-form");
     const buttonScroll = document.querySelector(".js-button-scroll")
@@ -79,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-initMap();
+
  
 
 });
