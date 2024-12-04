@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateSuccess = true;
             foreach ($fieldsToUpdate as $fid => $value) {
 
-                if (!empty($value)) {
                     $stmt_check_field = $conn->prepare("SELECT COUNT(*) FROM nm_krduch2subscribers_fields WHERE sid = ? AND fid = ?");
                     $stmt_check_field->bind_param("ii", $sid, $fid);
                     $stmt_check_field->execute();
@@ -90,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         $stmt_insert_field->close();
                     }
-                }
+                
             }
 
             if ($updateSuccess) {
