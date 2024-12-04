@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Generate Google Calendar link
         const formatDateISO = (date) => date.toISOString().replace(/-|:|\.\d+/g, '');
         const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-            `&text=${encodeURIComponent(nameFirst)} ${encodeURIComponent(customerStatus)}` +
+            `&text=${encodeURIComponent(nameFirst)} ${encodeURIComponent(phone)} ${encodeURIComponent(customerStatus)}` +
             `&dates=${formatDateISO(startDate)}/${formatDateISO(endDate)}` +
             `&details=Status klienta: ${encodeURIComponent(customerStatus)}%0ATelefon: ${encodeURIComponent(phone)}%0AE-mail: ${encodeURIComponent(email)}  link: https://terminal.terminaleservice.pl/crm.php?mail=${email}&phone=${phone}` +
             `&location=Telefonicznie` +
@@ -334,8 +334,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 
-    const createVcfAndSave = (event, dataTable, buttonCreateVcf) => {
+    const createVcfAndSave = (event, dataTable, buttonSaveDatabase) => {
         event.preventDefault();
+        saveToDataBase(event, dataTable, buttonSaveDatabase);
     
         // Pobieranie danych z tabeli
         const nameFirst = dataTable.querySelector(".js-input-name-first")?.value.trim() || '';
