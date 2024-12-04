@@ -31,6 +31,7 @@ if ($sort_by_sid) {
 
 // Przygotowanie zapytania SQL z użyciem wybranego kryterium sortowania
 $sql = "SELECT u.sid, u.name_first, u.name_last, u.email, u.phone, 
+            MAX(CASE WHEN f.fid = 86 THEN f.value END) AS field_value_86,
             MAX(CASE WHEN f.fid = 330 THEN f.value END) AS field_value_330,
             MAX(CASE WHEN f.fid = 329 THEN f.value END) AS field_value_329,
             MAX(CASE WHEN f.fid = 184 THEN f.value END) AS field_value_184,
@@ -85,6 +86,9 @@ if ($result->num_rows > 0) {
                      
                    
                     <td class='table'>
+
+                     <input class='input visible js-place-recommended-terminal'  name='fields[86]'
+        type='text' value='" . htmlspecialchars($row['field_value_86'], ENT_QUOTES, 'UTF-8') . "'placeholder='Miejsce pozyskania kontaktu' />
 
                       <select class='js-select-option-company-of-terminal' name='fields[112]' id='field112'>
                             <option value='$selectedOptionCompanyOfTerminal'>$selectedOptionCompanyOfTerminal</option>
@@ -142,7 +146,7 @@ if ($result->num_rows > 0) {
                         </select>
 
                     <input class='js-input-name-first' type='text' name='fname' value='" . htmlspecialchars($row['name_first'], ENT_QUOTES, 'UTF-8') . "'placeholder='Imię'>
-                           <input class='js-input-name-last' type='text' name='fname' value='" . htmlspecialchars($row['name_last'], ENT_QUOTES, 'UTF-8') . "'placeholder='nazwisko'>
+                           <input class='js-input-name-last' type='text' name='lname' value='" . htmlspecialchars($row['name_last'], ENT_QUOTES, 'UTF-8') . "'placeholder='nazwisko'>
                     <input class='js-email-contact' type='email' name='email' value='" . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . "'placeholder='Email'>
                   <a href='tel:" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'>
                             <input class='js-input-phone' type='text' name='phone' value='" . htmlspecialchars($row['phone'], ENT_QUOTES, 'UTF-8') . "'placeholder='Telefon'></a> 
@@ -235,8 +239,10 @@ if ($result->num_rows > 0) {
 
     <option value='100% Wysłać gadżet'" . ($selectOptionCustumerStatus === '100% Wysłać gadżet' ? ' selected' : '') . ">100% Wysłać gadżet</option>
       <option value='100% Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Pobrać rekomendacje' ? ' selected' : '') . ">100% Pobrać rekomendacje</option>
+         <option value='100% Wysłano prośbę o rekomendacje'" . ($selectOptionCustumerStatus === '100% Wysłano prośbę o rekomendacje' ? ' selected' : '') . ">100% Wysłano prośbę o rekomendacje</option>
       
     <option value='100% Lista VIP Pobrać rekomendacje'" . ($selectOptionCustumerStatus === '100% Lista VIP Pobrać rekomendacje' ? ' selected' : '') . ">100% Lista VIP Pobrać rekomendacje</option>
+
      <option value='100% Pobrano rekomendacje 1'" . ($selectOptionCustumerStatus === '100% Pobrano rekomendacje 1' ? ' selected' : '') . ">100% Pobrano rekomendacje 1</option>
         <option value='100% Pobrano rekomendacje 2'" . ($selectOptionCustumerStatus === '100% Pobrano rekomendacje 2' ? ' selected' : '') . ">100% Pobrano rekomendacje 2</option>
         <option value='100% Lista VIP'" . ($selectOptionCustumerStatus === '100% Lista VIP' ? ' selected' : '') . ">100% Lista VIP</option>
