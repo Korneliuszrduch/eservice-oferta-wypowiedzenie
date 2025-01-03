@@ -1,4 +1,47 @@
 <?php
+session_start();
+
+
+$correctPassword = 'substrybencieservice';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $password = $_POST['password'] ?? '';
+
+    if ($password === $correctPassword) {
+        $_SESSION['authenticated'] = true;
+        header('Location: crm.php');
+        exit();
+    } else {
+        $error = "Nieprawidłowe hasło!";
+    }
+}
+
+
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true): ?>
+    <!DOCTYPE html>
+    <html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Strona Zabezpieczona Hasłem</title>
+    </head>
+    <body>
+        <h2>Podaj hasło, aby uzyskać dostęp:</h2>
+        <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
+        <form method="POST">
+            <input type="password" name="password" placeholder="Wprowadź hasło" required>
+            <button type="submit">Otwórz</button>
+        </form>
+    </body>
+    </html>
+<?php
+    exit();
+endif;
+?>
+
+
+<?php
 if (isset($_GET['mail']) && isset($_GET['phone'])) {
     $email = htmlspecialchars($_GET['mail'], ENT_QUOTES, 'UTF-8');
     $phone = htmlspecialchars($_GET['phone'], ENT_QUOTES, 'UTF-8');
@@ -74,6 +117,7 @@ session_start();
 </head>
 
 <body>
+<a href="php/logout.php">Wyloguj się</a>
     <button class="js-button-show-hidden">Pokaż ukryte</button>
     <button class="js-button-hidden-contact">Ukryj kontakty</button>
 
